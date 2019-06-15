@@ -40,7 +40,7 @@
 #define NUM_TOOLS 2
 #define NUM_EXTRUDER 2
 #define NUM_SERVOS 1                  // Number of servos available
-#define MOTHERBOARD MOTHERBOARD_FELIX // 405
+#define MOTHERBOARD MOTHERBOARD_SMARTRAMPS_EEPROM // 405
 #define EEPROM_MODE 1
 #define RFSERIAL Serial
 //#define EXTERNALSERIAL  use Arduino serial library instead of build in. Requires more ram, has only 63 byte input buffer.
@@ -82,7 +82,7 @@
 // Normally only a delta has motor end stops required. Normally you trigger using axis endstops.
 #define NO_MOTOR_ENDSTOPS
 
-#define FEATURE_CONTROLLER CONTROLLER_FELIX_DUE
+#define FEATURE_CONTROLLER NO_CONTROLLER
 // Use more memory to speedup display updates
 #define DISPLAY_FULL_BUFFER 1
 // Direction 1 or -1
