@@ -39,7 +39,7 @@
 // The follwing variables are required early to decide on the right modules.
 #define NUM_TOOLS 2
 #define NUM_EXTRUDER 2
-#define NUM_SERVOS 1                  // Number of servos available
+#define NUM_SERVOS 0                  // Number of servos available
 #define MOTHERBOARD MOTHERBOARD_SMARTRAMPS_EEPROM // 405
 #define EEPROM_MODE 1
 #define RFSERIAL Serial
@@ -181,7 +181,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
     {}
 
 #define SERVO_LIST \
-    { &Servo1 }
+    {  }
 #define TOOLS \
     { &ToolExtruder1, &ToolExtruder2 }
 
@@ -196,7 +196,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 // Id's start at 0 and depend on position in this array.
 #define NUM_MOTORS 5
 #define MOTORS \
-    { &XMotor, &YMotor, &ZMotor, &AL1Motor, &AL2Motor }
+    { &XMotor, &YMotor, &ZMotor, &E1MotorBase, &E2MotorBase }
 
 #define X_HOME_DIR -1
 #define Y_HOME_DIR 1
