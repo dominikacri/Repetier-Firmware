@@ -120,7 +120,7 @@
 // this board supports eeprom
 #define SDA_PIN 20 // 20 or 70
 #define SCL_PIN 21 // 21 or 71
-
+#undef TWI_CLOCK_FREQ
 #define TWI_CLOCK_FREQ 400000
 // see eeprom device data sheet for the following values, these are for 24xx256
 #define EEPROM_SERIAL_ADDR 0x50  // 7 bit i2c address (without R/W bit)
