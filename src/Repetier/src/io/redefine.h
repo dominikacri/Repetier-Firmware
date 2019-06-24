@@ -55,7 +55,7 @@ enum class GUIAction;
 #include "io_servos.h"
 #include "io_analog.h"
 #include "io_temperature.h"
-#include "io_tmc5160.h"
+#include "io_tmc.h"
 #include "endstop_definitions.h"
 #include "stepper.h"
 #include "heatManager.h"

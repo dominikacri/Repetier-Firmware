@@ -1,14 +1,14 @@
-#include "tmc5160.h"
+#include "tmc2130.h"
 
 #include <TMCStepper.h>
 
-TMC5160::TMC5160(uint8_t csPin)
+TMC2130::TMC2130(uint8_t csPin)
 {
     m_csPin = csPin;
 
-    m_TMCDriver = new TMC5160Stepper(csPin, 0.075);
+    m_TMCDriver = new TMC2130Stepper(csPin, 0.075);
 }
-TMC5160::~TMC5160()
+TMC2130::~TMC2130()
 {
     if(m_TMCDriver)
     {
@@ -17,7 +17,7 @@ TMC5160::~TMC5160()
     }
 }
 
-void TMC5160::PrintSettings()
+void TMC2130::PrintSettings()
 {
     uint16_t rmsCurrent = m_TMCDriver->rms_current();
     uint16_t microSteps = m_TMCDriver->microsteps();
@@ -51,7 +51,7 @@ void TMC5160::PrintSettings()
     }
 }
 
-bool TMC5160::Init()
+bool TMC2130::Init()
 {
     SPI.begin();
 
@@ -71,14 +71,14 @@ bool TMC5160::Init()
         return false;
     }
     
-    Serial.println(F("Connect successfully to TMC5160"));
+    Serial.println(F("Connect successfully to TMC2130"));
 
     this->PrintSettings();
 
     return true;
 }
 
-bool TMC5160::ApplySettings()
+bool TMC2130::ApplySettings()
 {
     uint16_t rmsCurrent = 800u;
     uint16_t microSteps = 16u;
@@ -97,7 +97,7 @@ bool TMC5160::ApplySettings()
     m_TMCDriver->hysteresis_start(3);
     m_TMCDriver->hysteresis_end(2);
     m_TMCDriver->pwm_autoscale(true);
-    m_TMCDriver->pwm_autograd(1);
+    //m_TMCDriver->pwm_autograd(1);
     m_TMCDriver->irun(15);
     m_TMCDriver->ihold(8);
     m_TMCDriver->chm(0); 
