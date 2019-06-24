@@ -26,25 +26,25 @@ IO_OUTPUT_FAKE(fakeOut)
 // X Motor
 
 IO_OUTPUT(IOX1Step, ORIG_X_STEP_PIN)
-IO_OUTPUT_INVERTED(IOX1Dir, ORIG_X_DIR_PIN)
-IO_OUTPUT(IOX1Enable, ORIG_X_ENABLE_PIN)
+IO_OUTPUT(IOX1Dir, ORIG_X_DIR_PIN)
+IO_OUTPUT_INVERTED(IOX1Enable, ORIG_X_ENABLE_PIN)
 
 // Y Motor
 
 IO_OUTPUT(IOY1Step, ORIG_Y_STEP_PIN)
 IO_OUTPUT(IOY1Dir, ORIG_Y_DIR_PIN)
-IO_OUTPUT(IOY1Enable, ORIG_Y_ENABLE_PIN)
+IO_OUTPUT_INVERTED(IOY1Enable, ORIG_Y_ENABLE_PIN)
 
 // Z Motor
 
 IO_OUTPUT(IOZ1Step, ORIG_Z_STEP_PIN)
-IO_OUTPUT_INVERTED(IOZ1Dir, ORIG_Z_DIR_PIN)
-IO_OUTPUT(IOZ1Enable, ORIG_Z_ENABLE_PIN)
+IO_OUTPUT(IOZ1Dir, ORIG_Z_DIR_PIN)
+IO_OUTPUT_INVERTED(IOZ1Enable, ORIG_Z_ENABLE_PIN)
 
 // E0 Motor
 
 IO_OUTPUT(IOE1Step, ORIG_E0_STEP_PIN)
-IO_OUTPUT_INVERTED(IOE1Dir, ORIG_E0_DIR_PIN)
+IO_OUTPUT(IOE1Dir, ORIG_E0_DIR_PIN)
 IO_OUTPUT_INVERTED(IOE1Enable, ORIG_E0_ENABLE_PIN)
 
 // E1 Motor
@@ -55,29 +55,29 @@ IO_OUTPUT_INVERTED(IOE2Enable, ORIG_E1_ENABLE_PIN)
 
 // Autolevel Motor 1
 
-IO_OUTPUT(IOAL1Step, 51)
-IO_OUTPUT(IOAL1Dir, 53)
-IO_OUTPUT_INVERTED(IOAL1Enable, 49)
+//IO_OUTPUT(IOAL1Step, 51)
+//IO_OUTPUT(IOAL1Dir, 53)
+//IO_OUTPUT_INVERTED(IOAL1Enable, 49)
 
 // Autolevel Motor 1
 
-IO_OUTPUT(IOAL2Step, 39)
-IO_OUTPUT(IOAL2Dir, 13)
-IO_OUTPUT_INVERTED(IOAL2Enable, 40)
+//IO_OUTPUT(IOAL2Step, 39)
+//IO_OUTPUT(IOAL2Dir, 13)
+//IO_OUTPUT_INVERTED(IOAL2Enable, 40)
 
 // Servo output
 
-IO_OUTPUT(Servo1Pin, 5)
+//IO_OUTPUT(Servo1Pin, 5)
 
 // Define your endstops inputs
 
 IO_INPUT(IOEndstopXMin, ORIG_X_MIN_PIN)
 // IO_INPUT_INVERTED(IOEndstopXMin, ORIG_X_MIN_PIN)
-IO_INPUT(IOEndstopYMax, ORIG_Y_MAX_PIN)
+IO_INPUT(IOEndstopYMin, ORIG_Y_MIN_PIN)
 IO_INPUT_PULLUP(IOEndstopZMin, ORIG_Z_MIN_PIN)
 
-IO_INPUT(IOJam1, 35)
-IO_INPUT(IOJam2, 33)
+//IO_INPUT(IOJam1, 35)
+//IO_INPUT(IOJam2, 33)
 
 // Controller input pins
 
@@ -113,8 +113,8 @@ IO_INPUT_DUMMY(ControllerReset, false)
 
 ENDSTOP_SWITCH_HW(endstopXMin, IOEndstopXMin, X_AXIS, false)
 ENDSTOP_NONE(endstopXMax)
-ENDSTOP_NONE(endstopYMin)
-ENDSTOP_SWITCH_HW(endstopYMax, IOEndstopYMax, Y_AXIS, true)
+ENDSTOP_SWITCH_HW(endstopYMin, IOEndstopYMin, Y_AXIS, false)
+ENDSTOP_NONE(endstopYMax)
 ENDSTOP_SWITCH_HW(endstopZMin, IOEndstopZMin, Z_AXIS, false)
 ENDSTOP_NONE(endstopZMax)
 
@@ -165,9 +165,9 @@ IO_PWM_SOFTWARE(PWMBed1, IOBed1, 1)
 // IO_PWM_SOFTWARE(PWMCoolerExt1, FAN2_PIN, 0)
 
 // Define all stepper motors used
-STEPPER_SIMPLE(XMotor, IOX1Step, IOX1Dir, IOX1Enable, endstopNone, endstopNone)
-STEPPER_SIMPLE(YMotor, IOY1Step, IOY1Dir, IOY1Enable, endstopNone, endstopNone)
-STEPPER_SIMPLE(ZMotor, IOZ1Step, IOZ1Dir, IOZ1Enable, endstopNone, endstopNone)
+STEPPER_SIMPLE(XMotor, IOX1Step, IOX1Dir, IOX1Enable, endstopXMin, endstopNone)
+STEPPER_SIMPLE(YMotor, IOY1Step, IOY1Dir, IOY1Enable, endstopYMin, endstopNone)
+STEPPER_SIMPLE(ZMotor, IOZ1Step, IOZ1Dir, IOZ1Enable, endstopZMin, endstopNone)
 STEPPER_SIMPLE(E1MotorBase, IOE1Step, IOE1Dir, IOE1Enable, endstopNone, endstopNone)
 //STEPPER_OBSERVEABLE(E1Motor, E1MotorBase)
 STEPPER_SIMPLE(E2MotorBase, IOE2Step, IOE2Dir, IOE2Enable, endstopNone, endstopNone)
@@ -183,8 +183,8 @@ STEPPER_SIMPLE(E2MotorBase, IOE2Step, IOE2Dir, IOE2Enable, endstopNone, endstopN
 // and simple heater like a heated bed use it directly.
 
 HEAT_MANAGER_PID(HeatedBed1, 'B', 0, TempBed1, PWMBed1, 120, 255, 1000, 5, 30000, 12.0, 33.0, 290.0, 80, 255, true)
-HEAT_MANAGER_PID(HeaterExtruder1, 'E', 0, TempExt1, PWMExtruder1, 260, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, false)
-HEAT_MANAGER_PID(HeaterExtruder2, 'E', 1, TempExt2, PWMExtruder2, 260, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, false)
+HEAT_MANAGER_PID(HeaterExtruder1, 'E', 2, TempExt1, PWMExtruder1, 260, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, false)
+HEAT_MANAGER_PID(HeaterExtruder2, 'E', 3, TempExt2, PWMExtruder2, 260, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, false)
 
 // HEAT_MANAGER_DYN_DEAD_TIME(HeaterExtruder1, 'E', 0, TempExt1, PWMExtruder1, 260, 255, 100, 10, 20000, 150, 7, 7, 200, 7, 7, false)
 // HEAT_MANAGER_DYN_DEAD_TIME(HeaterExtruder2, 'E', 1, TempExt2, PWMExtruder2, 260, 255, 100, 10, 20000, 150, 7, 7, 200, 7, 7, false)
@@ -212,3 +212,5 @@ TOOL_EXTRUDER(ToolExtruder2, 16.775, 0.615, -0.97, HeaterExtruder2, /*AL2Motor *
 // Use a signal that is high, when filament is loaded
 //FILAMENT_DETECTOR(FilamentDetector1, IOJam1, ToolExtruder1)
 //FILAMENT_DETECTOR(FilamentDetector2, IOJam2, ToolExtruder2)
+
+IO_TMC_5160(tmc5160yaxis, 43)

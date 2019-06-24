@@ -51,7 +51,7 @@
 #define BLUETOOTH_BAUD 115200
 #define WAITING_IDENTIFIER "wait"
 #define JSON_OUTPUT 1
-#define FEATURE_WATCHDOG 1
+#define FEATURE_WATCHDOG 0
 #define FEATURE_RETRACTION 1
 #define NUM_AXES 4                   // X,Y,Z and E for extruder A,B,C would be 5,6,7
 #define STEPPER_FREQUENCY 153000     // Maximum stepper frequency.
@@ -246,14 +246,18 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define FAN_THERMO_MAX_TEMP 60
 #define FAN_THERMO_THERMISTOR_PIN -1
 #define FAN_THERMO_THERMISTOR_TYPE 1
-#undef Y_MIN_PIN
-#define Y_MIN_PIN -1
+#undef X_MIN_PIN
+#define X_MIN_PIN ORIG_X_MIN_PIN
 #undef X_MAX_PIN
-#define X_MAX_PIN -1
+#define X_MAX_PIN ORIG_X_MAX_PIN
+#undef Y_MIN_PIN
+#define Y_MIN_PIN ORIG_Y_MIN_PIN
 #undef Y_MAX_PIN
-#define Y_MAX_PIN ORIG_Y_MIN_PIN
+#define Y_MAX_PIN ORIG_Y_MAX_PIN
+#undef Z_MIN_PIN
+#define Z_MIN_PIN ORIG_Z_MIN_PIN
 #undef Z_MAX_PIN
-#define Z_MAX_PIN -1
+#define Z_MAX_PIN ORIG_Z_MAX_PIN
 
 #define MIXING_EXTRUDER 0
 
