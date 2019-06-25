@@ -41,6 +41,7 @@ IO_OUTPUT(IOZ1Step, ORIG_Z_STEP_PIN)
 IO_OUTPUT(IOZ1Dir, ORIG_Z_DIR_PIN)
 IO_OUTPUT_INVERTED(IOZ1Enable, ORIG_Z_ENABLE_PIN)
 
+
 // E0 Motor
 
 IO_OUTPUT(IOE1Step, ORIG_E0_STEP_PIN)
@@ -213,5 +214,5 @@ TOOL_EXTRUDER(ToolExtruder2, 16.775, 0.615, -0.97, HeaterExtruder2, /*AL2Motor *
 //FILAMENT_DETECTOR(FilamentDetector1, IOJam1, ToolExtruder1)
 //FILAMENT_DETECTOR(FilamentDetector2, IOJam2, ToolExtruder2)
 
-IO_TMC_5160(tmc5160yaxis, 43)
-IO_TMC_2130(tmc2130zaxis, 41)
+//IO_TMC_5160(tmc5160yaxis, 43)
+IO_TMC_2130(tmc2130zaxis, 43)

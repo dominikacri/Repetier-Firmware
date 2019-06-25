@@ -144,7 +144,7 @@ to the position. 0 = no contribution. */
 #define DISABLE_Y 0
 #define DISABLE_Z 0
 
-#define FEATURE_AXISCOMP 1
+#define FEATURE_AXISCOMP 0
 #define AXISCOMP_TANXY 0
 #define AXISCOMP_TANYZ 0
 #define AXISCOMP_TANXZ 0
@@ -230,7 +230,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Z 100
 #define XAXIS_STEPS_PER_MM 610
 #define YAXIS_STEPS_PER_MM 610
-#define ZAXIS_STEPS_PER_MM 6400
+#define ZAXIS_STEPS_PER_MM 610
 
 // ################## EDIT THESE SETTINGS MANUALLY ################
 // ################ END MANUAL SETTINGS ##########################
@@ -323,7 +323,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define ENDSTOP_X_BACK_ON_HOME 0.5
 #define ENDSTOP_Y_BACK_ON_HOME 0.5
 #define ENDSTOP_Z_BACK_ON_HOME 0
-#define ALWAYS_CHECK_ENDSTOPS 1
+#define ALWAYS_CHECK_ENDSTOPS 0
 #define MOVE_X_WHEN_HOMED 0
 #define MOVE_Y_WHEN_HOMED 0
 #define MOVE_Z_WHEN_HOMED 0
@@ -346,10 +346,10 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define MAX_INACTIVE_TIME 1200L
 #define MAX_FEEDRATE_X 250
 #define MAX_FEEDRATE_Y 250
-#define MAX_FEEDRATE_Z 20
+#define MAX_FEEDRATE_Z 250
 #define HOMING_FEEDRATE_X 80
 #define HOMING_FEEDRATE_Y 80
-#define HOMING_FEEDRATE_Z 10
+#define HOMING_FEEDRATE_Z 80
 // Raise z before homing (1)
 #define ZHOME_PRE_RAISE 1
 // How much mm should z raise before homing
@@ -371,7 +371,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define Z_BACKLASH 0
 #define DIRECTION_DELAY 0
 #define MAX_JERK 5
-#define MAX_ZJERK 0.3
+#define MAX_ZJERK 5
 #define PRINTLINE_CACHE_SIZE 32
 #define MOVE_CACHE_LOW 10
 #define LOW_TICKS_PER_MOVE 250000
@@ -395,7 +395,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define Z_PROBE_COATING 0
 #define Z_PROBE_Z_OFFSET_MODE 1
 #define UI_BED_COATING 1
-#define EXTRUDER_IS_Z_PROBE 1
+#define EXTRUDER_IS_Z_PROBE 0
 #define Z_PROBE_DISABLE_HEATERS 1
 #define Z_PROBE_BED_DISTANCE 3
 #define Z_PROBE_X_OFFSET 0
@@ -413,8 +413,8 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define Z_PROBE_START_SCRIPT ""
 #define Z_PROBE_FINISHED_SCRIPT ""
 #define Z_PROBE_RUN_AFTER_EVERY_PROBE ""
-#define Z_PROBE_REQUIRES_HEATING 1
-#define Z_PROBE_MIN_TEMPERATURE 150
+#define Z_PROBE_REQUIRES_HEATING 0
+#define Z_PROBE_MIN_TEMPERATURE 20
 
 // How to correct rotated beds
 // 0 = Software side by rotating coordinates
@@ -438,7 +438,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 
 // Leveling method
 // 0 = none, 3 = 3 points, 1 = grid, 2 = 4 point symmetric
-#define LEVELING_METHOD 2
+#define LEVELING_METHOD 0
 #define L_P1_X 60
 #define L_P1_Y 130
 #define L_P2_X 137

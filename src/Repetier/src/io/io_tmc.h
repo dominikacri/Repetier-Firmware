@@ -10,38 +10,36 @@
 
 #if IO_TARGET == 1 // hardware init
 
-#define IO_TMC_5160(name, csPin)\
-    name.Init(); \
-    name.ApplySettings();
-#define IO_TMC_2130(name, csPin)\
-    name.Init(); \
-    name.ApplySettings();
+#define IO_TMC_5160(name5160, csPin5160)\
+    if(name5160.Init()) {name5160.ApplySettings();};
+#define IO_TMC_2130(name2130, csPin2130)\
+    if(name2130.Init()) {name2130.ApplySettings();};
 #elif IO_TARGET == 4 // class
-#define IO_TMC_5160(name, csPin) \
-    class name##Class : public TMC5160 { \
+#define IO_TMC_5160(name5160, csPin5160) \
+    class name5160##Class : public TMC5160 { \
     public:\
-    name##Class() : TMC5160(csPin) { \
-            SET_OUTPUT(csPin); \
-            WRITE(csPin, 1); \
+    name5160##Class() : TMC5160(csPin5160) { \
+            SET_OUTPUT(csPin5160); \
+            WRITE(csPin5160, 1); \
         } \
     }; \
-    extern name##Class name;
-#define IO_TMC_2130(name, csPin) \
-    class name##Class : public TMC2130 { \
+    extern name5160##Class name5160;
+#define IO_TMC_2130(name2130, csPin2130) \
+    class name2130##Class : public TMC2130 { \
     public:\
-    name##Class() : TMC2130(csPin) { \
-            SET_OUTPUT(csPin); \
-            WRITE(csPin, 1); \
+    name2130##Class() : TMC2130(csPin2130) { \
+            SET_OUTPUT(csPin2130); \
+            WRITE(csPin2130, 1); \
         } \
     }; \
-    extern name##Class name;
+    extern name2130##Class name2130;
 
 #elif IO_TARGET == 6 // variable
-#define IO_TMC_5160(name, csPin) \
-    name##Class name;
-#define IO_TMC_2130(name, csPin) \
-    name##Class name;
+#define IO_TMC_5160(name5160, csPin5160) \
+    name5160##Class name5160;
+#define IO_TMC_2130(name2130, csPin2130) \
+    name2130##Class name2130;
 #else
-#define IO_TMC_5160(name, csPin)
-#define IO_TMC_2130(name, csPin)
+#define IO_TMC_5160(name5160, csPin5160)
+#define IO_TMC_2130(name2130, csPin2130)
 #endif

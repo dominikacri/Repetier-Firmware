@@ -26,10 +26,11 @@ void TMC5160::PrintSettings()
     uint8_t toff = m_TMCDriver->toff(); 
     
     int toffInt = toff;
-      
+
+    Serial.println(("TMC5160: Settings for Pin:  ") + String(m_csPin));  
+
     Serial.println(("RMS Current: ") + String(rmsCurrent));
     Serial.println(("Microsteps: ") + String(microSteps));
-
     Serial.println(("Toff: ") + String(toffInt));
 
     if (en_pwm_mode)
@@ -59,19 +60,19 @@ bool TMC5160::Init()
 
     if (result)
     {
-        Serial.println(F("failed!"));
-        Serial.print(F("Likely cause: "));
+        Serial.println("TMC5160: SPI communication failed. Pin: " + String(m_csPin));
+        Serial.print(F("TMC5160: Likely cause: "));
 
         switch(result)
         {
-            case 1: Serial.println(F("loose connection")); break;
-            case 2: Serial.println(F("Likely cause: no power")); break;
+            case 1: Serial.println(F("Loose connection")); break;
+            case 2: Serial.println(F("No power")); break;
         }
-        Serial.println(F("Fix the problem and reset board."));
+        Serial.println(F("TMC5160: Fix the problem and reset board."));
         return false;
     }
     
-    Serial.println(F("Connect successfully to TMC5160"));
+    Serial.println("TMC5160: Connect successfully to Pin: " + String(m_csPin));
 
     this->PrintSettings();
 
@@ -80,19 +81,19 @@ bool TMC5160::Init()
 
 bool TMC5160::ApplySettings()
 {
-    uint16_t rmsCurrent = 800u;
+    uint16_t rmsCurrent = 1000u;
     uint16_t microSteps = 16u;
     
-    m_TMCDriver->push();
     m_TMCDriver->rms_current(rmsCurrent);
     m_TMCDriver->microsteps(microSteps);
     m_TMCDriver->intpol(true);
+    m_TMCDriver->toff(5);
 
-    Serial.println(F("TMC2130 - New base settings applied."));
-    
+    Serial.println(F("TMC5160 - New base settings applied."));
+    this->PrintSettings();
+
     return true;
     
-    m_TMCDriver->toff(5);
     m_TMCDriver->blank_time(24);
     m_TMCDriver->hysteresis_start(3);
     m_TMCDriver->hysteresis_end(2);
@@ -105,9 +106,8 @@ bool TMC5160::ApplySettings()
     m_TMCDriver->TPOWERDOWN(10);
     m_TMCDriver->TPWMTHRS(5000);
        
-    Serial.println(F("TMC2130 - New advanced settings applied."));
-
+    Serial.println(F("TMC5160 - New advanced settings applied."));
     this->PrintSettings();
 
-    return false;
+    return true;
 }
