@@ -81,13 +81,17 @@ bool TMC5160::Init()
 
 bool TMC5160::ApplySettings()
 {
-    uint16_t rmsCurrent = 1000u;
-    uint16_t microSteps = 16u;
+    uint16_t rmsCurrent = 500;
+    uint16_t microSteps = 16;
     
+    m_TMCDriver->push();
+
     m_TMCDriver->rms_current(rmsCurrent);
     m_TMCDriver->microsteps(microSteps);
     m_TMCDriver->intpol(true);
     m_TMCDriver->toff(5);
+
+    m_TMCDriver->pwm_autoscale(true);
 
     Serial.println(F("TMC5160 - New base settings applied."));
     this->PrintSettings();

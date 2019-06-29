@@ -82,15 +82,17 @@ bool TMC2130::Init()
 
 bool TMC2130::ApplySettings()
 {
-    uint16_t rmsCurrent = 400;
+    uint16_t rmsCurrent = 500;
     uint16_t microSteps = 16;
     
-   // m_TMCDriver->push();
-   m_TMCDriver->rms_current(rmsCurrent);
-   m_TMCDriver->microsteps(microSteps);
-   m_TMCDriver->intpol(true);
-   m_TMCDriver->toff(5);
+    m_TMCDriver->push();
+    m_TMCDriver->rms_current(rmsCurrent);
+    m_TMCDriver->microsteps(microSteps);
+    m_TMCDriver->intpol(true);
+    m_TMCDriver->toff(3);
 
+    m_TMCDriver->pwm_autoscale(true); 
+    
     //  m_TMCDriver->pwm_autoscale(true); 
     /*
     m_TMCDriver->blank_time(24);
@@ -102,9 +104,9 @@ bool TMC2130::ApplySettings()
     Serial.println(F("TMC2130 - New base settings applied."));
     this->PrintSettings();
 
-    Serial.println(F("TMC2130 - Drive Motor."));
+    /* 
+    Serial.println(F("TMC2130 - Drive Motor Y Motor."));
 
-/* 
     pinMode(56, OUTPUT);
     pinMode(60, OUTPUT);
     pinMode(61, OUTPUT);
