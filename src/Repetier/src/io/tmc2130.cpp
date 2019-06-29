@@ -89,19 +89,33 @@ bool TMC2130::ApplySettings()
     m_TMCDriver->rms_current(rmsCurrent);
     m_TMCDriver->microsteps(microSteps);
     m_TMCDriver->intpol(true);
+    
     m_TMCDriver->toff(3);
+    m_TMCDriver->blank_time(24);
+
+    m_TMCDriver->I_scale_analog(true);
+    
+    m_TMCDriver->en_pwm_mode(false);
+    m_TMCDriver->chm(0); // chopermode spreadcyle instead of consttoff
+   
+    m_TMCDriver->pwm_freq(2);
+    m_TMCDriver->pwm_ampl(255);
+    m_TMCDriver->pwm_grad(1);
 
     m_TMCDriver->pwm_autoscale(true); 
     
-    //  m_TMCDriver->pwm_autoscale(true); 
-    /*
-    m_TMCDriver->blank_time(24);
-    m_TMCDriver->hysteresis_start(3);
-    m_TMCDriver->hysteresis_end(2);
+
     m_TMCDriver->TPOWERDOWN(128);
-    */
+      
+    //m_TMCDriver->hysteresis_start(3);
+    //m_TMCDriver->hysteresis_end(2);
+
+    //m_TMCDriver->irun(15);
+    //m_TMCDriver->ihold(8);
     
-    Serial.println(F("TMC2130 - New base settings applied."));
+    //m_TMCDriver->TPWMTHRS(5000);
+       
+    Serial.println(F("TMC2130 - New settings applied."));
     this->PrintSettings();
 
     /* 
@@ -120,18 +134,6 @@ bool TMC2130::ApplySettings()
         delayMicroseconds(160);
     }
     */
-
-    return true;
-        
-    //m_TMCDriver->pwm_autograd(1);
-    m_TMCDriver->irun(15);
-    m_TMCDriver->ihold(8);
-    m_TMCDriver->chm(0); 
-    m_TMCDriver->tbl(2);
-    m_TMCDriver->TPWMTHRS(5000);
-       
-    Serial.println(F("TMC2130 - New advanced settings applied."));
-    this->PrintSettings();
 
     return true;
 }
