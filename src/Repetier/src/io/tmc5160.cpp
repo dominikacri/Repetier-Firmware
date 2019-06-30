@@ -21,20 +21,22 @@ void TMC5160::PrintSettings()
 {
     uint16_t rmsCurrent = m_TMCDriver->rms_current();
     uint16_t microSteps = m_TMCDriver->microsteps();
+
     bool en_pwm_mode = m_TMCDriver->en_pwm_mode();
+    uint8_t chopperMode = m_TMCDriver->chm();
+
     bool autoScale = m_TMCDriver->pwm_autoscale(); // Stealthcop
     bool autoGrade = m_TMCDriver->pwm_autograd(); // Stealthcop
+  
+    uint8_t toff = m_TMCDriver->toff();
+    uint8_t blankTime = m_TMCDriver->blank_time();
 
     uint8_t irun = m_TMCDriver->irun();
     uint8_t ihold = m_TMCDriver->ihold();
 
-    uint8_t toff = m_TMCDriver->toff();
-    uint8_t blankTime = m_TMCDriver->blank_time();
     uint8_t hystStart = m_TMCDriver->hysteresis_start();
     int8_t hystEnd = m_TMCDriver->hysteresis_end();
-
-    uint8_t chopperMode = m_TMCDriver->chm();
-
+    
     uint8_t stallguardThreshold = m_TMCDriver->sgt();
 
     // TODO: extend  string for using uint8
@@ -45,7 +47,6 @@ void TMC5160::PrintSettings()
 
     int hystStartInt = hystStart;
     int hystEndInt = hystEnd;
-
 
     Serial.println(("TMC5160: Settings for Pin:  ") + String(m_csPin));  
 
@@ -127,14 +128,15 @@ bool TMC5160::Init()
 
 bool TMC5160::ApplySettings()
 {
-    uint16_t rmsCurrent = 500;
+    uint16_t rmsCurrent = 600;
     uint16_t microSteps = 16;
+    bool interpolate = true;
     
     m_TMCDriver->push();
 
     m_TMCDriver->rms_current(rmsCurrent);
     m_TMCDriver->microsteps(microSteps);
-    m_TMCDriver->intpol(true);
+    m_TMCDriver->intpol(interpolate);
 
     m_TMCDriver->toff(3);
     m_TMCDriver->blank_time(24);

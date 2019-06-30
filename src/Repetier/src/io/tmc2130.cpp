@@ -21,18 +21,45 @@ void TMC2130::PrintSettings()
 {
     uint16_t rmsCurrent = m_TMCDriver->rms_current();
     uint16_t microSteps = m_TMCDriver->microsteps();
-    bool en_pwm_mode = m_TMCDriver->en_pwm_mode();
-    bool autoScale = m_TMCDriver->pwm_autoscale();
-    uint8_t toff = m_TMCDriver->toff(); 
     
+    bool en_pwm_mode = m_TMCDriver->en_pwm_mode();
+    uint8_t chopperMode = m_TMCDriver->chm();
+
+    uint8_t toff = m_TMCDriver->toff();
+    uint8_t blankTime = m_TMCDriver->blank_time(); 
+
+    bool autoScale = m_TMCDriver->pwm_autoscale();
+    
+    uint8_t irun = m_TMCDriver->irun();
+    uint8_t ihold = m_TMCDriver->ihold();
+
+    uint8_t hystStart = m_TMCDriver->hysteresis_start();
+    int8_t hystEnd = m_TMCDriver->hysteresis_end();
+    
+    uint8_t stallguardThreshold = m_TMCDriver->sgt();
+    
+    // TODO: extend  string for using uint8
     int toffInt = toff;
+    int blankTimeInt = blankTime;
+    int irunInt = irun;
+    int iholdInt = ihold;
+
+    int hystStartInt = hystStart;
+    int hystEndInt = hystEnd;
 
     Serial.println(("TMC2130: Settings for Pin:  ") + String(m_csPin));  
       
     Serial.println(("RMS Current: ") + String(rmsCurrent));
     Serial.println(("Microsteps: ") + String(microSteps));
-
     Serial.println(("Toff: ") + String(toffInt));
+    Serial.println(("BlankTime: ") + String(blankTimeInt));
+    Serial.println(("IRun: ") + String(irunInt));
+    Serial.println(("IHold: ") + String(iholdInt));
+
+    Serial.println(("HysteresisStart: ") + String(hystStartInt));
+    Serial.println(("HysteresisEnd: ") + String(hystEndInt));
+
+    Serial.println(("StallguardThreshold: ") + String(stallguardThreshold));
 
     if (en_pwm_mode)
     {
@@ -42,6 +69,15 @@ void TMC2130::PrintSettings()
     {
        Serial.println(F("StealthChop: Disabled"));
     }
+
+    if (!chopperMode) 
+    {
+        Serial.println(F("ChopperMode: SpreadCycle"));
+    }
+    else
+    {
+        Serial.println(F("ChopperMode: Constant Toff"));
+    }   
 
     if (autoScale)
     {
@@ -82,18 +118,19 @@ bool TMC2130::Init()
 
 bool TMC2130::ApplySettings()
 {
-    uint16_t rmsCurrent = 500;
+    uint16_t rmsCurrent = 600;
     uint16_t microSteps = 16;
+    bool interpolate = true;
     
     m_TMCDriver->push();
+    m_TMCDriver->I_scale_analog(true);
+
     m_TMCDriver->rms_current(rmsCurrent);
     m_TMCDriver->microsteps(microSteps);
-    m_TMCDriver->intpol(true);
+    m_TMCDriver->intpol(interpolate);
     
     m_TMCDriver->toff(3);
     m_TMCDriver->blank_time(24);
-
-    m_TMCDriver->I_scale_analog(true);
     
     m_TMCDriver->en_pwm_mode(false);
     m_TMCDriver->chm(0); // chopermode spreadcyle instead of consttoff
@@ -103,8 +140,7 @@ bool TMC2130::ApplySettings()
     m_TMCDriver->pwm_grad(1);
 
     m_TMCDriver->pwm_autoscale(true); 
-    
-
+ 
     m_TMCDriver->TPOWERDOWN(128);
       
     //m_TMCDriver->hysteresis_start(3);

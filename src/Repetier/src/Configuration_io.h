@@ -122,14 +122,16 @@ ENDSTOP_NONE(endstopZMax)
 // Define fans
 
 IO_OUTPUT(IOFan1, ORIG_FAN_PIN)
-IO_PWM_SOFTWARE(Fan1NoKSPWM, IOFan1, 0)
+IO_PWM_HARDWARE(Fan1PWM, ORIG_FAN_PIN, 5000)
 // IO_PWM_HARDWARE(Fan1PWM, 37,5000)
 // IO_PDM_SOFTWARE(Fan1NoKSPWM, IOFan1) // alternative to PWM signals
-IO_PWM_KICKSTART(Fan1PWM, Fan1NoKSPWM, 20)
-// For debugging - reports new values and then calls real pwm
-IO_PWM_REPORT(Fan1Report, Fan1PWM)
-// Define temperature sensors
 
+IO_PWM_KICKSTART(Fan1PWM_KS, Fan1PWM, 20)
+
+// For debugging - reports new values and then calls real pwm
+IO_PWM_REPORT(Fan1Report, Fan1PWM_KS)
+
+// Define temperature sensors
 // Typically they require an analog input (12 bit) so define
 // them first.
 
@@ -150,7 +152,7 @@ IO_TEMPERATURE_TABLE(TempExt2, IOAnalogExt2, TempTableEpcos)
 // that the selected pin can be used as hardware pwm otherwise
 // select a software pwm model whcih works on all pins.
 
-#if MOTHERBOARD == 405
+#if MOTHERBOARD == MOTHERBOARD_FELIX || MOTHERBOARD_SMARTRAMPS_EEPROM
 IO_PWM_HARDWARE(PWMExtruder1, HEATER_0_PIN, 1000)
 IO_PWM_HARDWARE(PWMExtruder2, HEATER_2_PIN, 1000)
 IO_PWM_HARDWARE(PWMBed1, HEATER_1_PIN, 1000)
