@@ -5,11 +5,10 @@
 #undef IO_TMC_5160
 #undef IO_TMC_2130
 
-#include "tmc5160.h" 
-#include "tmc2130.h" 
+#include "tmc/tmc5160.h" 
+#include "tmc/tmc2130.h" 
 
 #if IO_TARGET == 1 // hardware init
-
 #define IO_TMC_5160(name5160, csPin5160)\
     if(name5160.Init()) {name5160.ApplySettings();};
 #define IO_TMC_2130(name2130, csPin2130)\

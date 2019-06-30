@@ -55,13 +55,13 @@ enum class GUIAction;
 #include "io_servos.h"
 #include "io_analog.h"
 #include "io_temperature.h"
-#include "io_tmc.h"
 #include "endstop_definitions.h"
 #include "stepper.h"
 #include "heatManager.h"
 #include "coolerManager.h"
 #include "tools.h"
 #include "../custom/customMacros.h"
+#include "../custom/io_tmc.h"
 
 // Add user configuration
 
