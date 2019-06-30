@@ -40,7 +40,7 @@
 #define NUM_TOOLS 2
 #define NUM_EXTRUDER 2
 #define NUM_SERVOS 0                  // Number of servos available
-#define MOTHERBOARD MOTHERBOARD_SMARTRAMPS_EEPROM // 405
+#define MOTHERBOARD MOTHERBOARD_SMARTRAMPS_EEPROM 
 #define EEPROM_MODE 1
 #define RFSERIAL Serial
 //#define EXTERNALSERIAL  use Arduino serial library instead of build in. Requires more ram, has only 63 byte input buffer.
@@ -68,7 +68,7 @@
 #define DEBUG_RESCUE                 // Uncomment to add power loss entry in debug menu while printing
 #define POWERLOSS_LEVEL 2            // How much time do we have on powerloss, 0 = no move, 1 = short just raise Z, 2 = long full park move
 #define POWERLOSS_UP 5               // How much to move up if mode 1 is active
-#define Z_PROBE_TYPE 2               // 0 = no z probe, 1 = default z probe, 2 = Nozzle as probe
+#define Z_PROBE_TYPE 1               // 0 = no z probe, 1 = default z probe, 2 = Nozzle as probe
 #define Z_PROBE_BORDER 2             // Safety border to ensure position is allowed
 #define Z_PROBE_TEMPERATURE 0        // Temperature for type 2
 
@@ -78,7 +78,7 @@
 #define BABYSTEPS_PER_BLOCK \
     { 10, 10, 10 }
 // If all axis end stops are hardware based we can skip the time consuming tests each step
-#define NO_SOFTWARE_AXIS_ENDSTOPS
+//#define NO_SOFTWARE_AXIS_ENDSTOPS
 // Normally only a delta has motor end stops required. Normally you trigger using axis endstops.
 #define NO_MOTOR_ENDSTOPS
 
@@ -360,8 +360,8 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define ZHOME_HEIGHT 10
 // Home Z at a fixed xy position (1)
 #define FIXED_Z_HOME_POSITION 1
-#define ZHOME_X_POS 140
-#define ZHOME_Y_POS 45
+#define ZHOME_X_POS 165
+#define ZHOME_Y_POS 165
 // Raise extruders before switching tools. Used to prevent touching objects while switching.
 #define RAISE_Z_ON_TOOLCHANGE 2
 
@@ -403,18 +403,18 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define Z_PROBE_SPEED 2
 #define Z_PROBE_SWITCHING_DISTANCE 1
 // How often should we test a position 1 .. x. Averages result over all tests.
-#define Z_PROBE_REPETITIONS 1
+#define Z_PROBE_REPETITIONS 3
 // 0 = use average, 1 = use middle value after ordering z
 #define Z_PROBE_USE_MEDIAN 1
 // Nozzle distance to bed when z probe triggers
-#define Z_PROBE_HEIGHT -0.15
+#define Z_PROBE_HEIGHT 1.150
 // Delay in ms before we go down again. For BLTouch so signal can disable
 #define Z_PROBE_DELAY 0
 #define Z_PROBE_START_SCRIPT ""
 #define Z_PROBE_FINISHED_SCRIPT ""
 #define Z_PROBE_RUN_AFTER_EVERY_PROBE ""
 #define Z_PROBE_REQUIRES_HEATING 0
-#define Z_PROBE_MIN_TEMPERATURE 20
+#define Z_PROBE_MIN_TEMPERATURE 16
 
 // How to correct rotated beds
 // 0 = Software side by rotating coordinates
@@ -478,8 +478,8 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define LANGUAGE_CZ_ACTIVE 1
 #define LANGUAGE_PL_ACTIVE 1
 #define LANGUAGE_TR_ACTIVE 1
-#define UI_PRINTER_NAME "FELIX Pro 1"
-#define UI_PRINTER_COMPANY "FELIXprinters"
+#define UI_PRINTER_NAME "Chii Printer 1"
+#define UI_PRINTER_COMPANY "Chii"
 #define UI_DISABLE_AUTO_PAGESWITCH 1
 #define UI_AUTORETURN_TO_MENU_AFTER 30000
 #define FEATURE_UI_KEYS 0
@@ -503,9 +503,9 @@ Values must be in range 1..255
 #define BEEPER_SHORT_SEQUENCE 2, 2
 #define BEEPER_LONG_SEQUENCE 8, 8
 #define UI_SET_MIN_HEATED_BED_TEMP 30
-#define UI_SET_MAX_HEATED_BED_TEMP 120
+#define UI_SET_MAX_HEATED_BED_TEMP 140
 #define UI_SET_MIN_EXTRUDER_TEMP 80
-#define UI_SET_MAX_EXTRUDER_TEMP 275
+#define UI_SET_MAX_EXTRUDER_TEMP 350
 #define UI_SET_EXTRUDER_FEEDRATE 5
 #define UI_SET_EXTRUDER_RETRACT_DISTANCE 3
 
