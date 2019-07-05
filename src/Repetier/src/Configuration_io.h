@@ -217,5 +217,5 @@ TOOL_EXTRUDER(ToolExtruder2, 16.775, 0.615, -0.97, HeaterExtruder2, /*AL2Motor *
 //FILAMENT_DETECTOR(FilamentDetector2, IOJam2, ToolExtruder2)
 
 
-IO_TMC_5160(tmc5160yaxis, 45, 600, 16, true, SPREADCYCLE, false, 100)
-IO_TMC_2130(tmc2130zaxis, 43, 600, 16, true, SPREADCYCLE, false, 100)
+IO_TMC_5160(tmc5160yaxis, 45, 200, 16, true, SPREADCYCLE, false, 100)
+IO_TMC_2130(tmc2130zaxis, 43, 200, 16, true, SPREADCYCLE, false, 100)
