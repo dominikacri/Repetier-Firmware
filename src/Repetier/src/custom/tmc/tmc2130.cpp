@@ -1,7 +1,7 @@
 #include "tmc2130.h"
 
-TMC2130::TMC2130(uint16_t csPin) :
-    TMCBase(csPin)
+TMC2130::TMC2130(uint16_t csPin, uint16_t rmsCurrent, uint16_t microSteps, bool interpolateMicrosteps, ChopperMode chopperMode, bool stallguard, uint8_t stallguardThreshold) :
+    TMCBase(csPin, rmsCurrent, microSteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold)
 {
 
 }
@@ -29,40 +29,12 @@ bool TMC2130::Init()
 
 bool TMC2130::ApplySettings()
 {
-    uint16_t rmsCurrent = 600;
-    uint16_t microSteps = 16;
-    bool interpolate = true;
-    
-    m_TMCDriver.push();
+    TMCBase::ApplySettings();
+
     m_TMCDriver.I_scale_analog(true);
-
-    m_TMCDriver.rms_current(rmsCurrent);
-    m_TMCDriver.microsteps(microSteps);
-    m_TMCDriver.intpol(interpolate);
-    
-    m_TMCDriver.toff(3);
-    m_TMCDriver.blank_time(24);
-    
-    m_TMCDriver.en_pwm_mode(false);
-    m_TMCDriver.chm(0); // chopermode spreadcyle instead of consttoff
-   
-    m_TMCDriver.pwm_freq(2);
-    m_TMCDriver.pwm_ampl(255);
-    m_TMCDriver.pwm_grad(1);
-
-    m_TMCDriver.pwm_autoscale(true); 
- 
-    m_TMCDriver.TPOWERDOWN(128);
-      
-    //m_TMCDriver->hysteresis_start(3);
-    //m_TMCDriver->hysteresis_end(2);
-
-    //m_TMCDriver->irun(15);
-    //m_TMCDriver->ihold(8);
-    
-    //m_TMCDriver->TPWMTHRS(5000);
        
     Serial.println(F("TMC2130 - New settings applied."));
+
     this->PrintSettings();
 
     /* 

@@ -2,13 +2,25 @@
 
 #include <stdint.h>
 #include <TMCStepper.h>
+#include "tmcdefines.h"
 
 template<class T> class TMCBase
 {
 public:
-    TMCBase<T>(uint8_t csPin) : m_TMCDriver(csPin), m_csPin(csPin) { };
+    TMCBase<T>(uint16_t csPin, uint16_t rmsCurrent, uint16_t microSteps, bool interpolateMicrosteps, ChopperMode chopperMode, bool stallGuard, uint8_t stallGuardThreshold) 
+        : m_TMCDriver(csPin),
+          m_csPin(csPin),
+          m_rmsCurrent(rmsCurrent),
+          m_microSteps(microSteps),
+          m_interpolateMicroSteps(interpolateMicrosteps),
+          m_ChopperMode(chopperMode),
+          m_stallGuard(stallGuard),
+          m_stallGuardThreshold(stallGuardThreshold)
+    { 
 
-    bool Init() 
+    };
+
+    virtual bool Init() 
     {
         SPI.begin();
 
@@ -24,6 +36,7 @@ public:
                 case 1: Serial.println(F("Loose connection")); break;
                 case 2: Serial.println(F("No power")); break;
             }
+
             Serial.println(F("Fix the problem and reset board."));
             return false;
         }
@@ -32,6 +45,52 @@ public:
 
         return true;
     };
+
+    virtual bool ApplySettings()
+    {
+        m_TMCDriver.push();
+
+        m_TMCDriver.rms_current(m_rmsCurrent);
+        m_TMCDriver.microsteps(m_microSteps);
+        m_TMCDriver.intpol(m_interpolateMicroSteps);
+
+        m_TMCDriver.toff(3);
+        m_TMCDriver.blank_time(24);
+
+        m_TMCDriver.pwm_freq(2);
+        m_TMCDriver.pwm_ampl(255);
+        m_TMCDriver.pwm_grad(1);
+
+        if (m_ChopperMode==ChopperMode::SpreadCycle)
+        {
+            m_TMCDriver.en_pwm_mode(true);
+        }
+
+        if (m_ChopperMode==ChopperMode::StealthChop)
+        {
+            m_TMCDriver.en_pwm_mode(false);
+        }
+
+        m_TMCDriver.chm(0); // chopermode spreadcyle instead of consttoff 
+        m_TMCDriver.pwm_autoscale(true);
+
+        m_TMCDriver.TPOWERDOWN(128);
+
+        // stallguard is only available in SpreadCycle
+        if (m_ChopperMode == ChopperMode::SpreadCycle && m_stallGuard)
+        {
+            m_TMCDriver.sgt(m_stallGuardThreshold);
+        }
+
+        //m_TMCDriver->hysteresis_start(3);
+        //m_TMCDriver->hysteresis_end(2);
+    
+        //m_TMCDriver->irun(15);
+        //m_TMCDriver->ihold(8);
+    
+        //m_TMCDriver->TPWMTHRS(5000);
+        return true;
+    }
 
     virtual void PrintSettings() 
     {
@@ -105,8 +164,13 @@ public:
         }
     };
 
-
 protected:
     T m_TMCDriver;
     uint16_t m_csPin;
+    uint16_t m_rmsCurrent;
+    uint16_t m_microSteps;
+    bool m_interpolateMicroSteps;
+    ChopperMode m_ChopperMode;
+    bool m_stallGuard;
+    uint8_t m_stallGuardThreshold;
 };
