@@ -80,6 +80,11 @@ public:
         if (m_ChopperMode == ChopperMode::SpreadCycle && m_stallGuard)
         {
             m_TMCDriver.sgt(m_stallGuardThreshold);
+            m_TMCDriver.diag1_stall(true); 
+
+            //TODO: //#if MOTHERBOARD != 310 // Rambo Einsy has diag0 and diag1 bound together so this could cause a defect
+            m_TMCDriver.diag1_pushpull(true);
+
         }
 
         //m_TMCDriver->hysteresis_start(3);
@@ -163,6 +168,13 @@ public:
             Serial.println(F("AutoScale: Disabled"));
         }
     };
+
+    bool WaitForStandStill()
+    {
+        while(!m_TMCDriver->stst());
+
+        return true;
+    }
 
 protected:
     T m_TMCDriver;

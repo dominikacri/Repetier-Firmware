@@ -6,8 +6,7 @@ TMC5160::TMC5160(uint16_t csPin,
         bool interpolateMicrosteps , 
         ChopperMode chopperMode , 
         bool enableStallguard ,
-        int8_t stallguardThreshold) : 
-        
+        int8_t stallguardThreshold) :
         TMCBase(csPin, rmsCurrent, microSteps, interpolateMicrosteps, chopperMode, enableStallguard, stallguardThreshold)
 {
 

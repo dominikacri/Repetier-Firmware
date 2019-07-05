@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "tmcbase.h"
 
 class TMC5160 : public TMCBase<TMC5160Stepper>
