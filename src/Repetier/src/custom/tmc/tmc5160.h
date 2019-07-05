@@ -1,19 +1,15 @@
 #pragma once
 
-#include <stdint.h>
 
-class TMC5160Stepper;
+#include "tmcbase.h"
 
-class TMC5160
+class TMC5160 : public TMCBase<TMC5160Stepper>
 {
 public:
-    TMC5160(uint8_t csPin);
-    ~TMC5160();
+    TMC5160(uint16_t csPin);
     bool Init();
     bool ApplySettings();
-    void PrintSettings();
+    void PrintSettings() override;
    
-private:
-    uint8_t m_csPin = 0;
-    TMC5160Stepper* m_TMCDriver = nullptr;
+
 };

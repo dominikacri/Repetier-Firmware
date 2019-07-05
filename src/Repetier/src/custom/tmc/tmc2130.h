@@ -1,19 +1,12 @@
 #pragma once
 
-#include <stdint.h>
+#include "tmcbase.h"
 
-class TMC2130Stepper;
-
-class TMC2130
+class TMC2130 : public TMCBase<TMC2130Stepper>
 {
 public:
-    TMC2130(uint8_t csPin);
-    ~TMC2130();
+    TMC2130(uint16_t csPin);
     bool Init();
     bool ApplySettings();
     void PrintSettings();
-   
-private:
-    uint8_t m_csPin = 0;
-    TMC2130Stepper* m_TMCDriver = nullptr;
 };
