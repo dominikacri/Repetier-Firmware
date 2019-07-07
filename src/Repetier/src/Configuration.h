@@ -82,11 +82,11 @@
 // Normally only a delta has motor end stops required. Normally you trigger using axis endstops.
 #define NO_MOTOR_ENDSTOPS
 
-#define FEATURE_CONTROLLER NO_CONTROLLER
+#define FEATURE_CONTROLLER CONTROLLER_AZSMZ_12864
 // Use more memory to speedup display updates
 #define DISPLAY_FULL_BUFFER 1
 // Direction 1 or -1
-#define ENCODER_DIRECTION -1
+#define ENCODER_DIRECTION 1
 // Encoder speed 0 = fastest, 1 or 2 = slowest - set so 1 click is one menu move
 // Default is 2 if not set by controller. Us eonly to fix wrong setting
 // #define ENCODER_SPEED 2
@@ -201,11 +201,11 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define X_HOME_DIR -1
 #define Y_HOME_DIR 1
 #define Z_HOME_DIR -1
-#define X_MAX_LENGTH 235
-#define Y_MAX_LENGTH 240
-#define Z_MAX_LENGTH 225
-#define X_MIN_POS 0
-#define Y_MIN_POS 0
+#define X_MAX_LENGTH 339
+#define Y_MAX_LENGTH 352
+#define Z_MAX_LENGTH 480
+#define X_MIN_POS -9
+#define Y_MIN_POS -22
 #define Z_MIN_POS 0
 #define BED_X_MIN X_MIN_POS
 #define BED_X_MAX (X_MIN_POS + X_MAX_LENGTH)
@@ -222,15 +222,15 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #endif
 #define PARK_POSITION_Z_RAISE 10
 
-#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_X 1100
-#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Y 1100
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_X 2000
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Y 2000
 #define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Z 100
-#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_X 1100
-#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Y 1100
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_X 3000
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Y 3000
 #define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Z 100
-#define XAXIS_STEPS_PER_MM 610
-#define YAXIS_STEPS_PER_MM 610
-#define ZAXIS_STEPS_PER_MM 610
+#define XAXIS_STEPS_PER_MM 80
+#define YAXIS_STEPS_PER_MM 80
+#define ZAXIS_STEPS_PER_MM 400
 
 // ################## EDIT THESE SETTINGS MANUALLY ################
 // ################ END MANUAL SETTINGS ##########################
@@ -349,7 +349,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define MAX_FEEDRATE_Z 250
 #define HOMING_FEEDRATE_X 80
 #define HOMING_FEEDRATE_Y 80
-#define HOMING_FEEDRATE_Z 80
+#define HOMING_FEEDRATE_Z 30
 // Raise z before homing (1)
 #define ZHOME_PRE_RAISE 1
 // How much mm should z raise before homing
@@ -370,7 +370,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define Y_BACKLASH 0
 #define Z_BACKLASH 0
 #define DIRECTION_DELAY 0
-#define MAX_JERK 5
+#define MAX_JERK 30
 #define MAX_ZJERK 5
 #define PRINTLINE_CACHE_SIZE 32
 #define MOVE_CACHE_LOW 10
@@ -398,8 +398,8 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define EXTRUDER_IS_Z_PROBE 0
 #define Z_PROBE_DISABLE_HEATERS 1
 #define Z_PROBE_BED_DISTANCE 3
-#define Z_PROBE_X_OFFSET 0
-#define Z_PROBE_Y_OFFSET 0
+#define Z_PROBE_X_OFFSET -20
+#define Z_PROBE_Y_OFFSET 80
 #define Z_PROBE_SPEED 2
 #define Z_PROBE_SWITCHING_DISTANCE 1
 // How often should we test a position 1 .. x. Averages result over all tests.
@@ -466,18 +466,18 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define FEATURE_FAN_CONTROL 1
 #define FEATURE_FAN2_CONTROL 0
 #define ADC_KEYPAD_PIN -1
-#define LANGUAGE_EN_ACTIVE 1
+#define LANGUAGE_EN_ACTIVE 0
 #define LANGUAGE_DE_ACTIVE 1
-#define LANGUAGE_NL_ACTIVE 1
-#define LANGUAGE_PT_ACTIVE 1
-#define LANGUAGE_IT_ACTIVE 1
-#define LANGUAGE_ES_ACTIVE 1
-#define LANGUAGE_FI_ACTIVE 1
-#define LANGUAGE_SE_ACTIVE 1
-#define LANGUAGE_FR_ACTIVE 1
-#define LANGUAGE_CZ_ACTIVE 1
-#define LANGUAGE_PL_ACTIVE 1
-#define LANGUAGE_TR_ACTIVE 1
+#define LANGUAGE_NL_ACTIVE 0
+#define LANGUAGE_PT_ACTIVE 0
+#define LANGUAGE_IT_ACTIVE 0
+#define LANGUAGE_ES_ACTIVE 0
+#define LANGUAGE_FI_ACTIVE 0
+#define LANGUAGE_SE_ACTIVE 0
+#define LANGUAGE_FR_ACTIVE 0
+#define LANGUAGE_CZ_ACTIVE 0
+#define LANGUAGE_PL_ACTIVE 0
+#define LANGUAGE_TR_ACTIVE 0
 #define UI_PRINTER_NAME "Chii Printer 1"
 #define UI_PRINTER_COMPANY "Chii"
 #define UI_DISABLE_AUTO_PAGESWITCH 1
@@ -504,7 +504,7 @@ Values must be in range 1..255
 #define BEEPER_LONG_SEQUENCE 8, 8
 #define UI_SET_MIN_HEATED_BED_TEMP 30
 #define UI_SET_MAX_HEATED_BED_TEMP 140
-#define UI_SET_MIN_EXTRUDER_TEMP 80
+#define UI_SET_MIN_EXTRUDER_TEMP 180
 #define UI_SET_MAX_EXTRUDER_TEMP 350
 #define UI_SET_EXTRUDER_FEEDRATE 5
 #define UI_SET_EXTRUDER_RETRACT_DISTANCE 3

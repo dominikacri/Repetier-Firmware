@@ -150,7 +150,6 @@
 #define UI_ENCODER_B 40
 #define UI_ENCODER_CLICK 67
 #define UI_RESET_PIN 42
-#define UI_RESET_PIN -1
 #define UI_BACK_PIN -1
 #undef SDSUPPORT
 #define SDSUPPORT 1

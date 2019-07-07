@@ -8,21 +8,30 @@
 #undef IO_TMC_ENABLE_WARNINGS
 #define IO_TMC_ENABLE_WARNINGS(driverName)
 
+#undef IO_TMC_ENABLE_LOG_ON_STATUS_CHANGE
+#define IO_TMC_ENABLE_LOG_ON_STATUS_CHANGE(driverName)
+
 #include "tmc/tmc5160.h" 
 #include "tmc/tmc2130.h" 
 
 #if IO_TARGET == 1 // hardware init
+
 #define IO_TMC_5160(name5160, csPin, rmsCurrent, microsteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold)\
     name5160.Init();
 #define IO_TMC_2130(name2130, csPin, rmsCurrent, microsteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold)\
     name2130.Init();
+
 #elif IO_TARGET == 3 // 100ms
+
 #undef IO_TMC_ENABLE_WARNINGS
 #define IO_TMC_ENABLE_WARNINGS(driverName)\
     driverName.ReadErrors();
+
 #define IO_TMC_5160(name5160, csPin, rmsCurrent, microsteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold)
 #define IO_TMC_2130(name2130, csPin, rmsCurrent, microsteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold)
+
 #elif IO_TARGET == 4 // class
+
 #define IO_TMC_5160(name5160, csPin, rmsCurrent, microsteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold) \
     class name5160##Class : public TMC5160 { \
     public:\
@@ -32,6 +41,7 @@
         } \
     }; \
     extern name5160##Class name5160;
+
 #define IO_TMC_2130(name2130, csPin, rmsCurrent, microsteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold) \
     class name2130##Class : public TMC2130 { \
     public:\
@@ -41,12 +51,26 @@
         } \
     }; \
     extern name2130##Class name2130;
+
 #elif IO_TARGET == 6 // variable
+
 #define IO_TMC_5160(name5160, csPin, rmsCurrent, microsteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold) \
     name5160##Class name5160;
 #define IO_TMC_2130(name2130, csPin, rmsCurrent, microsteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold) \
     name2130##Class name2130;
-#else
+
+#elif IO_TARGET == 12
+
+#undef IO_TMC_ENABLE_LOG_ON_STATUS_CHANGE
+#define IO_TMC_ENABLE_LOG_ON_STATUS_CHANGE(driverName)\
+    driverName.PrintStatusOnChange();
+
 #define IO_TMC_5160(name5160, csPin, rmsCurrent, microsteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold)
 #define IO_TMC_2130(name2130, csPin, rmsCurrent, microsteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold)
+
+#else
+
+#define IO_TMC_5160(name5160, csPin, rmsCurrent, microsteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold)
+#define IO_TMC_2130(name2130, csPin, rmsCurrent, microsteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold)
+
 #endif

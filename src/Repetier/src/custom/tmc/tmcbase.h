@@ -15,7 +15,11 @@ public:
           m_interpolateMicroSteps(interpolateMicrosteps),
           m_ChopperMode(chopperMode),
           m_stallGuard(stallGuard),
-          m_stallGuardThreshold(stallGuardThreshold)
+          m_stallGuardThreshold(stallGuardThreshold),
+          m_lastStallGuardResult(0),
+          m_lastStallGuardTriggered(false),
+          m_lastFullstepActive(false),
+          m_lastCurrentScaling(0)
     { 
 
     };
@@ -76,21 +80,39 @@ public:
         }
     }
 
-    virtual void ReadStatus()
+    virtual void PrintStatusOnChange()
     {
         // TODO: make this faster. each call seems to read the wohle status again and parse only the bits
 
         uint16_t stallGuardResult = m_TMCDriver.sg_result();
         bool stallGuardTriggered = m_TMCDriver.stallguard();
         bool fullstepActive = m_TMCDriver.fsactive();
-        
         uint8_t currentScaling = m_TMCDriver.cs_actual();
 
-        Serial.println(("Stallguard Result: ") + String(stallGuardResult));
-        Serial.println(("StallGuard Triggered: ") + String(stallGuardTriggered));
-        Serial.println(("Fullstep Active: ") + String(fullstepActive));
+        uint16_t diffStallGuardVal = abs(stallGuardResult - m_lastStallGuardResult);
+        if (diffStallGuardVal > 60)
+        {
+            Serial.println(("Stallguard Result: ") + String(stallGuardResult));
+            m_lastStallGuardResult = stallGuardResult;
+        }
+
+        if (stallGuardTriggered != m_lastStallGuardTriggered)
+        {
+            Serial.println(("StallGuard Triggered: ") + String(stallGuardTriggered));
+            m_lastStallGuardTriggered = stallGuardTriggered;
+        }
+
+        if (fullstepActive != m_lastFullstepActive)
+        {
+            Serial.println(("Fullstep Active: ") + String(fullstepActive));
+            m_lastFullstepActive = fullstepActive;
+        }
         
-        Serial.println(("Current Scaling: ") + String(currentScaling));
+        if (currentScaling != m_lastCurrentScaling)
+        {
+            Serial.println(("Current Scaling: ") + String(currentScaling));
+            m_lastCurrentScaling = currentScaling;
+        }
     }
 
     virtual bool ApplySettings()
@@ -237,4 +259,11 @@ protected:
     ChopperMode m_ChopperMode;
     bool m_stallGuard;
     uint8_t m_stallGuardThreshold;
+
+
+    uint16_t m_lastStallGuardResult;
+    bool m_lastStallGuardTriggered;
+    bool m_lastFullstepActive;
+    uint8_t m_lastCurrentScaling;
+
 };
