@@ -93,6 +93,9 @@ U8G2_KS0108_128X64_2 lcd(DISPLAY_ROTATION, UI_DISPLAY_D0_PIN, UI_DISPLAY_D1_PIN,
 void GUI::init() {
     HAL::delayMilliseconds(50);
     lcd.begin();
+
+    lcd.setContrast(255);
+    
     handleKeypress();
     nextAction = GUIAction::NONE;
     callbacks[0] = startScreen;
