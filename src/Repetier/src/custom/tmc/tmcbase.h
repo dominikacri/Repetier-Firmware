@@ -48,6 +48,8 @@ public:
 
     virtual void ReadErrors()
     {
+         // TODO: make this faster. each call seems to read the wohle status again and parse only the bits
+         
         bool overTemperaturPreWarn = m_TMCDriver.otpw();
         bool overTemperatur = m_TMCDriver.ot();
         bool shortPhaseA = m_TMCDriver.s2ga();
