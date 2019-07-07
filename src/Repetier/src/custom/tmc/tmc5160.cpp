@@ -36,10 +36,12 @@ bool TMC5160::Init()
     {
         return false;
     }
-    
-    this->PrintSettings();
 
     Serial.println(F("TMC5160: Init was successfull"));
+
+    this->PrintSettings();
+
+    this->ApplySettings();
 
     return true;
 }

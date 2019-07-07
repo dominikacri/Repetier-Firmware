@@ -46,6 +46,51 @@ public:
         return true;
     };
 
+    virtual void ReadErrors()
+    {
+        bool overTemperaturPreWarn = m_TMCDriver.otpw();
+        bool overTemperatur = m_TMCDriver.ot();
+        bool shortPhaseA = m_TMCDriver.s2ga();
+        bool shortPhaseB = m_TMCDriver.s2gb();
+
+        if (overTemperaturPreWarn)
+        {
+            Serial.println(("Overtemp Prewarn !!! Pin: ") + String(m_csPin));     
+        }
+
+        if (overTemperatur)
+        {
+            Serial.println(("Over temperatur !!! Pin: ") + String(m_csPin));     
+        }
+
+        if (shortPhaseA)
+        {
+            Serial.println(("Short Phase A !!! Pin: ") + String(m_csPin));
+        }
+        
+        if (shortPhaseB)
+        {
+            Serial.println(("Short Phase B !!! Pin: ") + String(m_csPin));
+        }
+    }
+
+    virtual void ReadStatus()
+    {
+        // TODO: make this faster. each call seems to read the wohle status again and parse only the bits
+
+        uint16_t stallGuardResult = m_TMCDriver.sg_result();
+        bool stallGuardTriggered = m_TMCDriver.stallguard();
+        bool fullstepActive = m_TMCDriver.fsactive();
+        
+        uint8_t currentScaling = m_TMCDriver.cs_actual();
+
+        Serial.println(("Stallguard Result: ") + String(stallGuardResult));
+        Serial.println(("StallGuard Triggered: ") + String(stallGuardTriggered));
+        Serial.println(("Fullstep Active: ") + String(fullstepActive));
+        
+        Serial.println(("Current Scaling: ") + String(currentScaling));
+    }
+
     virtual bool ApplySettings()
     {
         m_TMCDriver.push();
@@ -63,29 +108,34 @@ public:
 
         if (m_ChopperMode==ChopperMode::SpreadCycle)
         {
-            m_TMCDriver.en_pwm_mode(true);
+            m_TMCDriver.en_pwm_mode(false);
         }
 
         if (m_ChopperMode==ChopperMode::StealthChop)
         {
-            m_TMCDriver.en_pwm_mode(false);
+            m_TMCDriver.en_pwm_mode(true);
         }
 
-        m_TMCDriver.chm(0); // chopermode spreadcyle instead of consttoff 
+        m_TMCDriver.chm(0); // chopermode spreadcyle instead of consttoff, only if  PWM mode is false
         m_TMCDriver.pwm_autoscale(true);
 
         m_TMCDriver.TPOWERDOWN(128);
 
+
+        m_TMCDriver.sgt(m_stallGuardThreshold);
+
         // stallguard is only available in SpreadCycle
         if (m_ChopperMode == ChopperMode::SpreadCycle && m_stallGuard)
         {
-            m_TMCDriver.sgt(m_stallGuardThreshold);
+            m_TMCDriver.TCOOLTHRS(1024); // seems that set this before setting diagstall is needed
             m_TMCDriver.diag1_stall(true); 
 
             //TODO: //#if MOTHERBOARD != 310 // Rambo Einsy has diag0 and diag1 bound together so this could cause a defect
             m_TMCDriver.diag1_pushpull(true);
 
         }
+
+        // TODO: set TPWMTHRS settings for switching from stealth to spread
 
         //m_TMCDriver->hysteresis_start(3);
         //m_TMCDriver->hysteresis_end(2);

@@ -19,10 +19,12 @@ bool TMC2130::Init()
     {
         return false;
     }
-    
-    this->PrintSettings();
 
     Serial.println(F("TMC2130: Init was successfull"));
+
+    this->PrintSettings();
+
+    this->ApplySettings();
 
     return true;
 }
