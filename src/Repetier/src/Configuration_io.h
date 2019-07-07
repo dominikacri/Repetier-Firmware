@@ -202,9 +202,9 @@ HEAT_MANAGER_PID(HeaterExtruder2, 'E', 3, TempExt2, PWMExtruder2, 260, 255, 1000
 // Define tools. They get inserted into a tool array in configuration.h
 // Typical tools are:
 
-// TOOL_EXTRUDER(name, offx, offy, offz, heater, stepper, diameter, resolution, yank(jerk), maxSpeed, acceleration, advance, startScript, endScript, fan)
-TOOL_EXTRUDER(ToolExtruder1, -20.000, 70.00,     0, HeaterExtruder1, /*AL1Motor */ E1MotorBase, 1.75, 147.0, 5, 60, 5000, 40, "M117 Extruder 1", "", &Fan1PWM)
-TOOL_EXTRUDER(ToolExtruder2,  16.775, 0.615, -0.97, HeaterExtruder2, /*AL2Motor */ E2MotorBase, 1.75, 147.0, 5, 60, 5000, 40, "M117 Extruder 2\nM400\nM340 P0 S1500 R600\nG4 P300", "M340 P0 S800 R600\nG4 P300", &Fan1PWM)
+// TOOL_EXTRUDER(name, offx, offy, offz, heater, stepper, diameter, resolution(steps per mm), yank(jerk), maxSpeed, acceleration, advance, startScript, endScript, fan)
+TOOL_EXTRUDER(ToolExtruder1, -20.000, 70.00,     0, HeaterExtruder1, /*AL1Motor */ E1MotorBase, 1.75, 405, 5, 60, 5000, 40, "M117 Extruder 1", "", &Fan1PWM)
+TOOL_EXTRUDER(ToolExtruder2,  16.775, 0.615, -0.97, HeaterExtruder2, /*AL2Motor */ E2MotorBase, 1.75, 405, 5, 60, 5000, 40, "M117 Extruder 2\nM400\nM340 P0 S1500 R600\nG4 P300", "M340 P0 S800 R600\nG4 P300", &Fan1PWM)
 // TOOL_LASER(Laser3, 0, 0, 0, Fan1NoKSPWM, fakeOut, fakeOut, 3000, 1, 100, 150.0, 1.5, "", "")
 // TOOL_CNC(CNC4, 0, 0, 0, Fan1NoKSPWM, fakeOut, fakeOut, fakeOut, 7000, 3000, "", "")
 
@@ -217,7 +217,7 @@ TOOL_EXTRUDER(ToolExtruder2,  16.775, 0.615, -0.97, HeaterExtruder2, /*AL2Motor 
 //FILAMENT_DETECTOR(FilamentDetector2, IOJam2, ToolExtruder2)
 
 
-IO_TMC_2130(tmc2130zaxis, 43, 200, 16, true, SPREADCYCLE, false, 100)
+IO_TMC_2130(tmc2130zaxis, 43, 200, 16, true, STEALTHCHOP, false, 100)
 IO_TMC_5160(tmc5160yaxis, 45, 200, 16, true, SPREADCYCLE, false, 100)
 
 IO_TMC_ENABLE_WARNINGS(tmc2130zaxis)
