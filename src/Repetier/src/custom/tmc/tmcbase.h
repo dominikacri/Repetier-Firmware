@@ -1,13 +1,13 @@
 #pragma once
 
-#include <stdint.h>
+#include <cstdint>
 #include <TMCStepper.h>
 #include "tmcdefines.h"
 
 template<class T> class TMCBase
 {
 public:
-    TMCBase<T>(uint16_t csPin, uint16_t rmsCurrent, uint16_t microSteps, bool interpolateMicrosteps, ChopperMode chopperMode, bool stallGuard, uint8_t stallGuardThreshold) 
+    TMCBase<T>(uint16_t csPin, uint16_t rmsCurrent, uint16_t microSteps, bool interpolateMicrosteps, ChopperMode chopperMode, bool stallGuard, int8_t stallGuardThreshold) 
         : m_TMCDriver(csPin),
           m_csPin(csPin),
           m_rmsCurrent(rmsCurrent),
@@ -22,7 +22,7 @@ public:
           m_lastCurrentScaling(0)
     { 
 
-    };
+    }
 
     virtual bool Init() 
     {
@@ -48,7 +48,7 @@ public:
         Serial.println("Connected to Pin: " + String(m_csPin));
 
         return true;
-    };
+    }
 
     virtual void ReadErrors()
     {
@@ -241,7 +241,7 @@ public:
         {
             Serial.println(F("AutoScale: Disabled"));
         }
-    };
+    }
 
     bool WaitForStandStill()
     {
@@ -258,7 +258,7 @@ protected:
     bool m_interpolateMicroSteps;
     ChopperMode m_ChopperMode;
     bool m_stallGuard;
-    uint8_t m_stallGuardThreshold;
+    int8_t m_stallGuardThreshold;
 
 
     uint16_t m_lastStallGuardResult;

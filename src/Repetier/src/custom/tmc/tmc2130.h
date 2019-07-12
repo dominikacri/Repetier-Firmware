@@ -1,5 +1,6 @@
 #pragma once
 
+#include <TMCStepper.h>
 #include "tmcbase.h"
 
 class TMC2130 : public TMCBase<TMC2130Stepper>
@@ -11,9 +12,14 @@ public:
         bool interpolateMicrosteps = true, 
         ChopperMode chopperMode = ChopperMode::SpreadCycle, 
         bool stallguard = false, 
-        uint8_t stallguardThreshold = 100);
+        int8_t stallguardThreshold = 100) :
+
+        TMCBase(csPin, rmsCurrent, microSteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold)
+        {
+
+        };
         
-    bool Init();
-    bool ApplySettings();
-    void PrintSettings();
+    bool Init() override;
+    bool ApplySettings() override;
+    void PrintSettings() override;
 };

@@ -196,9 +196,7 @@ void EEPROM::initBaudrate() {
     // Invariant - baudrate is initialized with or without eeprom!
     baudrate = BAUDRATE;
 #if EEPROM_MODE != 0
-    if (HAL::eprGetByte(EPR_MAGIC_BYTE) == EEPROM_MODE) {
-        baudrate = HAL::eprGetInt32(EPR_BAUDRATE);
-    }
+    
 #endif
 }
 void EEPROM::updateVariation(fast8_t data) {

@@ -1,17 +1,5 @@
 #include "tmc5160.h"
 
-TMC5160::TMC5160(uint16_t csPin, 
-        uint16_t rmsCurrent , 
-        uint16_t microSteps , 
-        bool interpolateMicrosteps , 
-        ChopperMode chopperMode , 
-        bool enableStallguard ,
-        int8_t stallguardThreshold) :
-        TMCBase(csPin, rmsCurrent, microSteps, interpolateMicrosteps, chopperMode, enableStallguard, stallguardThreshold)
-{
-
-}
-
 void TMC5160::PrintSettings()
 {
     TMCBase::PrintSettings();

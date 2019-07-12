@@ -1,11 +1,5 @@
 #include "tmc2130.h"
 
-TMC2130::TMC2130(uint16_t csPin, uint16_t rmsCurrent, uint16_t microSteps, bool interpolateMicrosteps, ChopperMode chopperMode, bool stallguard, uint8_t stallguardThreshold) :
-    TMCBase(csPin, rmsCurrent, microSteps, interpolateMicrosteps, chopperMode, stallguard, stallguardThreshold)
-{
-
-}
-
 void TMC2130::PrintSettings()
 {
    TMCBase::PrintSettings();

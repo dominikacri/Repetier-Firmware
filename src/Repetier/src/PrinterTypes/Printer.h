@@ -624,7 +624,7 @@ public:
     static INLINE void resetWizardStack() {
         wizardStackPos = 0;
     }
-    static INLINE void pushWizardVar(wizardVar v) {
+    static INLINE void pushWizardVar(const wizardVar& v) {
         wizardStack[wizardStackPos++] = v;
     }
     static INLINE wizardVar popWizardVar() {
