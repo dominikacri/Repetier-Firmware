@@ -82,7 +82,7 @@
 // Normally only a delta has motor end stops required. Normally you trigger using axis endstops.
 #define NO_MOTOR_ENDSTOPS
 
-#define FEATURE_CONTROLLER CONTROLLER_AZSMZ_12864
+#define FEATURE_CONTROLLER CONTROLLER_AZSMZ_12864_OLED
 // Use more memory to speedup display updates
 #define DISPLAY_FULL_BUFFER 1
 // Direction 1 or -1
@@ -148,6 +148,19 @@ to the position. 0 = no contribution. */
 #define AXISCOMP_TANXY 0
 #define AXISCOMP_TANYZ 0
 #define AXISCOMP_TANXZ 0
+
+// CUSTOM
+#define THERMOCOUPLE_0_PIN 32
+#define THERMOCOUPLE_1_PIN 47
+
+#undef MOSI_PIN
+#undef MISO_PIN
+#undef SCK_PIN
+#define MOSI_PIN    75
+#define MISO_PIN    74
+#define SCK_PIN     76
+
+//
 
 // Next 7 lines are required to make the following work, do not change!
 #include "boards/pins.h"

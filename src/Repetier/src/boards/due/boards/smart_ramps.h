@@ -94,7 +94,7 @@
 
 #define SDPOWER -1
 // 10 if using HW spi. 53 if using SW SPI
-#define SDSS 53
+#define SDSS 10 // 53
 #define LED_PIN 13
 #define ORIG_FAN_PIN 9
 #define ORIG_PS_ON_PIN 12
@@ -152,10 +152,10 @@
 #define UI_RESET_PIN 42
 #define UI_BACK_PIN -1
 #undef SDSUPPORT
-#define SDSUPPORT 1
+#define SDSUPPORT 0
 #undef SDCARDDETECTINVERTED
 #define SDCARDDETECTINVERTED 0
-#define ENABLE_SOFTWARE_SPI_CLASS 1
+//#define ENABLE_SOFTWARE_SPI_CLASS 1
 #define SD_SOFT_MISO_PIN 50
 #define SD_SOFT_MOSI_PIN 51
 #define SD_SOFT_SCK_PIN 52

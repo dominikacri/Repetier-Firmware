@@ -4,6 +4,12 @@
 #include <TMCStepper.h>
 #include "tmcdefines.h"
 
+// only for debug
+//#define MOSI_PIN    75
+//#define MISO_PIN    74
+//#define SCK_PIN     76
+// only for debug
+
 template<class T> class TMCBase
 {
 public:
@@ -19,13 +25,26 @@ public:
           m_lastStallGuardResult(0),
           m_lastStallGuardTriggered(false),
           m_lastFullstepActive(false),
-          m_lastCurrentScaling(0)
+          m_lastCurrentScaling(0),
+          m_Initialized(false)
     { 
 
     }
 
+
     virtual bool Init() 
     {
+        if (m_Initialized)
+        {
+            return true;
+        }
+        
+        // TODO: BAD HACK, SET THE MAX31xxx SPI Devices to high 
+        //pinMode(32, OUTPUT);
+        digitalWrite(32, HIGH);
+        //pinMode(47, OUTPUT);
+        digitalWrite(47, HIGH);
+        
         SPI.begin();
 
         uint8_t result = m_TMCDriver.test_connection();
@@ -47,6 +66,7 @@ public:
     
         Serial.println("Connected to Pin: " + String(m_csPin));
 
+        m_Initialized = true;
         return true;
     }
 
@@ -265,5 +285,7 @@ protected:
     bool m_lastStallGuardTriggered;
     bool m_lastFullstepActive;
     uint8_t m_lastCurrentScaling;
+
+    bool m_Initialized;
 
 };

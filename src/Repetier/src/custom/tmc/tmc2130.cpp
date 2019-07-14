@@ -1,4 +1,5 @@
 #include "tmc2130.h"
+#include "Repetier.h"
 
 void TMC2130::PrintSettings()
 {

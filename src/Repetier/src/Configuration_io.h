@@ -19,6 +19,23 @@ and will add the semicolon if required.
 
 /* Define motor pins here. Each motor needs a setp, dir and enable pin. */
 
+#define ORIG_E2_DIR_PIN         23
+#define ORIG_E2_STEP_PIN        25
+#define ORIG_E2_ENABLE_PIN      27
+
+#define ORIG_E3_DIR_PIN         29
+#define ORIG_E3_STEP_PIN        31
+#define ORIG_E3_ENABLE_PIN      33
+
+#define EXT2_DIR_PIN        ORIG_E2_DIR_PIN
+#define EXT2_STEP_PIN       ORIG_E2_STEP_PIN  
+#define EXT2_ENABLE_PIN     ORIG_E2_ENABLE_PIN
+
+#define EXT3_DIR_PIN        ORIG_E3_DIR_PIN
+#define EXT3_STEP_PIN       ORIG_E3_STEP_PIN  
+#define EXT3_ENABLE_PIN     ORIG_E3_ENABLE_PIN
+
+
 ENDSTOP_NONE(endstopNone)
 // For use when no output is wanted, but possible
 IO_OUTPUT_FAKE(fakeOut)
@@ -26,13 +43,13 @@ IO_OUTPUT_FAKE(fakeOut)
 // X Motor
 
 IO_OUTPUT(IOX1Step, ORIG_X_STEP_PIN)
-IO_OUTPUT(IOX1Dir, ORIG_X_DIR_PIN)
+IO_OUTPUT_INVERTED(IOX1Dir, ORIG_X_DIR_PIN)
 IO_OUTPUT_INVERTED(IOX1Enable, ORIG_X_ENABLE_PIN)
 
 // Y Motor
 
 IO_OUTPUT(IOY1Step, ORIG_Y_STEP_PIN)
-IO_OUTPUT(IOY1Dir, ORIG_Y_DIR_PIN)
+IO_OUTPUT_INVERTED(IOY1Dir, ORIG_Y_DIR_PIN)
 IO_OUTPUT_INVERTED(IOY1Enable, ORIG_Y_ENABLE_PIN)
 
 // Z Motor
@@ -135,8 +152,8 @@ IO_PWM_REPORT(Fan1Report, Fan1PWM_KS)
 // Typically they require an analog input (12 bit) so define
 // them first.
 
-IO_ANALOG_INPUT(IOAnalogBed1, TEMP_1_PIN, 5)
-IO_ANALOG_INPUT(IOAnalogExt1, TEMP_0_PIN, 5)
+IO_ANALOG_INPUT(IOAnalogBed1, TEMP_0_PIN, 5)
+IO_ANALOG_INPUT(IOAnalogExt1, TEMP_1_PIN, 5)
 IO_ANALOG_INPUT(IOAnalogExt2, TEMP_2_PIN, 5)
 
 // Need a conversion table for epcos NTC
@@ -145,8 +162,23 @@ IO_TEMP_TABLE_NTC(TempTableEpcos, Epcos_B57560G0107F000)
 // Now create the temperature inputs
 
 IO_TEMPERATURE_TABLE(TempBed1, IOAnalogBed1, TempTableEpcos)
-IO_TEMPERATURE_TABLE(TempExt1, IOAnalogExt1, TempTableEpcos)
-IO_TEMPERATURE_TABLE(TempExt2, IOAnalogExt2, TempTableEpcos)
+//IO_TEMPERATURE_TABLE(TempExt1, IOAnalogExt1, TempTableEpcos)
+//IO_TEMPERATURE_TABLE(TempExt2, IOAnalogExt2, TempTableEpcos)
+
+//#define THERMOCOUPLE_0_PIN 32
+//#define THERMOCOUPLE_1_PIN 47
+
+//IO_TMC_ENABLE_WARNINGS(tmc2130zaxis)
+//IO_TMC_ENABLE_WARNINGS(tmc5160yaxis)
+//IO_TMC_ENABLE_LOG_ON_STATUS_CHANGE(tmc2130zaxis)
+//IO_TMC_ENABLE_LOG_ON_STATUS_CHANGE(tmc5160yaxis)
+
+//IO_TMC_2130(tmc2130zaxis, 43, 200, 16, true, STEALTHCHOP, false, 100)
+IO_TMC_5160(tmc5160yaxis, 45, 700, 16, true, SPREADCYCLE, false, 100)
+IO_SPI_HW(Temp1SPI, 16000000/8, SPI_MODE3, true, THERMOCOUPLE_0_PIN)
+IO_SPI_HW(Temp2SPI, 16000000/8, SPI_MODE3, true, THERMOCOUPLE_1_PIN)
+IO_TEMPERATURE_MAX31855(TempExt1, Temp1SPI)
+IO_TEMPERATURE_MAX31855(TempExt2, Temp2SPI)
 
 // Use PWM outputs to heat. If using hardware PWM make sure
 // that the selected pin can be used as hardware pwm otherwise
@@ -185,9 +217,9 @@ STEPPER_SIMPLE(E2MotorBase, IOE2Step, IOE2Dir, IOE2Enable, endstopNone, endstopN
 // control temperature. Higher level classes take these as input
 // and simple heater like a heated bed use it directly.
 
-HEAT_MANAGER_PID(HeatedBed1, 'B', 0, TempBed1, PWMBed1, 120, 255, 1000, 5, 30000, 12.0, 33.0, 290.0, 80, 255, true)
-HEAT_MANAGER_PID(HeaterExtruder1, 'E', 2, TempExt1, PWMExtruder1, 260, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, false)
-HEAT_MANAGER_PID(HeaterExtruder2, 'E', 3, TempExt2, PWMExtruder2, 260, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, false)
+HEAT_MANAGER_PID(HeatedBed1, 'B', 0, TempBed1, PWMBed1, 140, 255, 1000, 5, 30000, 12.0, 33.0, 290.0, 80, 255, true)
+HEAT_MANAGER_PID(HeaterExtruder1, 'E', 1, TempExt1, PWMExtruder1, 350, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, false)
+HEAT_MANAGER_PID(HeaterExtruder2, 'E', 2, TempExt2, PWMExtruder2, 350, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, false)
 
 // HEAT_MANAGER_DYN_DEAD_TIME(HeaterExtruder1, 'E', 0, TempExt1, PWMExtruder1, 260, 255, 100, 10, 20000, 150, 7, 7, 200, 7, 7, false)
 // HEAT_MANAGER_DYN_DEAD_TIME(HeaterExtruder2, 'E', 1, TempExt2, PWMExtruder2, 260, 255, 100, 10, 20000, 150, 7, 7, 200, 7, 7, false)
@@ -217,11 +249,4 @@ TOOL_EXTRUDER(ToolExtruder2,  16.775, 0.615, -0.97, HeaterExtruder2, /*AL2Motor 
 //FILAMENT_DETECTOR(FilamentDetector2, IOJam2, ToolExtruder2)
 
 
-IO_TMC_2130(tmc2130zaxis, 43, 200, 16, true, STEALTHCHOP, false, 100)
-IO_TMC_5160(tmc5160yaxis, 45, 200, 16, true, SPREADCYCLE, false, 100)
 
-IO_TMC_ENABLE_WARNINGS(tmc2130zaxis)
-IO_TMC_ENABLE_WARNINGS(tmc5160yaxis)
-
-IO_TMC_ENABLE_LOG_ON_STATUS_CHANGE(tmc2130zaxis)
-IO_TMC_ENABLE_LOG_ON_STATUS_CHANGE(tmc5160yaxis)

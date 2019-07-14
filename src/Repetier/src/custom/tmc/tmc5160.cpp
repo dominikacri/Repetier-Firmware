@@ -1,4 +1,5 @@
 #include "tmc5160.h"
+#include "Repetier.h"
 
 void TMC5160::PrintSettings()
 {
@@ -19,7 +20,7 @@ void TMC5160::PrintSettings()
 bool TMC5160::Init()
 {
     Serial.println(F("TMC5160: Try to Init"));
-
+   
     if (!TMCBase::Init())
     {
         return false;
