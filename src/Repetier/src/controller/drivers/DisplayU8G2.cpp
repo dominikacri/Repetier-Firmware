@@ -94,7 +94,13 @@ void GUI::init() {
     HAL::delayMilliseconds(50);
     lcd.begin();
 
-    lcd.setContrast(255);
+#ifdef LCD_CONTRAST
+    lcd.setContrast(LCD_CONTRAST);
+#endif
+
+#ifdef UI_ROTATE_180
+    lcd.setFlipMode(UI_ROTATE_180);
+#endif
     
     handleKeypress();
     nextAction = GUIAction::NONE;
