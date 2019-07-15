@@ -153,12 +153,12 @@ to the position. 0 = no contribution. */
 #define THERMOCOUPLE_0_PIN 32
 #define THERMOCOUPLE_1_PIN 47
 
-#undef MOSI_PIN
-#undef MISO_PIN
-#undef SCK_PIN
-#define MOSI_PIN    75
-#define MISO_PIN    74
-#define SCK_PIN     76
+//#undef MOSI_PIN
+//#undef MISO_PIN
+//#undef SCK_PIN
+//#define MOSI_PIN    75
+//#define MISO_PIN    74
+//#define SCK_PIN     76
 
 //
 
@@ -212,13 +212,13 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
     { &XMotor, &YMotor, &ZMotor, &E1MotorBase, &E2MotorBase }
 
 #define X_HOME_DIR -1
-#define Y_HOME_DIR 1
+#define Y_HOME_DIR -1
 #define Z_HOME_DIR -1
-#define X_MAX_LENGTH 339
-#define Y_MAX_LENGTH 352
-#define Z_MAX_LENGTH 480
-#define X_MIN_POS -9
-#define Y_MIN_POS -22
+#define X_MAX_LENGTH 320
+#define Y_MAX_LENGTH 320
+#define Z_MAX_LENGTH 350
+#define X_MIN_POS 0
+#define Y_MIN_POS 0
 #define Z_MIN_POS 0
 #define BED_X_MIN X_MIN_POS
 #define BED_X_MAX (X_MIN_POS + X_MAX_LENGTH)
@@ -327,14 +327,14 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define DOOR_PIN -1
 #define DOOR_PULLUP 1
 #define DOOR_INVERTING 1
-#define ENDSTOP_X_BACK_MOVE 3
-#define ENDSTOP_Y_BACK_MOVE 3
-#define ENDSTOP_Z_BACK_MOVE 1
+#define ENDSTOP_X_BACK_MOVE 5
+#define ENDSTOP_Y_BACK_MOVE 30
+#define ENDSTOP_Z_BACK_MOVE 3
 #define ENDSTOP_X_RETEST_REDUCTION_FACTOR 2
 #define ENDSTOP_Y_RETEST_REDUCTION_FACTOR 2
 #define ENDSTOP_Z_RETEST_REDUCTION_FACTOR 2
-#define ENDSTOP_X_BACK_ON_HOME 0.5
-#define ENDSTOP_Y_BACK_ON_HOME 0.5
+#define ENDSTOP_X_BACK_ON_HOME 1
+#define ENDSTOP_Y_BACK_ON_HOME 1
 #define ENDSTOP_Z_BACK_ON_HOME 0
 #define ALWAYS_CHECK_ENDSTOPS 0
 #define MOVE_X_WHEN_HOMED 0
@@ -459,7 +459,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define L_P3_X 137
 #define L_P3_Y 210
 #define GRID_SIZE 5
-#define ENABLE_BUMP_CORRECTION 1          // CPU intensive, so only activate if required
+#define ENABLE_BUMP_CORRECTION 0          // CPU intensive, so only activate if required
 #define BUMP_CORRECTION_START_DEGRADE 0.5 // Until this height we correct 100%
 #define BUMP_CORRECTION_END_HEIGHT 2      // From this height on we do no correction
 #define BUMP_LIMIT_TO 0                   // Maximum allowed correction up/down, <= 0 off.
