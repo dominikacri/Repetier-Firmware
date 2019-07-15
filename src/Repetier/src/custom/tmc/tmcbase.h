@@ -41,12 +41,10 @@ public:
         
         // TODO: BAD HACK, SET THE MAX31xxx SPI Devices to high 
         //pinMode(32, OUTPUT);
-        digitalWrite(32, HIGH);
+        //digitalWrite(32, HIGH);
         //pinMode(47, OUTPUT);
-        digitalWrite(47, HIGH);
-        
-        SPI.begin();
-
+        //digitalWrite(47, HIGH);
+                
         uint8_t result = m_TMCDriver.test_connection();
 
         if (result)
