@@ -54,7 +54,7 @@
 #define FEATURE_WATCHDOG 0
 #define FEATURE_RETRACTION 1
 #define NUM_AXES 4                   // X,Y,Z and E for extruder A,B,C would be 5,6,7
-#define STEPPER_FREQUENCY 153000     // Maximum stepper frequency.
+#define STEPPER_FREQUENCY 128000     // Maximum stepper frequency.
 #define PREPARE_FREQUENCY 1000       // Update frequency for new blocks. Must be higher then PREPARE_FREQUENCY.
 #define BLOCK_FREQUENCY 500          // Number of blocks with constant stepper rate per second.
 #define VELOCITY_PROFILE 2           // 0 = linear, 1 = cubic, 2 = quintic velocity shape

@@ -143,15 +143,15 @@ ENDSTOP_NONE(endstopZMax)
 
 // Define fans
 
-IO_OUTPUT(IOFan1, 6)
-IO_PWM_HARDWARE(Fan1PWM, ORIG_FAN_PIN, 5000)
+//IO_OUTPUT(IOFan11, 11)
+IO_PWM_HARDWARE(Fan1PWM, 11, 1000)
 // IO_PWM_HARDWARE(Fan1PWM, 37,5000)
 // IO_PDM_SOFTWARE(Fan1NoKSPWM, IOFan1) // alternative to PWM signals
 
-IO_PWM_KICKSTART(Fan1PWM_KS, Fan1PWM, 20)
+//IO_PWM_KICKSTART(Fan1PWM_KS, Fan1PWM, 20)
 
 // For debugging - reports new values and then calls real pwm
-IO_PWM_REPORT(Fan1Report, Fan1PWM_KS)
+//IO_PWM_REPORT(Fan1Report, Fan1PWM_KS)
 
 // Define temperature sensors
 // Typically they require an analog input (12 bit) so define
