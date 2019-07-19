@@ -143,8 +143,8 @@ ENDSTOP_NONE(endstopZMax)
 
 // Define fans
 
-//IO_OUTPUT(IOFan11, 11)
-IO_PWM_HARDWARE(Fan1PWM, 11, 1000)
+//IO_OUTPUT(IOFan11, 6)
+IO_PWM_HARDWARE(Fan1PWM, 6, 1000)
 // IO_PWM_HARDWARE(Fan1PWM, 37,5000)
 // IO_PDM_SOFTWARE(Fan1NoKSPWM, IOFan1) // alternative to PWM signals
 
@@ -207,9 +207,11 @@ IO_PWM_SOFTWARE(PWMBed1, IOBed1, 1)
 // Define all stepper motors used
 STEPPER_SIMPLE(XMotor, IOX1Step, IOX1Dir, IOX1Enable, endstopXMin, endstopNone)
 STEPPER_SIMPLE(YMotor, IOY1Step, IOY1Dir, IOY1Enable, endstopYMin, endstopNone)
-STEPPER_SIMPLE(ZMotor1, IOZ1Step, IOZ1Dir, IOZ1Enable, endstopZMin, endstopNone)
-STEPPER_SIMPLE(ZMotor2, IOZ2Step, IOZ2Dir, IOZ2Enable, endstopZMin, endstopNone)
+
+STEPPER_SIMPLE(ZMotor1, IOZ1Step, IOZ1Dir, IOZ1Enable, endstopNone, endstopNone)
+STEPPER_SIMPLE(ZMotor2, IOZ2Step, IOZ2Dir, IOZ2Enable, endstopNone, endstopNone)
 STEPPER_MIRROR2(ZMotor, ZMotor1, ZMotor2, endstopZMin, endstopNone)
+
 STEPPER_SIMPLE(E1MotorBase, IOE1Step, IOE1Dir, IOE1Enable, endstopNone, endstopNone)
 STEPPER_SIMPLE(E2MotorBase, IOE2Step, IOE2Dir, IOE2Enable, endstopNone, endstopNone)
 //STEPPER_OBSERVEABLE(E1Motor, E1MotorBase)
@@ -242,8 +244,8 @@ HEAT_MANAGER_PID(HeaterExtruder2, 'E', 2, TempExt2, PWMExtruder2, 350, 255, 1000
 // Typical tools are:
 
 // TOOL_EXTRUDER(name, offx, offy, offz, heater, stepper, diameter, resolution(steps per mm), yank(jerk), maxSpeed, acceleration, advance, startScript, endScript, fan)
-TOOL_EXTRUDER(ToolExtruder1, -20.000, 70.00,     0, HeaterExtruder1, /*AL1Motor */ E1MotorBase, 1.75, 405, 30, 60, 5000, 40, "M117 Extruder 1", "", &Fan1PWM)
-TOOL_EXTRUDER(ToolExtruder2,  16.775, 0.615, -0.97, HeaterExtruder2, /*AL2Motor */ E2MotorBase, 1.75, 405, 30, 60, 5000, 40, "M117 Extruder 2\nM400\nM340 P0 S1500 R600\nG4 P300", "M340 P0 S800 R600\nG4 P300", &Fan1PWM)
+TOOL_EXTRUDER(ToolExtruder1, 0.0000, 0.000,  0.00, HeaterExtruder1, /*AL1Motor */ E1MotorBase, 1.75, 405, 30, 60, 5000, 40, "M117 Extruder 1", "", &Fan1PWM)
+TOOL_EXTRUDER(ToolExtruder2, 16.775, 0.615, -0.97, HeaterExtruder2, /*AL2Motor */ E2MotorBase, 1.75, 405, 30, 60, 5000, 40, "M117 Extruder 2\nM400\nM340 P0 S1500 R600\nG4 P300", "M340 P0 S800 R600\nG4 P300", nullptr)
 // TOOL_LASER(Laser3, 0, 0, 0, Fan1NoKSPWM, fakeOut, fakeOut, 3000, 1, 100, 150.0, 1.5, "", "")
 // TOOL_CNC(CNC4, 0, 0, 0, Fan1NoKSPWM, fakeOut, fakeOut, fakeOut, 7000, 3000, "", "")
 

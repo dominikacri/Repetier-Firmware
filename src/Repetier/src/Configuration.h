@@ -59,7 +59,7 @@
 #define BLOCK_FREQUENCY 500          // Number of blocks with constant stepper rate per second.
 #define VELOCITY_PROFILE 2           // 0 = linear, 1 = cubic, 2 = quintic velocity shape
 #define Z_SPEED 10                   // Z positioning speed
-#define XY_SPEED 150                 // XY positioning speed for normal operations
+#define XY_SPEED 120                 // XY positioning speed for normal operations
 #define E_SPEED 2                    // Extrusion speed
 #define G0_FEEDRATE 0                // Speed for G0 moves. Independent from set F value! Set 0 to use F value.
 #define MAX_ROOM_TEMPERATURE 25      // No heating below this temperature!
@@ -78,7 +78,7 @@
 #define BABYSTEPS_PER_BLOCK \
     { 10, 10, 10 }
 // If all axis end stops are hardware based we can skip the time consuming tests each step
-//#define NO_SOFTWARE_AXIS_ENDSTOPS
+#define NO_SOFTWARE_AXIS_ENDSTOPS
 // Normally only a delta has motor end stops required. Normally you trigger using axis endstops.
 #define NO_MOTOR_ENDSTOPS
 
@@ -153,15 +153,6 @@ to the position. 0 = no contribution. */
 #define THERMOCOUPLE_0_PIN 32
 #define THERMOCOUPLE_1_PIN 47
 
-//#undef MOSI_PIN
-//#undef MISO_PIN
-//#undef SCK_PIN
-//#define MOSI_PIN    75
-//#define MISO_PIN    74
-//#define SCK_PIN     76
-
-//
-
 // Next 7 lines are required to make the following work, do not change!
 #include "boards/pins.h"
 #undef IO_TARGET
@@ -214,8 +205,8 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR -1
-#define X_MAX_LENGTH 320
-#define Y_MAX_LENGTH 320
+#define X_MAX_LENGTH 325
+#define Y_MAX_LENGTH 330
 #define Z_MAX_LENGTH 350
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
@@ -327,12 +318,12 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define DOOR_PIN -1
 #define DOOR_PULLUP 1
 #define DOOR_INVERTING 1
-#define ENDSTOP_X_BACK_MOVE 5
-#define ENDSTOP_Y_BACK_MOVE 30
+#define ENDSTOP_X_BACK_MOVE 10
+#define ENDSTOP_Y_BACK_MOVE 10
 #define ENDSTOP_Z_BACK_MOVE 3
-#define ENDSTOP_X_RETEST_REDUCTION_FACTOR 2
-#define ENDSTOP_Y_RETEST_REDUCTION_FACTOR 2
-#define ENDSTOP_Z_RETEST_REDUCTION_FACTOR 2
+#define ENDSTOP_X_RETEST_REDUCTION_FACTOR 5
+#define ENDSTOP_Y_RETEST_REDUCTION_FACTOR 5
+#define ENDSTOP_Z_RETEST_REDUCTION_FACTOR 3
 #define ENDSTOP_X_BACK_ON_HOME 1
 #define ENDSTOP_Y_BACK_ON_HOME 1
 #define ENDSTOP_Z_BACK_ON_HOME 0
@@ -528,7 +519,7 @@ Values must be in range 1..255
 #define HALFAUTOMATIC_LEVELING 1
 // add z probe height routine
 #define ZPROBE_HEIGHT_ROUTINE
-#define ZPROBE_REF_HEIGHT 5.97
+#define ZPROBE_REF_HEIGHT 3
 #define Z_UP_AFTER_HOME 10
 
 #endif
