@@ -397,7 +397,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 // #################### Z-Probing #####################
 
 #define Z_PROBE_COATING 0
-#define Z_PROBE_Z_OFFSET_MODE 1
+#define Z_PROBE_Z_OFFSET_MODE 0
 #define UI_BED_COATING 0
 #define EXTRUDER_IS_Z_PROBE 0
 #define Z_PROBE_DISABLE_HEATERS 1
