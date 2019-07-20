@@ -54,23 +54,23 @@
 #define FEATURE_WATCHDOG 0
 #define FEATURE_RETRACTION 1
 #define NUM_AXES 4                   // X,Y,Z and E for extruder A,B,C would be 5,6,7
-#define STEPPER_FREQUENCY 128000     // Maximum stepper frequency.
+#define STEPPER_FREQUENCY 153000     // Maximum stepper frequency.
 #define PREPARE_FREQUENCY 1000       // Update frequency for new blocks. Must be higher then PREPARE_FREQUENCY.
 #define BLOCK_FREQUENCY 500          // Number of blocks with constant stepper rate per second.
 #define VELOCITY_PROFILE 2           // 0 = linear, 1 = cubic, 2 = quintic velocity shape
 #define Z_SPEED 10                   // Z positioning speed
-#define XY_SPEED 120                 // XY positioning speed for normal operations
+#define XY_SPEED 100                 // XY positioning speed for normal operations
 #define E_SPEED 2                    // Extrusion speed
 #define G0_FEEDRATE 0                // Speed for G0 moves. Independent from set F value! Set 0 to use F value.
 #define MAX_ROOM_TEMPERATURE 25      // No heating below this temperature!
 #define TEMPERATURE_CONTROL_RANGE 20 // Start with controlling if temperature is +/- this value to target temperature
-#define HOST_RESCUE 1                // Enable host rescue help system
-#define DEBUG_RESCUE                 // Uncomment to add power loss entry in debug menu while printing
+#define HOST_RESCUE 0                // Enable host rescue help system
+//#define DEBUG_RESCUE                 // Uncomment to add power loss entry in debug menu while printing
 #define POWERLOSS_LEVEL 2            // How much time do we have on powerloss, 0 = no move, 1 = short just raise Z, 2 = long full park move
 #define POWERLOSS_UP 5               // How much to move up if mode 1 is active
 #define Z_PROBE_TYPE 1               // 0 = no z probe, 1 = default z probe, 2 = Nozzle as probe
-#define Z_PROBE_BORDER 2             // Safety border to ensure position is allowed
-#define Z_PROBE_TEMPERATURE 0        // Temperature for type 2
+#define Z_PROBE_BORDER 4             // Safety border to ensure position is allowed
+#define Z_PROBE_TEMPERATURE 16        // Temperature for type 2
 
 // 0 = Cartesian, 1 = CoreXYZ, 2 = delta, 3 = Dual X-Axis
 #define PRINTER_TYPE 0
@@ -348,17 +348,17 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 
 #define STEPPER_INACTIVE_TIME 360L
 #define MAX_INACTIVE_TIME 1200L
-#define MAX_FEEDRATE_X 250
+#define MAX_FEEDRATE_X 100
 #define MAX_FEEDRATE_Y 250
-#define MAX_FEEDRATE_Z 250
+#define MAX_FEEDRATE_Z 80
 #define HOMING_FEEDRATE_X 80
 #define HOMING_FEEDRATE_Y 80
-#define HOMING_FEEDRATE_Z 30
+#define HOMING_FEEDRATE_Z 5
 // Raise z before homing (1)
-#define ZHOME_PRE_RAISE 1
+//#define ZHOME_PRE_RAISE 2
 // How much mm should z raise before homing
 #define ZHOME_PRE_RAISE_DISTANCE 2
-#define ZHOME_MIN_TEMPERATURE 0
+#define ZHOME_MIN_TEMPERATURE 16
 #define ZHOME_HEAT_ALL 0
 // Height in mm after homing.
 #define ZHOME_HEIGHT 10
@@ -398,14 +398,14 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 
 #define Z_PROBE_COATING 0
 #define Z_PROBE_Z_OFFSET_MODE 1
-#define UI_BED_COATING 1
+#define UI_BED_COATING 0
 #define EXTRUDER_IS_Z_PROBE 0
 #define Z_PROBE_DISABLE_HEATERS 1
 #define Z_PROBE_BED_DISTANCE 3
 #define Z_PROBE_X_OFFSET -20
 #define Z_PROBE_Y_OFFSET 80
 #define Z_PROBE_SPEED 2
-#define Z_PROBE_SWITCHING_DISTANCE 1
+#define Z_PROBE_SWITCHING_DISTANCE 3
 // How often should we test a position 1 .. x. Averages result over all tests.
 #define Z_PROBE_REPETITIONS 3
 // 0 = use average, 1 = use middle value after ordering z
@@ -516,10 +516,10 @@ Values must be in range 1..255
 //#define CUSTOM_EVENTS
 //#define CUSTOM_MENU
 //#define CUSTOM_TRANSLATIONS
-#define HALFAUTOMATIC_LEVELING 1
+//#define HALFAUTOMATIC_LEVELING 1
 // add z probe height routine
-#define ZPROBE_HEIGHT_ROUTINE
-#define ZPROBE_REF_HEIGHT 3
-#define Z_UP_AFTER_HOME 10
+//#define ZPROBE_HEIGHT_ROUTINE
+//#define ZPROBE_REF_HEIGHT 3
+//#define Z_UP_AFTER_HOME 10
 
 #endif
