@@ -69,7 +69,7 @@
 #define POWERLOSS_LEVEL 2            // How much time do we have on powerloss, 0 = no move, 1 = short just raise Z, 2 = long full park move
 #define POWERLOSS_UP 5               // How much to move up if mode 1 is active
 #define Z_PROBE_TYPE 1               // 0 = no z probe, 1 = default z probe, 2 = Nozzle as probe
-#define Z_PROBE_BORDER 4             // Safety border to ensure position is allowed
+#define Z_PROBE_BORDER 0             // Safety border to ensure position is allowed
 #define Z_PROBE_TEMPERATURE 16        // Temperature for type 2
 
 // 0 = Cartesian, 1 = CoreXYZ, 2 = delta, 3 = Dual X-Axis
@@ -208,8 +208,8 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define X_MAX_LENGTH 325
 #define Y_MAX_LENGTH 330
 #define Z_MAX_LENGTH 350
-#define X_MIN_POS 0
-#define Y_MIN_POS 0
+#define X_MIN_POS -9
+#define Y_MIN_POS -22
 #define Z_MIN_POS 0
 #define BED_X_MIN X_MIN_POS
 #define BED_X_MAX (X_MIN_POS + X_MAX_LENGTH)
@@ -318,14 +318,14 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define DOOR_PIN -1
 #define DOOR_PULLUP 1
 #define DOOR_INVERTING 1
-#define ENDSTOP_X_BACK_MOVE 10
-#define ENDSTOP_Y_BACK_MOVE 10
+#define ENDSTOP_X_BACK_MOVE 5
+#define ENDSTOP_Y_BACK_MOVE 5
 #define ENDSTOP_Z_BACK_MOVE 3
-#define ENDSTOP_X_RETEST_REDUCTION_FACTOR 5
-#define ENDSTOP_Y_RETEST_REDUCTION_FACTOR 5
-#define ENDSTOP_Z_RETEST_REDUCTION_FACTOR 3
-#define ENDSTOP_X_BACK_ON_HOME 1
-#define ENDSTOP_Y_BACK_ON_HOME 1
+#define ENDSTOP_X_RETEST_REDUCTION_FACTOR 3
+#define ENDSTOP_Y_RETEST_REDUCTION_FACTOR 3
+#define ENDSTOP_Z_RETEST_REDUCTION_FACTOR 2
+#define ENDSTOP_X_BACK_ON_HOME 0
+#define ENDSTOP_Y_BACK_ON_HOME 0
 #define ENDSTOP_Z_BACK_ON_HOME 0
 #define ALWAYS_CHECK_ENDSTOPS 0
 #define MOVE_X_WHEN_HOMED 0
@@ -351,8 +351,8 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define MAX_FEEDRATE_X 100
 #define MAX_FEEDRATE_Y 250
 #define MAX_FEEDRATE_Z 80
-#define HOMING_FEEDRATE_X 80
-#define HOMING_FEEDRATE_Y 80
+#define HOMING_FEEDRATE_X 40
+#define HOMING_FEEDRATE_Y 40
 #define HOMING_FEEDRATE_Z 5
 // Raise z before homing (1)
 //#define ZHOME_PRE_RAISE 2
