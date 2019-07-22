@@ -155,7 +155,7 @@ struct PWMPin {
     bool invert;
 };
 
-#define NUM_POSSIBLE_PWM_PINS 30
+#define NUM_POSSIBLE_PWM_PINS 31
 static PWMPin pwm_pins[NUM_POSSIBLE_PWM_PINS] = {
     { 0, PIOA, PIO_PA8B_PWMH0, PWM_CH0, false }, // Channel 0
     { 20, PIOB, PIO_PB12B_PWMH0, PWM_CH0, false },
@@ -187,7 +187,10 @@ static PWMPin pwm_pins[NUM_POSSIBLE_PWM_PINS] = {
     { 8, PIOC, PIO_PC22B_PWML5, PWM_CH5, true },
     { 45, PIOC, PIO_PC18B_PWMH6, PWM_CH6, false }, // Channel 6
     { 7, PIOC, PIO_PC23B_PWML6, PWM_CH6, true },
-    { 6, PIOC, PIO_PC24B_PWML7, PWM_CH7, true } // Channel 7
+    { 6, PIOC, PIO_PC24B_PWML7, PWM_CH7, true }, // Channel 7
+    { 10, PIOC, (1u << 26), 10, true }
+
+
 };
 
 struct PWMChannel {

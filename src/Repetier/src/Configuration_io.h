@@ -67,13 +67,13 @@ IO_OUTPUT_INVERTED(IOZ2Enable, ORIG_E3_ENABLE_PIN)
 // E0 Motor
 
 IO_OUTPUT(IOE1Step, ORIG_E0_STEP_PIN)
-IO_OUTPUT(IOE1Dir, ORIG_E0_DIR_PIN)
+IO_OUTPUT_INVERTED(IOE1Dir, ORIG_E0_DIR_PIN)
 IO_OUTPUT_INVERTED(IOE1Enable, ORIG_E0_ENABLE_PIN)
 
 // E1 Motor
 
 IO_OUTPUT(IOE2Step, ORIG_E1_STEP_PIN)
-IO_OUTPUT(IOE2Dir, ORIG_E1_DIR_PIN)
+IO_OUTPUT_INVERTED(IOE2Dir, ORIG_E1_DIR_PIN)
 IO_OUTPUT_INVERTED(IOE2Enable, ORIG_E1_ENABLE_PIN)
 
 // Autolevel Motor 1
@@ -145,6 +145,7 @@ ENDSTOP_NONE(endstopZMax)
 
 //IO_OUTPUT(IOFan11, 6)
 IO_PWM_HARDWARE(Fan1PWM, 6, 1000)
+
 // IO_PWM_HARDWARE(Fan1PWM, 37,5000)
 // IO_PDM_SOFTWARE(Fan1NoKSPWM, IOFan1) // alternative to PWM signals
 
@@ -190,7 +191,13 @@ IO_TEMPERATURE_MAX31855(TempExt2, Temp2SPI)
 // select a software pwm model whcih works on all pins.
 
 #if MOTHERBOARD == MOTHERBOARD_FELIX || MOTHERBOARD_SMARTRAMPS_EEPROM
-IO_PWM_HARDWARE(PWMExtruder1, HEATER_0_PIN, 1000)
+
+// PIN10 seems a hardware pwm on SAM3X but a strange one. Atm use software here
+//IO_PWM_HARDWARE(PWMExtruder1, HEATER_0_PIN, 1000)
+
+IO_OUTPUT(IOExtr1, HEATER_0_PIN)
+IO_PWM_SOFTWARE(PWMExtruder1, IOExtr1, 1)
+
 IO_PWM_HARDWARE(PWMExtruder2, HEATER_2_PIN, 1000)
 IO_PWM_HARDWARE(PWMBed1, HEATER_1_PIN, 1000)
 #else
@@ -226,9 +233,10 @@ STEPPER_SIMPLE(E2MotorBase, IOE2Step, IOE2Dir, IOE2Enable, endstopNone, endstopN
 // control temperature. Higher level classes take these as input
 // and simple heater like a heated bed use it directly.
 
-HEAT_MANAGER_PID(HeatedBed1, 'B', 0, TempBed1, PWMBed1, 140, 255, 1000, 5, 30000, 12.0, 33.0, 290.0, 80, 255, true)
-HEAT_MANAGER_PID(HeaterExtruder1, 'E', 1, TempExt1, PWMExtruder1, 350, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, true)
-HEAT_MANAGER_PID(HeaterExtruder2, 'E', 2, TempExt2, PWMExtruder2, 350, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, true)
+//name, tp, index, input, output,                               maxTemp,maxPwm,sampleTime, decVariance, decPeriod, p, i, d, driveMin, driveMax, hotPlugable)
+HEAT_MANAGER_PID(HeatedBed1, 'B', 0, TempBed1, PWMBed1,           140, 255, 1000, 5,  30000, 196.0, 33.0, 290.0,  80, 220, true)
+HEAT_MANAGER_PID(HeaterExtruder1, 'E', 1, TempExt1, PWMExtruder1, 350, 255, 1000, 10, 20000, 11.5,  0.85, 38.64,  40, 230, true)
+HEAT_MANAGER_PID(HeaterExtruder2, 'E', 2, TempExt2, PWMExtruder2, 350, 255, 1000, 10, 20000, 11.5,  0.85, 38.64,  40, 230, true)
 
 // HEAT_MANAGER_DYN_DEAD_TIME(HeaterExtruder1, 'E', 0, TempExt1, PWMExtruder1, 260, 255, 100, 10, 20000, 150, 7, 7, 200, 7, 7, false)
 // HEAT_MANAGER_DYN_DEAD_TIME(HeaterExtruder2, 'E', 1, TempExt2, PWMExtruder2, 260, 255, 100, 10, 20000, 150, 7, 7, 200, 7, 7, false)

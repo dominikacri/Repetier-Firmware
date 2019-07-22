@@ -37,8 +37,8 @@
 */
 
 // The follwing variables are required early to decide on the right modules.
-#define NUM_TOOLS 2
-#define NUM_EXTRUDER 2
+#define NUM_TOOLS 1
+#define NUM_EXTRUDER 1
 #define NUM_SERVOS 0                  // Number of servos available
 #define MOTHERBOARD MOTHERBOARD_SMARTRAMPS_EEPROM 
 #define EEPROM_MODE 1
@@ -59,7 +59,7 @@
 #define BLOCK_FREQUENCY 500          // Number of blocks with constant stepper rate per second.
 #define VELOCITY_PROFILE 2           // 0 = linear, 1 = cubic, 2 = quintic velocity shape
 #define Z_SPEED 10                   // Z positioning speed
-#define XY_SPEED 100                 // XY positioning speed for normal operations
+#define XY_SPEED 120                 // XY positioning speed for normal operations
 #define E_SPEED 2                    // Extrusion speed
 #define G0_FEEDRATE 0                // Speed for G0 moves. Independent from set F value! Set 0 to use F value.
 #define MAX_ROOM_TEMPERATURE 25      // No heating below this temperature!
@@ -82,7 +82,7 @@
 // Normally only a delta has motor end stops required. Normally you trigger using axis endstops.
 #define NO_MOTOR_ENDSTOPS
 
-#define FEATURE_CONTROLLER CONTROLLER_AZSMZ_12864
+#define FEATURE_CONTROLLER CONTROLLER_AZSMZ_12864_OLED
 // Use more memory to speedup display updates
 #define DISPLAY_FULL_BUFFER 1
 // Direction 1 or -1
@@ -187,14 +187,14 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define SERVO_LIST \
     {  }
 #define TOOLS \
-    { &ToolExtruder1, &ToolExtruder2 }
+    { &ToolExtruder1 /*  , &ToolExtruder2 */ }
 
 // Heaters enumerate all heaters, so we can loop over them
 // or call commands on a specific heater number.
 // Suggested order: extruder heaters, heated beds, heated chambers, additional heaters
-#define NUM_HEATERS 3
+#define NUM_HEATERS 2
 #define HEATERS \
-    { &HeaterExtruder1, &HeaterExtruder2, &HeatedBed1 }
+    { &HeaterExtruder1/*, &HeaterExtruder2 */, &HeatedBed1 }
 
 // Array to call motor related commands like microstepping/current if supported.
 // Id's start at 0 and depend on position in this array.
@@ -348,11 +348,11 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 
 #define STEPPER_INACTIVE_TIME 360L
 #define MAX_INACTIVE_TIME 1200L
-#define MAX_FEEDRATE_X 100
+#define MAX_FEEDRATE_X 250
 #define MAX_FEEDRATE_Y 250
 #define MAX_FEEDRATE_Z 80
-#define HOMING_FEEDRATE_X 40
-#define HOMING_FEEDRATE_Y 40
+#define HOMING_FEEDRATE_X 80
+#define HOMING_FEEDRATE_Y 80
 #define HOMING_FEEDRATE_Z 5
 // Raise z before homing (1)
 //#define ZHOME_PRE_RAISE 2
@@ -411,7 +411,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 // 0 = use average, 1 = use middle value after ordering z
 #define Z_PROBE_USE_MEDIAN 1
 // Nozzle distance to bed when z probe triggers
-#define Z_PROBE_HEIGHT 1.150
+#define Z_PROBE_HEIGHT 1.6
 // Delay in ms before we go down again. For BLTouch so signal can disable
 #define Z_PROBE_DELAY 0
 #define Z_PROBE_START_SCRIPT ""
@@ -482,7 +482,7 @@ CONFIG_VARIABLE_EQ(EndstopDriver, *ZProbe, &endstopZMin)
 #define LANGUAGE_CZ_ACTIVE 0
 #define LANGUAGE_PL_ACTIVE 0
 #define LANGUAGE_TR_ACTIVE 0
-#define UI_PRINTER_NAME "Chii Printer 2"
+#define UI_PRINTER_NAME "Chii Printer X1"
 #define UI_PRINTER_COMPANY "Chii"
 #define UI_DISABLE_AUTO_PAGESWITCH 1
 #define UI_AUTORETURN_TO_MENU_AFTER 30000
