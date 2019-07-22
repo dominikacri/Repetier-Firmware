@@ -227,8 +227,8 @@ STEPPER_SIMPLE(E2MotorBase, IOE2Step, IOE2Dir, IOE2Enable, endstopNone, endstopN
 // and simple heater like a heated bed use it directly.
 
 HEAT_MANAGER_PID(HeatedBed1, 'B', 0, TempBed1, PWMBed1, 140, 255, 1000, 5, 30000, 12.0, 33.0, 290.0, 80, 255, true)
-HEAT_MANAGER_PID(HeaterExtruder1, 'E', 1, TempExt1, PWMExtruder1, 350, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, false)
-HEAT_MANAGER_PID(HeaterExtruder2, 'E', 2, TempExt2, PWMExtruder2, 350, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, false)
+HEAT_MANAGER_PID(HeaterExtruder1, 'E', 1, TempExt1, PWMExtruder1, 350, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, true)
+HEAT_MANAGER_PID(HeaterExtruder2, 'E', 2, TempExt2, PWMExtruder2, 350, 255, 1000, 10, 20000, 20.0, 0.6, 65.0, 40, 220, true)
 
 // HEAT_MANAGER_DYN_DEAD_TIME(HeaterExtruder1, 'E', 0, TempExt1, PWMExtruder1, 260, 255, 100, 10, 20000, 150, 7, 7, 200, 7, 7, false)
 // HEAT_MANAGER_DYN_DEAD_TIME(HeaterExtruder2, 'E', 1, TempExt2, PWMExtruder2, 260, 255, 100, 10, 20000, 150, 7, 7, 200, 7, 7, false)
@@ -245,7 +245,7 @@ HEAT_MANAGER_PID(HeaterExtruder2, 'E', 2, TempExt2, PWMExtruder2, 350, 255, 1000
 
 // TOOL_EXTRUDER(name, offx, offy, offz, heater, stepper, diameter, resolution(steps per mm), yank(jerk), maxSpeed, acceleration, advance, startScript, endScript, fan)
 TOOL_EXTRUDER(ToolExtruder1, 0.0000, 0.000,  0.00, HeaterExtruder1, /*AL1Motor */ E1MotorBase, 1.75, 405, 30, 60, 5000, 40, "M117 Extruder 1", "", &Fan1PWM)
-TOOL_EXTRUDER(ToolExtruder2, 16.775, 0.615, -0.97, HeaterExtruder2, /*AL2Motor */ E2MotorBase, 1.75, 405, 30, 60, 5000, 40, "M117 Extruder 2\nM400\nM340 P0 S1500 R600\nG4 P300", "M340 P0 S800 R600\nG4 P300", nullptr)
+TOOL_EXTRUDER(ToolExtruder2, 16.775, 0.615, -0.97, HeaterExtruder2, /*AL2Motor */ E2MotorBase, 1.75, 405, 30, 60, 5000, 40, "M117 Extruder 2", "", nullptr)
 // TOOL_LASER(Laser3, 0, 0, 0, Fan1NoKSPWM, fakeOut, fakeOut, 3000, 1, 100, 150.0, 1.5, "", "")
 // TOOL_CNC(CNC4, 0, 0, 0, Fan1NoKSPWM, fakeOut, fakeOut, fakeOut, 7000, 3000, "", "")
 

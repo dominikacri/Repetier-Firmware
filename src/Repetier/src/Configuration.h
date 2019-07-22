@@ -82,7 +82,7 @@
 // Normally only a delta has motor end stops required. Normally you trigger using axis endstops.
 #define NO_MOTOR_ENDSTOPS
 
-#define FEATURE_CONTROLLER CONTROLLER_AZSMZ_12864_OLED
+#define FEATURE_CONTROLLER CONTROLLER_AZSMZ_12864
 // Use more memory to speedup display updates
 #define DISPLAY_FULL_BUFFER 1
 // Direction 1 or -1
