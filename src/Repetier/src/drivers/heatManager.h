@@ -70,7 +70,7 @@ public:
     void init();
     virtual void setTargetTemperature(float temp) {
         if (temp > maxTemperature) {
-            Com::printWarningF(PSTR("Selected temp. was higher then max. temperaure. Max. Temp:"));
+            Com::printWarningF(PSTR("Selected temp. was higher then max. temperature. Max. Temp:"));
             Com::print(maxTemperature);
             Com::println();
             return;

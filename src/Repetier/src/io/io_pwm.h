@@ -57,7 +57,7 @@
 #define IO_PWM_FAKE(name)
 #define IO_PWM_SWITCH(name, pinname, onLevel)
 #define IO_PWM_HARDWARE(name, pinid, frequency) \
-    name.id = HAL::initHardwarePWM(pinid, frequency);
+    name.init();
 #define IO_PWM_MIN_SPEED(name, pwmname, minValue, offBelow)
 #define IO_PWM_KICKSTART(name, pwmname, timems)
 #define IO_PWM_INVERTED(name, pwmname)
@@ -168,6 +168,10 @@
         fast8_t pwm, id; \
         name##Class() \
             : pwm(0) {} \
+        void init() { \
+            id = HAL::initHardwarePWM(pinid, frequency);\
+            PWMHandler::init();\
+        }\
         void set(fast8_t _pwm) final { \
             if (pwm == _pwm) { \
                 return; \

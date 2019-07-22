@@ -22,6 +22,7 @@
 
 class PWMHandler {
 public:
+    virtual void init() { set(0);}
     virtual void set(fast8_t pwm) = 0;
     virtual fast8_t get() = 0;
 };
