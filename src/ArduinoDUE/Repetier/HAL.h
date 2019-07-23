@@ -383,7 +383,7 @@ public:
     for (i = 0; i < EEPROM_BYTES; i += 4) {
       eeval_t v = eprGetValue(i, 4);
       memcopy4(&virtualEeprom[i], &v.i);
-    }
+    } 
 #else
     int i, n = 0;
     for (i = 0; i < EEPROM_BYTES; i += 4) {

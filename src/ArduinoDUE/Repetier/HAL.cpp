@@ -27,6 +27,7 @@
 */
 
 #include "Repetier.h"
+#include <Wire.h>
 #include <malloc.h>
 
 // extern "C" void __cxa_pure_virtual() { }
@@ -696,43 +697,17 @@ void HAL::i2cSetClockspeed(uint32_t clockSpeedHz)
     TWI_INTERFACE->TWI_CWGR = (dwCkDiv << 16) | (dwClDiv << 8) | dwClDiv;
 }
 
+#ifndef WIRE_PORT
+#define WIRE_PORT Wire
+#endif
 /*************************************************************************
  Initialization of the I2C bus interface. Need to be called only once
 *************************************************************************/
-void HAL::i2cInit(unsigned long clockSpeedHz) {
-    // enable TWI
-    pmc_enable_periph_clk(TWI_ID);
-
-    // Configure pins
-#if SDA_PIN >= 0
-    PIO_Configure(g_APinDescription[SDA_PIN].pPort,
-                  g_APinDescription[SDA_PIN].ulPinType,
-                  g_APinDescription[SDA_PIN].ulPin,
-                  g_APinDescription[SDA_PIN].ulPinConfiguration);
-#endif
-#if SCL_PIN >= 0
-    PIO_Configure(g_APinDescription[SCL_PIN].pPort,
-                  g_APinDescription[SCL_PIN].ulPinType,
-                  g_APinDescription[SCL_PIN].ulPin,
-                  g_APinDescription[SCL_PIN].ulPinConfiguration);
-#endif
-    /*
-// Set to Master mode with known state
-TWI_INTERFACE->TWI_CR = TWI_CR_SVEN;
-TWI_INTERFACE->TWI_CR = TWI_CR_SWRST;
-//TWI_INTERFACE->TWI_RHR;  // no action???
-TWI_INTERFACE->TWI_IMR = 0;
-
-TWI_INTERFACE->TWI_CR = TWI_CR_SVDIS;
-TWI_INTERFACE->TWI_CR = TWI_CR_MSDIS;
-TWI_INTERFACE->TWI_CR = TWI_CR_MSEN;   */
-    // Set to Master mode with known state
-    TWI_INTERFACE->TWI_CR = TWI_CR_SWRST; // Reset
-    TWI_INTERFACE->TWI_CR = TWI_CR_SVDIS; // Slave disable
-    TWI_INTERFACE->TWI_CR = TWI_CR_MSEN;  // Master enable
-
-    i2cSetClockspeed(clockSpeedHz);
+void HAL::i2cInit(uint32_t clockSpeedHz) {
+    WIRE_PORT.begin(); // create I2C master access
+    WIRE_PORT.setClock(clockSpeedHz);
 }
+
 
 /*************************************************************************
   Issues a start condition and sends address and transfer direction.

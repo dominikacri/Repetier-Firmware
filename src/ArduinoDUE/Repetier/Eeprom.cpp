@@ -594,6 +594,10 @@ void EEPROM::readDataFromEEPROM(bool includeExtruder) {
                                     // data nor set it to older versions!
   Com::printFLN(PSTR("Detected EEPROM version:"), (int)version);
   baudrate = HAL::eprGetInt32(EPR_BAUDRATE);
+  {
+      baudrate = BAUDRATE;
+  }
+
   maxInactiveTime = HAL::eprGetInt32(EPR_MAX_INACTIVE_TIME);
   stepperInactiveTime = HAL::eprGetInt32(EPR_STEPPER_INACTIVE_TIME);
 //#define EPR_ACCELERATION_TYPE 1
@@ -916,6 +920,9 @@ void EEPROM::initBaudrate() {
 #if EEPROM_MODE != 0
   if (HAL::eprGetByte(EPR_MAGIC_BYTE) == EEPROM_MODE) {
     baudrate = HAL::eprGetInt32(EPR_BAUDRATE);
+    {
+        baudrate = BAUDRATE;
+    }
   }
 #endif
 }
@@ -934,7 +941,6 @@ void EEPROM::init() {
       // at all.
       if (HAL::eprGetInt32(EPR_BAUDRATE) != BAUDRATE) {
         HAL::eprSetInt32(EPR_BAUDRATE, BAUDRATE);
-        baudrate = BAUDRATE;
         uint8_t newcheck = computeChecksum();
         if (newcheck != HAL::eprGetByte(EPR_INTEGRITY_BYTE))
           HAL::eprSetByte(EPR_INTEGRITY_BYTE, newcheck);
