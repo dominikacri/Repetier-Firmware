@@ -182,8 +182,9 @@ Custom M Codes
 - M915 X<0/1> Y<0/1> Z<0/1> Turn StealthChop mode ON or OFF on Trinamic stepper drivers.
 */
 
-#include "Repetier.h"
 #include <SPI.h>
+#include "Repetier.h"
+
 
 #if UI_DISPLAY_TYPE == DISPLAY_ARDUINO_LIB
 //#include <LiquidCrystal.h> // Uncomment this if you are using liquid crystal library

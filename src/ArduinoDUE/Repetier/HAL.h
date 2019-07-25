@@ -43,6 +43,11 @@
 #include "Print.h"
 #include "fastio.h"
 
+// Which I2C port to use?
+#ifndef WIRE_PORT
+#define WIRE_PORT Wire
+#endif
+
 // Hack to make 84 MHz Due clock work without changes to pre-existing code
 // which would otherwise have problems with int overflow.
 #undef F_CPU
@@ -165,6 +170,12 @@ typedef char prog_char;
 #include "WProgram.h"
 #define COMPAT_PRE1
 #endif
+
+#ifdef MAX_WIRE_INTERFACES
+#undef WIRE_INTERFACES_COUNT
+#define WIRE_INTERFACES_COUNT MAX_WIRE_INTERFACES
+#endif
+#include <Wire.h>
 
 //#define	READ(pin)  PIO_Get(g_APinDescription[pin].pPort, PIO_INPUT, g_APinDescription[pin].ulPin)
 #define READ_VAR(pin) (g_APinDescription[pin].pPort->PIO_PDSR & g_APinDescription[pin].ulPin ? 1 : 0) // does return 0 or pin value
@@ -361,19 +372,7 @@ class HAL
       TC_Configure(DELAY_TIMER, DELAY_TIMER_CHANNEL, TC_CMR_WAVSEL_UP |
                    TC_CMR_WAVE | DELAY_TIMER_CLOCK);
       TC_Start(DELAY_TIMER, DELAY_TIMER_CHANNEL);
-#if EEPROM_AVAILABLE && EEPROM_MODE != EEPROM_NONE
-      // Copy eeprom to ram for faster access
-      int i;
-      for (i = 0; i < EEPROM_BYTES; i += 4) {
-        eeval_t v = eprGetValue(i, 4);
-        memcopy4(&virtualEeprom[i],&v.i);
-      }
-#else
-      int i,n = 0;
-      for (i = 0; i < EEPROM_BYTES; i += 4) {
-        memcopy4(&virtualEeprom[i],&n);
-      }
-#endif
+
     }
 
     static uint32_t integer64Sqrt(uint64_t a);
@@ -579,23 +578,21 @@ class HAL
       WRITE( SPI_EEPROM1_CS , HIGH );
       delayMilliseconds(EEPROM_PAGE_WRITE_TIME);   // wait for page write to complete
 #elif EEPROM_AVAILABLE == EEPROM_I2C
-      i2cStartAddr(EEPROM_SERIAL_ADDR << 1 | I2C_WRITE, pos);
-      i2cWrite(newvalue.b[0]);        // write first byte
-      for (int i = 1; i < size; i++) {
-        pos++;
-        // writes cannot cross page boundary
-        if ((pos % EEPROM_PAGE_SIZE) == 0) {
-          // burn current page then address next one
-          i2cStop();
-          delayMilliseconds(EEPROM_PAGE_WRITE_TIME);
-          i2cStartAddr(EEPROM_SERIAL_ADDR << 1, pos);
-        } else {
-         while ( (TWI_INTERFACE->TWI_SR & TWI_SR_TXRDY) != TWI_SR_TXRDY);// wait for transmission register to empty
+      i2cStartAddr(EEPROM_SERIAL_ADDR, pos, 0);
+        i2cWrite(newvalue.b[0]); // write first byte
+        for (int i = 1; i < size; i++) {
+            pos++;
+            // writes can not cross page boundary
+            if ((pos % EEPROM_PAGE_SIZE) == 0) {
+                // burn current page then address next one
+                i2cStop();
+                delayMilliseconds(EEPROM_PAGE_WRITE_TIME);
+                i2cStartAddr(EEPROM_SERIAL_ADDR, pos, 0);
+            }
+            i2cWrite(newvalue.b[i]);
         }
-        i2cWrite(newvalue.b[i]);
-      }
-      i2cStop();          // signal end of transaction
-      delayMilliseconds(EEPROM_PAGE_WRITE_TIME);   // wait for page write to complete
+        i2cStop();                                 // signal end of transaction
+        delayMilliseconds(EEPROM_PAGE_WRITE_TIME); // wait for page write to complete
 #elif EEPROM_AVAILABLE == EEPROM_SDCARD
       eprSyncTime = HAL::timeInMilliseconds() | 1UL; 
 #endif
@@ -628,18 +625,19 @@ class HAL
       return v;
 #elif EEPROM_AVAILABLE == EEPROM_I2C
       int i;
-      eeval_t v;
-
-      size--;
-      // set read location
-      i2cStartAddr(EEPROM_SERIAL_ADDR << 1 | I2C_READ, pos);
-      for (i = 0; i < size; i++) {
-        // read an incomming byte
-        v.b[i] = i2cReadAck();
-      }
-      // read last byte
-      v.b[i] = i2cReadNak();
-      return v;
+        eeval_t v;
+        // set read location
+        i2cStartAddr(EEPROM_SERIAL_ADDR, pos, size);
+        for (i = 0; i < size; i++) {
+            // read an incomming byte
+            int val = i2cRead();
+            if (val != -1) {
+                v.b[i] = val;
+            } else {
+                v.b[i] = 0;
+            }
+        }
+        return v;
 #else
      eeval_t v;
      int i;
@@ -670,6 +668,26 @@ class HAL
     static inline int16_t readFlashWord(PGM_P ptr)
     {
         return pgm_read_word(ptr);
+    }
+
+    static inline void InitI2EEPROM()
+    {
+      #if EEPROM_AVAILABLE && EEPROM_MODE != EEPROM_NONE
+      // Copy eeprom to ram for faster access
+      int i;
+
+      HAL::delayMilliseconds(200);
+      
+      for (i = 0; i < EEPROM_BYTES; i += 4) {
+        eeval_t v = eprGetValue(i, 4);
+        memcopy4(&virtualEeprom[i],&v.i);
+      }
+#else
+      int i,n = 0;
+      for (i = 0; i < EEPROM_BYTES; i += 4) {
+        memcopy4(&virtualEeprom[i],&n);
+      }
+#endif
     }
 
     static inline void serialSetBaudrate(long baud)
@@ -836,18 +854,15 @@ class HAL
 #endif  /*DUE_SOFTWARE_SPI*/
 
     // I2C Support
+
     static void i2cSetClockspeed(uint32_t clockSpeedHz);
-    static void i2cInit(unsigned long clockSpeedHz);
-    static void i2cStartWait(unsigned char address);
-    static uint8_t i2cStart(unsigned char address);
-    static void i2cStartAddr(unsigned char address, unsigned int pos);
+    static void i2cInit(uint32_t clockSpeedHz);
+    static void i2cStartRead(uint8_t address7bit, uint8_t bytes);
+    static void i2cStart(uint8_t address7bit);
+    static void i2cStartAddr(uint8_t address7bit, unsigned int pos, uint8_t readBytes);
     static void i2cStop(void);
-    static void i2cStartBit(void);
-    static void i2cCompleted (void);
-    static void i2cTxFinished(void);
-    static void i2cWrite( uint8_t data );
-    static uint8_t i2cReadAck(void);
-    static uint8_t i2cReadNak(void);
+    static void i2cWrite(uint8_t data);
+    static int i2cRead(void);
 
 
     // Watchdog support

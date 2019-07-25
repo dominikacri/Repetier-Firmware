@@ -1223,8 +1223,11 @@ void Printer::setup() {
     SET_INPUT(MOTOR_FAULT_PIN);
     SET_INPUT(MOTOR_FAULT_PIGGY_PIN);
 #endif //(MOTHERBOARD == 501) || (MOTHERBOARD == 502)
-    EEPROM::initBaudrate();
-    HAL::serialSetBaudrate(baudrate);
+
+    //EEPROM::initBaudrate();
+    HAL::serialSetBaudrate(115200);
+    HAL::InitI2EEPROM();
+    
     Com::printFLN(Com::tStart);
     HAL::showStartReason();
     Extruder::initExtruder();
