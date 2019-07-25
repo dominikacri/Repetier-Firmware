@@ -2581,13 +2581,13 @@ int16_t read_max31855(uint8_t ss_pin, fast8_t idx) {
     }
     uint32_t data = 0;
     int16_t temperature;
-    HAL::spiInit(2);
+    HAL::spiBegin(2000000, SPI_MODE3, true);
     HAL::digitalWrite(ss_pin, 0);  // enable TT_MAX31855
     HAL::delayMicroseconds(1);    // ensure 100ns delay - a bit extra is fine
 
     for (unsigned short byte = 0; byte < 4; byte++) {
         data <<= 8;
-        data |= HAL::spiReceive();
+        data |= HAL::spiTransfer(0);
     }
 
     HAL::digitalWrite(ss_pin, 1);  // disable TT_MAX31855

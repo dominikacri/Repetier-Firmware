@@ -606,7 +606,7 @@ STEPPER_CURRENT_CONTROL
  
 #define SDPOWER   -1
 // 10 if using HW spi. 53 if using SW SPI
-#define SDSS 53 
+#define SDSS 10 
 #define LED_PIN   13
 #define ORIG_FAN_PIN   9
 #define ORIG_PS_ON_PIN 12

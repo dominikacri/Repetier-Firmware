@@ -18,6 +18,8 @@
 
 #include "Repetier.h"
 
+#include "tmc/tmc5160.h"
+
 #if USE_ADVANCE
 ufast8_t Printer::maxExtruderSpeed;            ///< Timer delay for end extruder speed
 volatile int Printer::extruderStepsNeeded; ///< This many extruder steps are still needed, <0 = reverse steps needed.
@@ -201,6 +203,18 @@ bool Printer::sledParked = false;
 #endif
 fast8_t Printer::wizardStackPos;
 wizardVar Printer::wizardStack[WIZARD_STACK_SIZE];
+/*
+TMC5160(uint16_t csPin, 
+        uint16_t rmsCurrent = 800, 
+        uint16_t microSteps = 16, 
+        bool interpolateMicrosteps = true, 
+        ChopperMode chopperMode = ChopperMode::SpreadCycle, 
+        bool enableStallguard = false,
+        int8_t stallguardThreshold = 100
+        ) :
+        */
+
+TMC5160 tmc5160(45, 1100, 16,true, ChopperMode::SpreadCycle, false);
 
 #if defined(DRV_TMC2130)
 #if TMC2130_ON_X
@@ -1136,6 +1150,8 @@ void Printer::setup() {
     WRITE(BLUE_STATUS_LED, HIGH);
     WRITE(RED_STATUS_LED, LOW);
 #endif // RED_BLUE_STATUS_LEDS
+
+    
 #if defined(DRV_TMC2130)
     // TMC2130 motor drivers
 #if TMC2130_ON_X
@@ -1227,9 +1243,18 @@ void Printer::setup() {
     //EEPROM::initBaudrate();
     HAL::serialSetBaudrate(115200);
     HAL::InitI2EEPROM();
+
+  
     
+   // tmc5160.Init();
+
     Com::printFLN(Com::tStart);
     HAL::showStartReason();
+    
+
+    pinMode(45, OUTPUT);
+    digitalWrite(45, HIGH);
+
     Extruder::initExtruder();
     // sets auto leveling in eeprom init
     EEPROM::init(); // Read settings from eeprom if wanted
@@ -1247,6 +1272,8 @@ void Printer::setup() {
     Commands::checkFreeMemory();
     Commands::writeLowestFreeRAM();
     HAL::setupTimer();
+    HAL::spiInit();
+    tmc5160.Init();
 
 #if FEATURE_WATCHDOG
     HAL::startWatchdog();
@@ -1280,6 +1307,7 @@ void Printer::setup() {
 #endif
 #endif
     EVENT_INITIALIZE;
+    
 #ifdef STARTUP_GCODE
     GCode::executeFString(Com::tStartupGCode);
 #endif

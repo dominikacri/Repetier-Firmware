@@ -831,26 +831,16 @@ class HAL
 #else
 
     // hardware SPI
-    static void spiBegin(uint8_t ssPin = 0);
+    static void spiBegin(uint32_t clock, uint8_t mode, uint8_t msbfirst);
     // spiClock is 0 to 6, relecting AVR clock dividers 2,4,8,16,32,64,128
     // Due can only go as slow as AVR divider 32 -- slowest Due clock is 329,412 Hz
-    static void spiInit(uint8_t spiClock);
+    static void spiInit();
+
+    static uint8_t spiTransfer(uint8_t);
+    static void spiEnd();
+
     // Write single byte to SPI
-    static void spiSend(byte b);
-    static void spiSend(const uint8_t* buf , size_t n);
-#if MOTHERBOARD == 500 || MOTHERBOARD == 501 || MOTHERBOARD==502
-    static void spiSend(uint32_t chan , const uint8_t* buf , size_t n);
-    static void spiSend(uint32_t chan, byte b);
-    static uint8_t spiReceive(uint32_t chan);
-#endif
-    // Read single byte from SPI
-    static uint8_t spiReceive();
-    // Read from SPI into buffer
-    static void spiReadBlock(uint8_t*buf, uint16_t nbyte);
-
-    // Write from buffer to SPI
-
-    static void spiSendBlock(uint8_t token, const uint8_t* buf);
+   
 #endif  /*DUE_SOFTWARE_SPI*/
 
     // I2C Support

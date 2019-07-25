@@ -1,3 +1,6 @@
+#pragma once
+#if DRV_TMC2130
+
 #include <TMC2130Stepper.h>
 
 #define TMC2130_ON_X (TMC2130_X_CS_PIN > 0)
@@ -164,4 +167,7 @@ It counts how many ChipSelect pins were configured by the user.
 #endif
 #if !defined(TMC2130_PWM_FREQ_EXT2) && TMC2130_ON_EXT2
 #define TMC2130_PWM_FREQ_EXT2 TMC2130_PWM_FREQ
+#endif
+
+
 #endif

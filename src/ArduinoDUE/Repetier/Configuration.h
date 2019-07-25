@@ -433,7 +433,7 @@ It also can add a delay to wait for spindle to run on full speed.
 #define ZHOME_PRE_RAISE 0
 #define ZHOME_PRE_RAISE_DISTANCE 10
 #define RAISE_Z_ON_TOOLCHANGE 0
-#define ZHOME_MIN_TEMPERATURE 50
+#define ZHOME_MIN_TEMPERATURE 16
 #define ZHOME_HEAT_ALL 1
 #define ZHOME_HEAT_HEIGHT 1
 #define ZHOME_X_POS 160
@@ -1264,7 +1264,7 @@ Values must be in range 1..255
         }
     ],
     "manualConfig": "#define THERMOCOUPLE_0_PIN 32\n#define THERMOCOUPLE_1_PIN 47\n\n#define MOSI_PIN 75\n#define MISO_PIN 74\n#define SCK_PIN 76\n\n#define ORIG_E2_DIR_PIN         23\n#define ORIG_E2_STEP_PIN      25\n#define ORIG_E2_ENABLE_PIN 27\n\n#define ORIG_E3_DIR_PIN         29\n#define ORIG_E3_STEP_PIN      31\n#define ORIG_E3_ENABLE_PIN 33\n\n#define EXT2_DIR_PIN             ORIG_E2_DIR_PIN\n#define EXT2_STEP_PIN          ORIG_E2_STEP_PIN  \n#define EXT2_ENABLE_PIN     ORIG_E2_ENABLE_PIN\n\n#define EXT3_DIR_PIN             ORIG_E3_DIR_PIN\n#define EXT3_STEP_PIN          ORIG_E3_STEP_PIN  \n#define EXT3_ENABLE_PIN     ORIG_E3_ENABLE_PIN",
-    "zHomeMinTemperature": 50,
+    "zHomeMinTemperature": 16,
     "zHomeXPos": 160,
     "zHomeYPos": 160,
     "zHomeHeatHeight": 1,
