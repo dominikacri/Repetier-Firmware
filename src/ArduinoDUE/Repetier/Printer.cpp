@@ -2648,10 +2648,10 @@ void Printer::stopPrint() {
 		// Using internal reference should be good enough and work on more drivers
         // tmc_driver->I_scale_analog(true);               // Set current reference source
         tmc_driver->interpolate(true);                  // Set internal micro step interpolation
-        tmc_driver->pwm_ampl(tmc_pwm_ampl);             // Chopper PWM amplitude
-        tmc_driver->pwm_grad(tmc_pwm_grad);             // Velocity gradient for chopper PWM amplitude
-        tmc_driver->pwm_autoscale(tmc_pwm_autoscale);   // Chopper PWM autos scaling
-        tmc_driver->pwm_freq(tmc_pwm_freq);             // Chopper PWM frequency selection
+      //  tmc_driver->pwm_ampl(tmc_pwm_ampl);             // Chopper PWM amplitude
+      //  tmc_driver->pwm_grad(tmc_pwm_grad);             // Velocity gradient for chopper PWM amplitude
+      //  tmc_driver->pwm_autoscale(tmc_pwm_autoscale);   // Chopper PWM autos scaling
+      //  tmc_driver->pwm_freq(tmc_pwm_freq);             // Chopper PWM frequency selection
         tmc_driver->stealthChop(tmc_stealthchop);       // Enable extremely quiet stepping
         tmc_driver->sg_stall_value(tmc_sgt);            // StallGuard sensitivity
     }
