@@ -42,12 +42,13 @@
 #include "pins.h"
 
 // ################## EDIT THESE SETTINGS MANUALLY ################
-#define MICROSTEP_MODES { 16,16,16,16,16,16 } // [1,2,4,8,16]
 
 // ################ END MANUAL SETTINGS ##########################
 
 #undef FAN_PIN
 #define FAN_PIN 6
+#undef FAN2_PIN
+    #define FAN2_PIN -1
 #undef FAN_BOARD_PIN
 #define FAN_BOARD_PIN -1
 #define BOARD_FAN_SPEED 255
@@ -105,7 +106,7 @@
 #define EXT0_DIR2_PIN ORIG_E0_DIR_PIN
 #define EXT0_INVERSE2 0
 #define EXT0_ENABLE2_PIN ORIG_E0_ENABLE_PIN
-#define EXT0_MAX_FEEDRATE 50
+#define EXT0_MAX_FEEDRATE 60
 #define EXT0_MAX_START_FEEDRATE 20
 #define EXT0_MAX_ACCELERATION 5000
 #define EXT0_HEAT_MANAGER 1
@@ -146,7 +147,7 @@
 #define EXT1_DIR2_PIN ORIG_E1_DIR_PIN
 #define EXT1_INVERSE2 0
 #define EXT1_ENABLE2_PIN ORIG_E1_ENABLE_PIN
-#define EXT1_MAX_FEEDRATE 50
+#define EXT1_MAX_FEEDRATE 60
 #define EXT1_MAX_START_FEEDRATE 20
 #define EXT1_MAX_ACCELERATION 5000
 #define EXT1_HEAT_MANAGER 1
@@ -355,7 +356,7 @@ It also can add a delay to wait for spindle to run on full speed.
 #define ENDSTOP_X_BACK_ON_HOME 2
 #define ENDSTOP_Y_BACK_ON_HOME 2
 #define ENDSTOP_Z_BACK_ON_HOME 0
-#define ALWAYS_CHECK_ENDSTOPS 1
+#define ALWAYS_CHECK_ENDSTOPS 0
 #define MOVE_X_WHEN_HOMED 0
 #define MOVE_Y_WHEN_HOMED 0
 #define MOVE_Z_WHEN_HOMED 0
@@ -425,8 +426,8 @@ It also can add a delay to wait for spindle to run on full speed.
 #define MAX_FEEDRATE_X 300
 #define MAX_FEEDRATE_Y 300
 #define MAX_FEEDRATE_Z 10
-#define HOMING_FEEDRATE_X 40
-#define HOMING_FEEDRATE_Y 40
+#define HOMING_FEEDRATE_X 80
+#define HOMING_FEEDRATE_Y 80
 #define HOMING_FEEDRATE_Z 3
 #define HOMING_ORDER HOME_ORDER_XYTZ
 #define ZHOME_PRE_RAISE 0
@@ -488,58 +489,6 @@ It also can add a delay to wait for spindle to run on full speed.
 #define USE_ADVANCE 0
 #define ENABLE_QUADRATIC_ADVANCE 1
 
-#define DRV_TMC2130
-
-// Uncomment if you use the stall guard for homing. Only for cartesian printers and xy direction
-
-// The drivers with set CS pin will be used, all others are normal step/dir/enable drivers
-#define TMC2130_X_CS_PIN -1
-#define TMC2130_Y_CS_PIN 45
-#define TMC2130_Z_CS_PIN -1
-#define TMC2130_EXT0_CS_PIN -1
-#define TMC2130_EXT1_CS_PIN -1
-#define TMC2130_EXT2_CS_PIN -1
-
-// Per-axis current setting in mA { X, Y, Z, E0, E1, E2}
-#define MOTOR_CURRENT { 500,900,600,1000,1000,600 }
-
-/**  Global settings - these apply to all configured drivers
-Per-axis values will override these
-*/
-#define TMC2130_STEALTHCHOP         0  // Enable extremely quiet stepping
-#define TMC2130_INTERPOLATE_256  1  // Enable internal driver microstep interpolation
-#define TMC2130_STALLGUARD          0  // Sensorless homing sensitivity (between -63 and +64)
-
-/** PWM values for chopper tuning
-only change if you know what you're doing
-*/
-#define TMC2130_PWM_AMPL          255
-#define TMC2130_PWM_GRAD            1
-#define TMC2130_PWM_AUTOSCALE    1
-#define TMC2130_PWM_FREQ            2
-
-/**  Per-axis parameters
-
-To define different values for certain parameters on each axis,
-append either _X, _Y, _Z, _EXT0, _EXT1 or _EXT2
-to the name of the global parameter.
-
-Examples for the X axis:
-
-#define TMC2130_STEALTHCHOP_X         1
-#define TMC2130_INTERPOLATE_256_X  true
-*/
-
-/** Minimum speeds for stall detection.
-
-These values may need to be adjusted if SENSORLESS_HOMING is enabled,
-but endstops trigger prematurely or don't trigger at all.
-The exact value is dependent on the duration of one microstep,
-but good approximations can be determined by experimentation.
-*/
-#define TMC2130_TCOOLTHRS_X 300
-#define TMC2130_TCOOLTHRS_Y 300
-#define TMC2130_TCOOLTHRS_Z 300
 
 // ################# Misc. settings ##################
 
@@ -598,7 +547,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define Z_PROBE_SWITCHING_DISTANCE 1
 #define Z_PROBE_REPETITIONS 3
 #define Z_PROBE_USE_MEDIAN 0
-#define Z_PROBE_HEIGHT 1.2
+#define Z_PROBE_HEIGHT 1.6
 #define Z_PROBE_DELAY 0
 #define Z_PROBE_START_SCRIPT ""
 #define Z_PROBE_FINISHED_SCRIPT ""
@@ -678,7 +627,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define CASE_LIGHT_DEFAULT_ON 1
 #define UI_START_SCREEN_DELAY 1000
 #define UI_DYNAMIC_ENCODER_SPEED 1
-#define UI_HEAD "Chii ARM v5"
+#define UI_HEAD "Chii ARM v7"
         /**
 Beeper sound definitions for short beeps during key actions
 and longer beeps for important actions.
@@ -756,7 +705,7 @@ Values must be in range 1..255
             "sensorType": 102,
             "sensorPin": "THERMOCOUPLE_0_PIN",
             "heaterPin": "HEATER_0_PIN",
-            "maxFeedrate": 50,
+            "maxFeedrate": 60,
             "startFeedrate": 20,
             "invert": "1",
             "invertEnable": "0",
@@ -810,7 +759,7 @@ Values must be in range 1..255
             "sensorType": 102,
             "sensorPin": "THERMOCOUPLE_1_PIN",
             "heaterPin": "HEATER_2_PIN",
-            "maxFeedrate": 50,
+            "maxFeedrate": 60,
             "startFeedrate": 20,
             "invert": "1",
             "invertEnable": "0",
@@ -871,11 +820,11 @@ Values must be in range 1..255
     "motherboard": 413,
     "driveSystem": 0,
     "xMaxSpeed": 300,
-    "xHomingSpeed": 40,
+    "xHomingSpeed": 80,
     "xTravelAcceleration": 3000,
     "xPrintAcceleration": 2000,
     "yMaxSpeed": 300,
-    "yHomingSpeed": 40,
+    "yHomingSpeed": 80,
     "yTravelAcceleration": 3000,
     "yPrintAcceleration": 2000,
     "zMaxSpeed": 10,
@@ -912,7 +861,7 @@ Values must be in range 1..255
     "xLength": 339,
     "yLength": 352,
     "zLength": 300,
-    "alwaysCheckEndstops": "1",
+    "alwaysCheckEndstops": "0",
     "disableX": "0",
     "disableY": "0",
     "disableZ": "0",
@@ -1007,10 +956,10 @@ Values must be in range 1..255
     "extrudeMaxLength": 160,
     "homeOrder": "HOME_ORDER_XYTZ",
     "featureController": 26,
-    "uiPrinterName": "Chii ARM v5",
+    "uiPrinterName": "Chii ARM v7",
     "uiPrinterCompany": "Chii",
     "uiPagesDuration": 4000,
-    "uiHeadline": "Chii ARM v5",
+    "uiHeadline": "Chii ARM v7",
     "uiDisablePageswitch": "1",
     "uiAutoReturnAfter": 30000,
     "featureKeys": "0",
@@ -1097,9 +1046,9 @@ Values must be in range 1..255
     "forceChecksum": "1",
     "sdExtendedDir": "1",
     "featureFanControl": "1",
-    "fanPin": 11,
-    "featureFan2Control": "1",
-    "fan2Pin": 6,
+    "fanPin": 6,
+    "featureFan2Control": "0",
+    "fan2Pin": -1,
     "fanThermoPin": -1,
     "fanThermoMinPWM": 128,
     "fanThermoMaxPWM": 255,
@@ -1118,7 +1067,7 @@ Values must be in range 1..255
     "zProbeWaitBeforeTest": "0",
     "zProbeSpeed": 2,
     "zProbeXYSpeed": 150,
-    "zProbeHeight": 1.2,
+    "zProbeHeight": 1.6,
     "zProbeStartScript": "",
     "zProbeFinishedScript": "",
     "featureAutolevel": "1",
@@ -1399,7 +1348,7 @@ Values must be in range 1..255
     "raiseZOnToolchange": 0,
     "distortionLimitTo": 1,
     "automaticPowerup": 0,
-    "hasTMC2130": "1",
+    "hasTMC2130": "0",
     "TMC2130Sensorless": "0",
     "TMC2130Steathchop": "0",
     "TMC2130Interpolate256": "1",
@@ -1430,7 +1379,7 @@ Values must be in range 1..255
     "microstepE1": 16,
     "microstepE2": 16,
     "parkPosX": -9,
-    "parkPosY": -18,
+    "parkPosY": 330,
     "parkPosZ": 10,
     "hasMAX6675": false,
     "hasMAX31855": true,
