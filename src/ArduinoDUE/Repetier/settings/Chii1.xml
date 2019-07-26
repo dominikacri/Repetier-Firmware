@@ -1,0 +1,1198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<printer>
+	<shape>
+		<grid color="#454545" spacing="10"/>
+		
+	
+	
+	<rectangle color="#dddddd" xMax="326" xMin="-4" yMax="330" yMin="-22"/>
+	</shape>
+	<general>
+		<name>Chii</name>
+		<slug>Chii1</slug>
+		<model/>
+		<firmwareName>Repetier-Firmware</firmwareName>
+		<printerVariant>cartesian</printerVariant>
+		<active>true</active>
+		<numFans>1</numFans>
+		<tempUpdateEvery>1</tempUpdateEvery>
+		<pauseHandling>0</pauseHandling>
+		<pauseSeconds>120</pauseSeconds>
+		<sdcard>true</sdcard>
+		<softwarePower>true</softwarePower>
+		<defaultVolumetric>false</defaultVolumetric>
+		<logHistory>true</logHistory>
+		<useOwnModelRepository>true</useOwnModelRepository>
+		<useModelFromSlug/>
+	</general>
+	<connection>
+		<connectionMethod>0</connectionMethod>
+		<pipe>
+			<file/>
+		</pipe>
+		<ip>
+			<port>23</port>
+			<address/>
+		</ip>
+		<serial>
+			<baudrate>115200</baudrate>
+			<rts>0</rts>
+			<dtr>0</dtr>
+			<device>/dev/serial/by-id/usb-Arduino__www.arduino.cc__Arduino_Due_Prog._Port_757363032363518161E1-if00</device>
+			<pingPong>false</pingPong>
+			<visibleWithoutRunning>false</visibleWithoutRunning>
+			<malyanHack>false</malyanHack>
+			<inputBufferSize>127</inputBufferSize>
+			<communicationTimeout>3</communicationTimeout>
+		</serial>
+		<lcdTimeMode>4</lcdTimeMode>
+		<resetScript/>
+	</connection>
+	<movement>
+		<xMin>-4</xMin>
+		<xMax>326</xMax>
+		<xHome>0</xHome>
+		<yMin>-22</yMin>
+		<yMax>330</yMax>
+		<yHome>0</yHome>
+		<zMin>0</zMin>
+		<zMax>300</zMax>
+		<zHome>0</zHome>
+		<xyJerk>28.2</xyJerk>
+		<zJerk>0.71</zJerk>
+		<timeMultiplier>1</timeMultiplier>
+		<movebuffer>32</movebuffer>
+		<xySpeed max="300">100</xySpeed>
+		<zSpeed max="10">2</zSpeed>
+		<defaultAcceleration>10000</defaultAcceleration>
+		<defaultTravelAcceleration>10000</defaultTravelAcceleration>
+		<defaultRetractAcceleration>4000</defaultRetractAcceleration>
+		<xyPrintAcceleration>2000</xyPrintAcceleration>
+		<xyTravelAcceleration>3000</xyTravelAcceleration>
+		<zPrintAcceleration>100</zPrintAcceleration>
+		<zTravelAcceleration>100</zTravelAcceleration>
+		<endstops all="true" x="true" y="true" z="true"/>
+		<invert x="false" y="false" z="false"/>
+		<G10Speed>40</G10Speed>
+		<G10Distance>3</G10Distance>
+		<G10LongDistance>40</G10LongDistance>
+		<G11Speed>20</G11Speed>
+		<G11ExtraDistance>0</G11ExtraDistance>
+		<G11ExtraLongDistance>0</G11ExtraLongDistance>
+		<G10ZLift>0</G10ZLift>
+	</movement>
+	<recover>
+		<enabled>false</enabled>
+		<replayExtruderSwitches>false</replayExtruderSwitches>
+		<maxTimeForAutocontinue>300</maxTimeForAutocontinue>
+		<reactivateBedOnConnect>true</reactivateBedOnConnect>
+		<firmwarePowerlossSignal/>
+		<procedure>G28 X0 Y0</procedure>
+		<runOnConnect>G28 X0 Y0</runOnConnect>
+		<extraZOnFirmwareDetect>0</extraZOnFirmwareDetect>
+		<delayBeforeReconnect>30</delayBeforeReconnect>
+	</recover>
+	<extruders>
+		<extruder changeFastDistance="20" changeSlowDistance="20" filamentDiameter="1.75" lastTemp="195" maxTemp="350" num="0" tempMaster="0">
+			<alias>Extruder 1</alias>
+			<maxSpeed acceleration="5000" jerk="20" max="60"/>
+			<extrude speed="2"/>
+			<retract speed="30"/>
+			<tempChange cooldownPerSecond="0.5" heatupPerSecond="2"/>
+			<offsets x="0" y="0"/>
+			<temperatures>
+				<temperature value="245">ABS 245</temperature>
+				<temperature value="210">PLA 210</temperature>
+				<temperature value="195">PLA 195</temperature>
+			</temperatures>
+		</extruder>
+		<extruder changeFastDistance="20" changeSlowDistance="20" filamentDiameter="1.75" lastTemp="0" maxTemp="350" num="1" tempMaster="1">
+			<alias>Extruder 2</alias>
+			<maxSpeed acceleration="5000" jerk="20" max="60"/>
+			<extrude speed="2"/>
+			<retract speed="30"/>
+			<tempChange cooldownPerSecond="0.5" heatupPerSecond="2"/>
+			<offsets x="0" y="0"/>
+			<temperatures>
+				<temperature value="245">ABS 245</temperature>
+				<temperature value="210">PLA 210</temperature>
+				<temperature value="195">PLA 195</temperature>
+			</temperatures>
+		</extruder>
+	</extruders>
+	<heatedBeds>
+		<heatedBed lastTemp="65" maxTemp="140" num="0">
+			<alias/>
+			<tempChange cooldownPerSecond="0.1" heatupPerSecond="0.1"/>
+			<temperatures/>
+		</heatedBed>
+	</heatedBeds>
+	<heatedChambers/>
+	<quickCommands>
+		<quickCommand name="PID Tuning Extruder 1">M106 S128
+M303 P0 S200 X0 R16</quickCommand>
+		<quickCommand name="Goto Center Z0">G0 X165 Y165 Z0</quickCommand>
+		<quickCommand name="PID Tuning Extruder 2">M106 S128
+M303 P1 S200 X0 R16</quickCommand>
+		<quickCommand name="PID Tuning Heatbed">M106 S128
+M303 P2 S70 X0 R16</quickCommand>
+		<quickCommand name="X einfahren">G28
+G0 X320 F30000
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320
+G0 X0
+G0 X320</quickCommand>
+		<quickCommand name="Y einfahren">G28
+G0 Y320 F30000
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+G0 Y0
+G0 Y320
+</quickCommand>
+		<quickCommand name="XY einfahren">G28
+G0 X320 Y320 F30000
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+G0 X0 Y0
+G0 X320 Y320
+</quickCommand>
+	</quickCommands>
+	<webcams/>
+	<properties>
+		<value name="firmwareuploader_board">2</value>
+		<value name="firmwareuploader_extraPort"/>
+	</properties>
+<scripts/>
+</printer>
