@@ -42,6 +42,7 @@ Level 5: Nonlinear motor step position, only for nonlinear drive systems
 #ifndef PRINTER_H_INCLUDED
 #define PRINTER_H_INCLUDED
 
+#include "tmc/tmc2130.h"
 
 #if defined(AUTOMATIC_POWERUP) && AUTOMATIC_POWERUP && PS_ON_PIN > -1
 #define ENSURE_POWER {Printer::enablePowerIfNeeded();}
@@ -247,6 +248,9 @@ Step 2: Convert to RWC
 class Printer {
     static uint8_t debugLevel;
 public:
+    static TMC2130 tmc_x;
+    //TMC5160 tmc5160_y(43, 1200, 16, true, ChopperMode::SpreadCycle, false);
+
 #if USE_ADVANCE || defined(DOXYGEN)
     static volatile int extruderStepsNeeded; ///< This many extruder steps are still needed, <0 = reverse steps needed.
     static ufast8_t maxExtruderSpeed;            ///< Timer delay for end extruder speed

@@ -79,6 +79,7 @@ void Commands::checkForPeriodicalActions(bool allowNewMoves) {
             writeMonitor();
         counter500ms = 5;
         EVENT_TIMER_500MS;
+        Printer::tmc_x.ReadErrors();
     }
     // If called from queueDelta etc. it is an error to start a new move since it
     // would invalidate old computation resulting in unpredicted behavior.

@@ -18,7 +18,7 @@
 
 #include "Repetier.h"
 
-#include "tmc/tmc5160.h"
+TMC2130 Printer::tmc_x(45, 1200, 16, true, ChopperMode::SpreadCycle, false);
 
 #if USE_ADVANCE
 ufast8_t Printer::maxExtruderSpeed;            ///< Timer delay for end extruder speed
@@ -214,7 +214,6 @@ TMC5160(uint16_t csPin,
         ) :
         */
 
-TMC5160 tmc5160(45, 1100, 16,true, ChopperMode::SpreadCycle, false);
 
 #if defined(DRV_TMC2130)
 #if TMC2130_ON_X
@@ -1244,20 +1243,24 @@ void Printer::setup() {
     HAL::serialSetBaudrate(115200);
     HAL::InitI2EEPROM();
 
-  
-    
-   // tmc5160.Init();
-
     Com::printFLN(Com::tStart);
     HAL::showStartReason();
-    
 
     pinMode(45, OUTPUT);
     digitalWrite(45, HIGH);
+    pinMode(42, OUTPUT);
+    digitalWrite(42, HIGH);
 
     Extruder::initExtruder();
     // sets auto leveling in eeprom init
     EEPROM::init(); // Read settings from eeprom if wanted
+
+    HAL::setupTimer();
+    HAL::spiInit();
+    tmc_x.Init();
+   // tmc5160_y.Init();
+
+
     UI_INITIALIZE;
     for(uint8_t i = 0; i < E_AXIS_ARRAY; i++) {
         currentPositionSteps[i] = 0;
@@ -1271,9 +1274,7 @@ void Printer::setup() {
     updateDerivedParameter();
     Commands::checkFreeMemory();
     Commands::writeLowestFreeRAM();
-    HAL::setupTimer();
-    HAL::spiInit();
-    tmc5160.Init();
+    
 
 #if FEATURE_WATCHDOG
     HAL::startWatchdog();
