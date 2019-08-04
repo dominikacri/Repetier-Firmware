@@ -19,6 +19,7 @@
 #include "Repetier.h"
 
 #include "tmc/tmc5160.h"
+#include "tmc/tmc2130.h"
 
 #if USE_ADVANCE
 ufast8_t Printer::maxExtruderSpeed;            ///< Timer delay for end extruder speed
@@ -214,7 +215,7 @@ TMC5160(uint16_t csPin,
         ) :
         */
 
-TMC5160 tmc5160(45, 1100, 16,true, ChopperMode::SpreadCycle, false);
+TMC2130 tmc_x(45, 950, 16, true, ChopperMode::SpreadCycle, false);
 
 #if defined(DRV_TMC2130)
 #if TMC2130_ON_X
@@ -1243,15 +1244,10 @@ void Printer::setup() {
     //EEPROM::initBaudrate();
     HAL::serialSetBaudrate(115200);
     HAL::InitI2EEPROM();
-
-  
-    
-   // tmc5160.Init();
-
+ 
     Com::printFLN(Com::tStart);
     HAL::showStartReason();
-    
-
+  
     pinMode(45, OUTPUT);
     digitalWrite(45, HIGH);
 
@@ -1273,7 +1269,7 @@ void Printer::setup() {
     Commands::writeLowestFreeRAM();
     HAL::setupTimer();
     HAL::spiInit();
-    tmc5160.Init();
+    tmc_x.Init();
 
 #if FEATURE_WATCHDOG
     HAL::startWatchdog();

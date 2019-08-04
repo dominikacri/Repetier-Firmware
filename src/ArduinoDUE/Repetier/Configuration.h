@@ -98,7 +98,7 @@
 #define EXT0_HEATER_PIN HEATER_0_PIN
 #define EXT0_STEP_PIN ORIG_E0_STEP_PIN
 #define EXT0_DIR_PIN ORIG_E0_DIR_PIN
-#define EXT0_INVERSE 1
+#define EXT0_INVERSE 0
 #define EXT0_ENABLE_PIN ORIG_E0_ENABLE_PIN
 #define EXT0_ENABLE_ON 0
 #define EXT0_MIRROR_STEPPER 0
@@ -139,7 +139,7 @@
 #define EXT1_HEATER_PIN HEATER_2_PIN
 #define EXT1_STEP_PIN ORIG_E1_STEP_PIN
 #define EXT1_DIR_PIN ORIG_E1_DIR_PIN
-#define EXT1_INVERSE 1
+#define EXT1_INVERSE 0
 #define EXT1_ENABLE_PIN ORIG_E1_ENABLE_PIN
 #define EXT1_ENABLE_ON 0
 #define EXT1_MIRROR_STEPPER 0
@@ -707,7 +707,7 @@ Values must be in range 1..255
             "heaterPin": "HEATER_0_PIN",
             "maxFeedrate": 60,
             "startFeedrate": 20,
-            "invert": "1",
+            "invert": "0",
             "invertEnable": "0",
             "acceleration": 5000,
             "watchPeriod": 1,
@@ -761,7 +761,7 @@ Values must be in range 1..255
             "heaterPin": "HEATER_2_PIN",
             "maxFeedrate": 60,
             "startFeedrate": 20,
-            "invert": "1",
+            "invert": "0",
             "invertEnable": "0",
             "acceleration": 5000,
             "watchPeriod": 1,
