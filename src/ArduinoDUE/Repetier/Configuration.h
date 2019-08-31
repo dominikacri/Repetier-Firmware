@@ -198,7 +198,7 @@
 #define RETRACT_DURING_HEATUP true
 #define PID_CONTROL_RANGE 20
 #define SKIP_M109_IF_WITHIN 2
-#define SCALE_PID_TO_MAX 0
+#define SCALE_PID_TO_MAX 1
 #define TEMP_HYSTERESIS 0
 #define EXTRUDE_MAXLENGTH 160
 #define NUM_TEMPS_USERTHERMISTOR0 0
@@ -1056,7 +1056,7 @@ Values must be in range 1..255
     "fanThermoMaxTemp": 60,
     "fanThermoThermistorPin": -1,
     "fanThermoThermistorType": 1,
-    "scalePidToMax": 0,
+    "scalePidToMax": "1",
     "zProbePin": "ORIG_Z_MIN_PIN",
     "zProbeBedDistance": 3,
     "zProbeDisableHeaters": "1",
