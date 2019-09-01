@@ -2589,8 +2589,11 @@ int16_t read_max31855(uint8_t ss_pin, fast8_t idx) {
         data <<= 8;
         data |= HAL::spiTransfer(0);
     }
-
+    
     HAL::digitalWrite(ss_pin, 1);  // disable TT_MAX31855
+    HAL::delayMicroseconds(1);    // ensure 100ns delay - a bit extra is fine
+    HAL::spiEnd();
+ 
 
     //Process temp
     if (data & 65536 /* 0x00010000 */) { // test error flag
@@ -2599,7 +2602,7 @@ int16_t read_max31855(uint8_t ss_pin, fast8_t idx) {
 		max31855_errors[idx]++;
         return 20000; //Some form of error.
     } else {
-        data = data >> 18;
+        data = data >> 19;
         temperature = data & 0x00001FFF;
 
         if (data & 0x00002000) {
