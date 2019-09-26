@@ -93,7 +93,7 @@
 #define EXT0_Y_OFFSET 0
 #define EXT0_Z_OFFSET 0
 #define EXT0_STEPS_PER_MM 410
-#define EXT0_TEMPSENSOR_TYPE 102
+#define EXT0_TEMPSENSOR_TYPE 103
 #define EXT0_TEMPSENSOR_PIN THERMOCOUPLE_0_PIN
 #define EXT0_HEATER_PIN HEATER_0_PIN
 #define EXT0_STEP_PIN ORIG_E0_STEP_PIN
@@ -210,6 +210,7 @@
 #define GENERIC_THERM_VREF 5
 #define GENERIC_THERM_NUM_ENTRIES 33
 #define SUPPORT_MAX31855
+#define SUPPORT_MAX31865
 #define HEATER_PWM_SPEED 0
 #define COOLER_PWM_SPEED 0
 
@@ -756,7 +757,7 @@ Values must be in range 1..255
             "pidDriveMin": 40,
             "pidDriveMax": 230,
             "pidMax": 255,
-            "sensorType": 102,
+            "sensorType": 103,
             "sensorPin": "THERMOCOUPLE_1_PIN",
             "heaterPin": "HEATER_2_PIN",
             "maxFeedrate": 60,

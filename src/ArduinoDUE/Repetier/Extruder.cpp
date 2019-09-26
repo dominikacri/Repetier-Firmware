@@ -39,6 +39,10 @@ extern int16_t read_max6675(uint8_t ss_pin, fast8_t idx);
 #ifdef SUPPORT_MAX31855
 extern int16_t read_max31855(uint8_t ss_pin, fast8_t idx);
 #endif
+#ifdef SUPPORT_MAX31865
+#include <MAX31865.h>
+extern float read_max31865(uint8_t ss_pin, fast8_t idx);
+#endif
 
 #if ANALOG_INPUTS > 0
 const uint8 osAnalogInputChannels[] PROGMEM = ANALOG_INPUT_CHANNELS;
@@ -486,8 +490,8 @@ void Extruder::initHeatedBed() {
 #if HAVE_HEATED_BED
     heatedBedController.updateTempControlVars();
 
-#if defined(SUPPORT_MAX6675) || defined(SUPPORT_MAX31855)
-    if(heatedBedController.sensorType == 101 || heatedBedController.sensorType == 102) {
+#if defined(SUPPORT_MAX6675) || defined(SUPPORT_MAX31855) || defined(SUPPORT_MAX31865)
+    if(heatedBedController.sensorType == 101 || heatedBedController.sensorType == 102 || heatedBedController.sensorType == 103) {
         WRITE(SCK_PIN, 0);
         SET_OUTPUT(SCK_PIN);
         WRITE(MOSI_PIN, 1);
@@ -622,8 +626,8 @@ void Extruder::initExtruder() {
             HAL::digitalWrite(act->enablePin, !act->enableOn);
         }
         act->tempControl.lastTemperatureUpdate = HAL::timeInMilliseconds();
-#if defined(SUPPORT_MAX6675) || defined(SUPPORT_MAX31855)
-        if(act->tempControl.sensorType == 101 || act->tempControl.sensorType == 102) {
+#if defined(SUPPORT_MAX6675) || defined(SUPPORT_MAX31855) || defined(SUPPORT_MAX31865)
+        if(act->tempControl.sensorType == 101 || act->tempControl.sensorType == 102 || act->tempControl.sensorType == 103){
             WRITE(SCK_PIN, 0);
             SET_OUTPUT(SCK_PIN);
             WRITE(MOSI_PIN, 1);
@@ -2126,6 +2130,7 @@ const uint8_t temptables_num[16] PROGMEM = {NUMTEMPS_1, NUMTEMPS_2, NUMTEMPS_3, 
 
 void TemperatureController::updateCurrentTemperature() {
     uint8_t type = sensorType;
+
     // get raw temperature
     switch(type) {
     case 0:
@@ -2177,6 +2182,17 @@ void TemperatureController::updateCurrentTemperature() {
         int16_t newTemp = read_max31855(sensorPin, pwmIndex);
         if(newTemp != 20000) { // don't use error read
             currentTemperature = newTemp;
+        }
+    }
+    break;
+#endif
+
+#ifdef SUPPORT_MAX31865
+    case 103: { // MAX31865 PT100 over SPI
+        float newTemp = read_max31865(sensorPin, pwmIndex);
+        if(newTemp != 20000.0f) { // don't use error read
+            currentTemperatureC = newTemp;
+            currentTemperature = (int16_t)newTemp;
         }
     }
     break;
@@ -2565,15 +2581,109 @@ int16_t read_max6675(uint8_t ss_pin, fast8_t idx) {
     return max6675_temp[idx] & 4 ? 2000 : max6675_temp[idx] >> 3; // thermocouple open?
 }
 #endif
+
+#ifdef SUPPORT_MAX31865
+
+void printDouble( double val, unsigned int precision){
+/* prints val with number of decimal places determine by precision
+   NOTE: precision is 1 followed by the number of zeros for the
+   desired number of decimal places
+   Example:
+   printDouble( 3.1415, 100); // prints 3.14 (two decimal places)
+   */
+
+    Serial.print (int(val));  //prints the int part
+    Serial.print("."); // print the decimal point
+    unsigned int frac;
+    if(val >= 0)
+	  frac = (val - int(val)) * precision;
+    else
+	  frac = (int(val)- val ) * precision;
+    Serial.println(frac,DEC) ;
+}
+
+float read_max31865(uint8_t ss_pin, fast8_t idx)
+{
+    static bool firstRun = true;
+    static int8_t max31865_errors[NUM_PWM];
+    static MAX31865_RTD* max31865_drivers[NUM_PWM];
+
+    if (firstRun) 
+    { 
+	    for (fast8_t i = 0; i < NUM_PWM; i++) 
+        {
+		    max31865_errors[i] = 0;
+	    }
+
+        for (fast8_t i = 0; i < NUM_PWM; i++) 
+        {
+		    max31865_drivers[i] = nullptr;
+	    }
+
+	    firstRun = false;
+    }
+
+    MAX31865_RTD* rtd = max31865_drivers[idx];
+    
+    if (rtd == nullptr)
+    {
+        const int ADAFRUIT_RSENSE = 430;
+        rtd = new MAX31865_RTD(MAX31865_RTD::RTD_PT100, ss_pin, ADAFRUIT_RSENSE);
+        rtd->configure( true, true, false, false, MAX31865_FAULT_DETECTION_NONE, true, true, 0x0000, 0x7fff );
+        max31865_drivers[idx] = rtd;
+        Sleep(70);
+    }
+
+    rtd->read_all( );
+
+    if( rtd->status( ) == 0 ) 
+    {
+        //printDouble(rtd->temperature(), 4);
+        max31865_errors[idx] = 0;
+        return rtd->temperature();
+    }
+     
+    if (max31865_errors[idx] > 5)
+    {
+        return -396.0f; // will trigger defect when heating, -99°C so it fits into display
+    }
+    
+    max31865_errors[idx]++;
+
+
+    Serial.println( "RTD fault");
+    if( rtd->status( ) & MAX31865_FAULT_HIGH_THRESHOLD ) 
+    {
+        Serial.println( "RTD high threshold exceeded\r\n" );
+    } else if( rtd->status( ) & MAX31865_FAULT_LOW_THRESHOLD ) {
+        Serial.println( "RTD low threshold exceeded\r\n" );
+    } else if( rtd->status( ) & MAX31865_FAULT_REFIN ) {
+        Serial.println( "REFIN- > 0.85 x V_BIAS\r\n" );
+    } else if( rtd->status( ) & MAX31865_FAULT_REFIN_FORCE ) {
+        Serial.println( "REFIN- < 0.85 x V_BIAS, FORCE- open\r\n" );
+    } else if( rtd->status( ) & MAX31865_FAULT_RTDIN_FORCE ) {
+        Serial.println( "RTDIN- < 0.85 x V_BIAS, FORCE- open\r\n" );
+    } else if( rtd->status( ) & MAX31865_FAULT_VOLTAGE ) {
+        Serial.println( "Overvoltage/undervoltage fault\r\n");
+    } else {
+        Serial.println( "Unknown fault; check connection\r\n" );
+    }
+
+     return 20000.0f;
+}
+
+#endif //SUPPORT_MAX31865
+
 #ifdef SUPPORT_MAX31855
 /*
 Thermocouple with spi interface
 https://datasheets.maximintegrated.com/en/ds/MAX31855.pdf
 */
+
 int16_t read_max31855(uint8_t ss_pin, fast8_t idx) {
     static bool firstRun = true;
     static int8_t max31855_errors[NUM_PWM];
-    if(firstRun) {
+    if (firstRun) {
 	    for(fast8_t i = 0; i < NUM_PWM; i++) {
 		    max31855_errors[i] = 0;
 	    }
@@ -2581,7 +2691,7 @@ int16_t read_max31855(uint8_t ss_pin, fast8_t idx) {
     }
     uint32_t data = 0;
     int16_t temperature;
-    HAL::spiBegin(2000000, SPI_MODE1, true);
+    HAL::spiBegin(4000000, SPI_MODE0, MSBFIRST);
     HAL::digitalWrite(ss_pin, 0);  // enable TT_MAX31855
     HAL::delayMicroseconds(1);    // ensure 100ns delay - a bit extra is fine
 
@@ -2589,20 +2699,37 @@ int16_t read_max31855(uint8_t ss_pin, fast8_t idx) {
         data <<= 8;
         data |= HAL::spiTransfer(0);
     }
-    
-    HAL::digitalWrite(ss_pin, 1);  // disable TT_MAX31855
-    HAL::delayMicroseconds(1);    // ensure 100ns delay - a bit extra is fine
-    HAL::spiEnd();
- 
 
-    //Process temp
+    HAL::spiEnd();
+
+    HAL::digitalWrite(ss_pin, 1);  // disable TT_MAX31855
+
+    // Process temp
     if (data & 65536 /* 0x00010000 */) { // test error flag
 		if( max31855_errors[idx] > 5)
 			return -396; // will trigger defect when heating, -99°C so it fits into display
 		max31855_errors[idx]++;
+        /*
+        if (data & 1)
+        { 
+            Com::printF(PSTR("Error: Thermocouple open:"));
+        }
+        else if(data & 2)
+        {
+            Com::printF(PSTR("Error: Short circuit to GND"));
+        }
+        else if (data & 4)
+        {
+            Com::printF(PSTR("Error: Short circuit to VCC"));
+        }
+        else
+        {
+           Com::printF(PSTR("Error: Unknown error"));
+        }
+        */
         return 20000; //Some form of error.
     } else {
-        data = data >> 19;
+        data = data >> 18;
         temperature = data & 0x00001FFF;
 
         if (data & 0x00002000) {
@@ -2613,6 +2740,7 @@ int16_t read_max31855(uint8_t ss_pin, fast8_t idx) {
     }
     return temperature;
 }
+
 #endif
 
 #if FEATURE_RETRACTION

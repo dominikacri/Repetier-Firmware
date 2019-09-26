@@ -215,7 +215,8 @@ TMC5160(uint16_t csPin,
         ) :
         */
 
-TMC2130 tmc_x(45, 950, 16, true, ChopperMode::SpreadCycle, false);
+TMC5160 tmc_x(45, 950, 16, true, ChopperMode::SpreadCycle, false);
+
 
 #if defined(DRV_TMC2130)
 #if TMC2130_ON_X
@@ -1250,6 +1251,10 @@ void Printer::setup() {
   
     pinMode(45, OUTPUT);
     digitalWrite(45, HIGH);
+    pinMode(47, OUTPUT);
+    digitalWrite(47, HIGH);
+    pinMode(32, OUTPUT);
+    digitalWrite(32, HIGH);
 
     Extruder::initExtruder();
     // sets auto leveling in eeprom init
