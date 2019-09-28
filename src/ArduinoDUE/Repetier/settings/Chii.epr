@@ -2,8 +2,8 @@
 <Repetier-Firmware-EEPROM>
 	<epr pos="1028" type="0" value="1">Language</epr>
 	<epr pos="75" type="2" value="115200">Baudrate</epr>
-	<epr pos="129" type="3" value="86.177">Filament printed [m]</epr>
-	<epr pos="125" type="2" value="32968">Printer active [s]</epr>
+	<epr pos="129" type="3" value="17.621">Filament printed [m]</epr>
+	<epr pos="125" type="2" value="34233">Printer active [s]</epr>
 	<epr pos="79" type="2" value="0">Max. inactive time [ms,0=off]</epr>
 	<epr pos="83" type="2" value="360000">Stop stepper after inactivity [ms,0=off]</epr>
 	<epr pos="3" type="3" value="80.0000">X-axis steps per mm</epr>
@@ -17,14 +17,14 @@
 	<epr pos="35" type="3" value="3.000">Z-axis homing feedrate [mm/s]</epr>
 	<epr pos="39" type="3" value="28.200">Max. jerk [mm/s]</epr>
 	<epr pos="47" type="3" value="0.707">Max. Z-jerk [mm/s]</epr>
-	<epr pos="133" type="3" value="-4.000">X min pos [mm]</epr>
+	<epr pos="133" type="3" value="-9.000">X min pos [mm]</epr>
 	<epr pos="137" type="3" value="-22.000">Y min pos [mm]</epr>
 	<epr pos="141" type="3" value="0.000">Z min pos [mm]</epr>
-	<epr pos="145" type="3" value="330.000">X max length [mm]</epr>
+	<epr pos="145" type="3" value="339.000">X max length [mm]</epr>
 	<epr pos="149" type="3" value="352.000">Y max length [mm]</epr>
 	<epr pos="153" type="3" value="300.000">Z max length [mm]</epr>
-	<epr pos="1056" type="3" value="0.000">Park position X [mm]</epr>
-	<epr pos="1060" type="3" value="0.000">Park position Y [mm]</epr>
+	<epr pos="1056" type="3" value="-9.000">Park position X [mm]</epr>
+	<epr pos="1060" type="3" value="10.000">Park position Y [mm]</epr>
 	<epr pos="1064" type="3" value="10.000">Park position Z raise [mm]</epr>
 	<epr pos="51" type="3" value="2000.000">X-axis acceleration [mm/s^2]</epr>
 	<epr pos="55" type="3" value="2000.000">Y-axis acceleration [mm/s^2]</epr>
@@ -33,7 +33,7 @@
 	<epr pos="67" type="3" value="3000.000">Y-axis travel acceleration [mm/s^2]</epr>
 	<epr pos="71" type="3" value="100.000">Z-axis travel acceleration [mm/s^2]</epr>
 	<epr pos="1024" type="3" value="0.000">Coating thickness [mm]</epr>
-	<epr pos="808" type="3" value="1.575">Z-probe height [mm]</epr>
+	<epr pos="808" type="3" value="2.000">Z-probe height [mm]</epr>
 	<epr pos="929" type="3" value="3.000">Max. z-probe - bed dist. [mm]</epr>
 	<epr pos="812" type="3" value="2.000">Z-probe speed [mm/s]</epr>
 	<epr pos="840" type="3" value="150.000">Z-probe x-y-speed [mm/s]</epr>
@@ -48,7 +48,7 @@
 	<epr pos="1036" type="3" value="0.000">Z-probe bending correction A [mm]</epr>
 	<epr pos="1040" type="3" value="0.000">Z-probe bending correction B [mm]</epr>
 	<epr pos="1044" type="3" value="0.000">Z-probe bending correction C [mm]</epr>
-	<epr pos="880" type="0" value="1">Autolevel active (1/0)</epr>
+	<epr pos="880" type="0" value="0">Autolevel active (1/0)</epr>
 	<epr pos="1048" type="1" value="55">Bed Preheat temp. [ C]</epr>
 	<epr pos="106" type="0" value="1">Bed Heat Manager [0-3]</epr>
 	<epr pos="107" type="0" value="220">Bed PID drive max</epr>
@@ -65,17 +65,17 @@
 	<epr pos="1008" type="3" value="0.000">Extra extrusion on undo retract [mm]</epr>
 	<epr pos="1012" type="3" value="0.000">Extra extrusion on undo switch retract [mm]</epr>
 	<epr pos="1016" type="3" value="20.000">Retraction undo speed</epr>
-	<epr pos="200" type="3" value="410.000">Extr.1 steps per mm</epr>
-	<epr pos="204" type="3" value="60.000">Extr.1 max. feedrate [mm/s]</epr>
+	<epr pos="200" type="3" value="425.000">Extr.1 steps per mm</epr>
+	<epr pos="204" type="3" value="80.000">Extr.1 max. feedrate [mm/s]</epr>
 	<epr pos="208" type="3" value="20.000">Extr.1 start feedrate [mm/s]</epr>
 	<epr pos="212" type="3" value="5000.000">Extr.1 acceleration [mm/s^2]</epr>
 	<epr pos="294" type="1" value="190">Extr.1 Preheat temp. [ C]</epr>
 	<epr pos="216" type="0" value="1">Extr.1 heat manager [0-3]</epr>
 	<epr pos="217" type="0" value="230">Extr.1 PID drive max</epr>
 	<epr pos="245" type="0" value="40">Extr.1 PID drive min</epr>
-	<epr pos="218" type="3" value="11.5246">Extr.1 PID P-gain/dead-time</epr>
-	<epr pos="222" type="3" value="0.8594">Extr.1 PID I-gain</epr>
-	<epr pos="226" type="3" value="38.6378">Extr.1 PID D-gain</epr>
+	<epr pos="218" type="3" value="14.7134">Extr.1 PID P-gain/dead-time</epr>
+	<epr pos="222" type="3" value="1.2918">Extr.1 PID I-gain</epr>
+	<epr pos="226" type="3" value="41.8965">Extr.1 PID D-gain</epr>
 	<epr pos="230" type="0" value="255">Extr.1 PID max value [0-255]</epr>
 	<epr pos="231" type="2" value="0">Extr.1 X-offset [steps]</epr>
 	<epr pos="235" type="2" value="0">Extr.1 Y-offset [steps]</epr>
