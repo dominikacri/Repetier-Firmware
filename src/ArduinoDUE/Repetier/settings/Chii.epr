@@ -2,8 +2,8 @@
 <Repetier-Firmware-EEPROM>
 	<epr pos="1028" type="0" value="1">Language</epr>
 	<epr pos="75" type="2" value="115200">Baudrate</epr>
-	<epr pos="129" type="3" value="17.621">Filament printed [m]</epr>
-	<epr pos="125" type="2" value="34233">Printer active [s]</epr>
+	<epr pos="129" type="3" value="528.706">Filament printed [m]</epr>
+	<epr pos="125" type="2" value="507309">Printer active [s]</epr>
 	<epr pos="79" type="2" value="0">Max. inactive time [ms,0=off]</epr>
 	<epr pos="83" type="2" value="360000">Stop stepper after inactivity [ms,0=off]</epr>
 	<epr pos="3" type="3" value="80.0000">X-axis steps per mm</epr>
@@ -17,10 +17,10 @@
 	<epr pos="35" type="3" value="3.000">Z-axis homing feedrate [mm/s]</epr>
 	<epr pos="39" type="3" value="28.200">Max. jerk [mm/s]</epr>
 	<epr pos="47" type="3" value="0.707">Max. Z-jerk [mm/s]</epr>
-	<epr pos="133" type="3" value="-9.000">X min pos [mm]</epr>
+	<epr pos="133" type="3" value="-33.000">X min pos [mm]</epr>
 	<epr pos="137" type="3" value="-22.000">Y min pos [mm]</epr>
 	<epr pos="141" type="3" value="0.000">Z min pos [mm]</epr>
-	<epr pos="145" type="3" value="339.000">X max length [mm]</epr>
+	<epr pos="145" type="3" value="363.000">X max length [mm]</epr>
 	<epr pos="149" type="3" value="352.000">Y max length [mm]</epr>
 	<epr pos="153" type="3" value="300.000">Z max length [mm]</epr>
 	<epr pos="1056" type="3" value="-9.000">Park position X [mm]</epr>
@@ -33,13 +33,13 @@
 	<epr pos="67" type="3" value="3000.000">Y-axis travel acceleration [mm/s^2]</epr>
 	<epr pos="71" type="3" value="100.000">Z-axis travel acceleration [mm/s^2]</epr>
 	<epr pos="1024" type="3" value="0.000">Coating thickness [mm]</epr>
-	<epr pos="808" type="3" value="2.000">Z-probe height [mm]</epr>
+	<epr pos="808" type="3" value="0.300">Z-probe height [mm]</epr>
 	<epr pos="929" type="3" value="3.000">Max. z-probe - bed dist. [mm]</epr>
 	<epr pos="812" type="3" value="2.000">Z-probe speed [mm/s]</epr>
 	<epr pos="840" type="3" value="150.000">Z-probe x-y-speed [mm/s]</epr>
 	<epr pos="800" type="3" value="-20.000">Z-probe offset x [mm]</epr>
-	<epr pos="804" type="3" value="80.000">Z-probe offset y [mm]</epr>
-	<epr pos="816" type="3" value="20.000">Z-probe X1 [mm]</epr>
+	<epr pos="804" type="3" value="75.000">Z-probe offset y [mm]</epr>
+	<epr pos="816" type="3" value="-10.000">Z-probe X1 [mm]</epr>
 	<epr pos="820" type="3" value="80.000">Z-probe Y1 [mm]</epr>
 	<epr pos="824" type="3" value="290.000">Z-probe X2 [mm]</epr>
 	<epr pos="828" type="3" value="80.000">Z-probe Y2 [mm]</epr>
@@ -59,11 +59,9 @@
 	<epr pos="120" type="0" value="220">Bed PID max value [0-255]</epr>
 	<epr pos="1020" type="0" value="0">Enable retraction conversion [0/1]</epr>
 	<epr pos="992" type="3" value="3.000">Retraction length [mm]</epr>
-	<epr pos="996" type="3" value="13.000">Retraction length extruder switch [mm]</epr>
 	<epr pos="1000" type="3" value="40.000">Retraction speed [mm/s]</epr>
 	<epr pos="1004" type="3" value="0.000">Retraction z-lift [mm]</epr>
 	<epr pos="1008" type="3" value="0.000">Extra extrusion on undo retract [mm]</epr>
-	<epr pos="1012" type="3" value="0.000">Extra extrusion on undo switch retract [mm]</epr>
 	<epr pos="1016" type="3" value="20.000">Retraction undo speed</epr>
 	<epr pos="200" type="3" value="425.000">Extr.1 steps per mm</epr>
 	<epr pos="204" type="3" value="80.000">Extr.1 max. feedrate [mm/s]</epr>
@@ -84,23 +82,4 @@
 	<epr pos="250" type="1" value="150">Extr.1 temp. for retraction when heating [C]</epr>
 	<epr pos="252" type="1" value="0">Extr.1 distance to retract when heating [mm]</epr>
 	<epr pos="254" type="0" value="255">Extr.1 extruder cooler speed [0-255]</epr>
-	<epr pos="300" type="3" value="410.000">Extr.2 steps per mm</epr>
-	<epr pos="304" type="3" value="60.000">Extr.2 max. feedrate [mm/s]</epr>
-	<epr pos="308" type="3" value="20.000">Extr.2 start feedrate [mm/s]</epr>
-	<epr pos="312" type="3" value="5000.000">Extr.2 acceleration [mm/s^2]</epr>
-	<epr pos="394" type="1" value="190">Extr.2 Preheat temp. [ C]</epr>
-	<epr pos="316" type="0" value="1">Extr.2 heat manager [0-3]</epr>
-	<epr pos="317" type="0" value="230">Extr.2 PID drive max</epr>
-	<epr pos="345" type="0" value="40">Extr.2 PID drive min</epr>
-	<epr pos="318" type="3" value="7.0000">Extr.2 PID P-gain/dead-time</epr>
-	<epr pos="322" type="3" value="2.0000">Extr.2 PID I-gain</epr>
-	<epr pos="326" type="3" value="40.0000">Extr.2 PID D-gain</epr>
-	<epr pos="330" type="0" value="255">Extr.2 PID max value [0-255]</epr>
-	<epr pos="331" type="2" value="0">Extr.2 X-offset [steps]</epr>
-	<epr pos="335" type="2" value="0">Extr.2 Y-offset [steps]</epr>
-	<epr pos="390" type="2" value="0">Extr.2 Z-offset [steps]</epr>
-	<epr pos="339" type="1" value="1">Extr.2 temp. stabilize time [s]</epr>
-	<epr pos="350" type="1" value="150">Extr.2 temp. for retraction when heating [C]</epr>
-	<epr pos="352" type="1" value="0">Extr.2 distance to retract when heating [mm]</epr>
-	<epr pos="354" type="0" value="255">Extr.2 extruder cooler speed [0-255]</epr>
 </Repetier-Firmware-EEPROM>

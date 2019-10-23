@@ -36,7 +36,7 @@
 
 */
 
-#define NUM_EXTRUDER 2
+#define NUM_EXTRUDER 1
 #define MOTHERBOARD 413
 #define RFSERIAL Serial
 #include "pins.h"
@@ -92,7 +92,7 @@
 #define EXT0_X_OFFSET 0
 #define EXT0_Y_OFFSET 0
 #define EXT0_Z_OFFSET 0
-#define EXT0_STEPS_PER_MM 410
+#define EXT0_STEPS_PER_MM 425
 #define EXT0_TEMPSENSOR_TYPE 103
 #define EXT0_TEMPSENSOR_PIN THERMOCOUPLE_0_PIN
 #define EXT0_HEATER_PIN HEATER_0_PIN
@@ -106,7 +106,7 @@
 #define EXT0_DIR2_PIN ORIG_E0_DIR_PIN
 #define EXT0_INVERSE2 0
 #define EXT0_ENABLE2_PIN ORIG_E0_ENABLE_PIN
-#define EXT0_MAX_FEEDRATE 60
+#define EXT0_MAX_FEEDRATE 80
 #define EXT0_MAX_START_FEEDRATE 20
 #define EXT0_MAX_ACCELERATION 5000
 #define EXT0_HEAT_MANAGER 1
@@ -114,9 +114,9 @@
 #define EXT0_WATCHPERIOD 1
 #define EXT0_PID_INTEGRAL_DRIVE_MAX 230
 #define EXT0_PID_INTEGRAL_DRIVE_MIN 40
-#define EXT0_PID_PGAIN_OR_DEAD_TIME 7
-#define EXT0_PID_I 2
-#define EXT0_PID_D 40
+#define EXT0_PID_PGAIN_OR_DEAD_TIME 14.7134
+#define EXT0_PID_I 1.2918
+#define EXT0_PID_D 41.8965
 #define EXT0_PID_MAX 255
 #define EXT0_ADVANCE_K 0
 #define EXT0_ADVANCE_L 0
@@ -130,11 +130,11 @@
 #define EXT0_DECOUPLE_TEST_PERIOD 12000
 #define EXT0_JAM_PIN -1
 #define EXT0_JAM_PULLUP 0
-#define EXT1_X_OFFSET 4400
+#define EXT1_X_OFFSET 0
 #define EXT1_Y_OFFSET 0
 #define EXT1_Z_OFFSET 0
-#define EXT1_STEPS_PER_MM 410
-#define EXT1_TEMPSENSOR_TYPE 102
+#define EXT1_STEPS_PER_MM 425
+#define EXT1_TEMPSENSOR_TYPE 103
 #define EXT1_TEMPSENSOR_PIN THERMOCOUPLE_1_PIN
 #define EXT1_HEATER_PIN HEATER_2_PIN
 #define EXT1_STEP_PIN ORIG_E1_STEP_PIN
@@ -147,7 +147,7 @@
 #define EXT1_DIR2_PIN ORIG_E1_DIR_PIN
 #define EXT1_INVERSE2 0
 #define EXT1_ENABLE2_PIN ORIG_E1_ENABLE_PIN
-#define EXT1_MAX_FEEDRATE 60
+#define EXT1_MAX_FEEDRATE 80
 #define EXT1_MAX_START_FEEDRATE 20
 #define EXT1_MAX_ACCELERATION 5000
 #define EXT1_HEAT_MANAGER 1
@@ -155,9 +155,9 @@
 #define EXT1_WATCHPERIOD 1
 #define EXT1_PID_INTEGRAL_DRIVE_MAX 230
 #define EXT1_PID_INTEGRAL_DRIVE_MIN 40
-#define EXT1_PID_PGAIN_OR_DEAD_TIME 7
-#define EXT1_PID_I 2
-#define EXT1_PID_D 40
+#define EXT1_PID_PGAIN_OR_DEAD_TIME 14.7134
+#define EXT1_PID_I 1.2918
+#define EXT1_PID_D 41.8965
 #define EXT1_PID_MAX 255
 #define EXT1_ADVANCE_K 0
 #define EXT1_ADVANCE_L 0
@@ -385,7 +385,7 @@ It also can add a delay to wait for spindle to run on full speed.
 #define X_MAX_LENGTH 339
 #define Y_MAX_LENGTH 352
 #define Z_MAX_LENGTH 300
-#define X_MIN_POS -9
+#define X_MIN_POS -33
 #define Y_MIN_POS -22
 #define Z_MIN_POS 0
 #define PARK_POSITION_X -9
@@ -541,14 +541,14 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define Z_PROBE_PULLUP 1
 #define Z_PROBE_ON_HIGH 1
 #define Z_PROBE_X_OFFSET -20
-#define Z_PROBE_Y_OFFSET 80
+#define Z_PROBE_Y_OFFSET 75
 #define Z_PROBE_WAIT_BEFORE_TEST 0
 #define Z_PROBE_SPEED 2
 #define Z_PROBE_XY_SPEED 150
 #define Z_PROBE_SWITCHING_DISTANCE 1
 #define Z_PROBE_REPETITIONS 3
 #define Z_PROBE_USE_MEDIAN 0
-#define Z_PROBE_HEIGHT 1.6
+#define Z_PROBE_HEIGHT 0.275
 #define Z_PROBE_DELAY 0
 #define Z_PROBE_START_SCRIPT ""
 #define Z_PROBE_FINISHED_SCRIPT ""
@@ -610,7 +610,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define LANGUAGE_CZ_ACTIVE 0
 #define LANGUAGE_PL_ACTIVE 0
 #define LANGUAGE_TR_ACTIVE 0
-#define UI_PRINTER_NAME "Chii ARM v7"
+#define UI_PRINTER_NAME "Chii ARM v0.8"
 #define UI_PRINTER_COMPANY "Chii"
 #define UI_PAGES_DURATION 4000
 #define UI_SPEEDDEPENDENT_POSITIONING 0
@@ -628,7 +628,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define CASE_LIGHT_DEFAULT_ON 1
 #define UI_START_SCREEN_DELAY 1000
 #define UI_DYNAMIC_ENCODER_SPEED 1
-#define UI_HEAD "Chii ARM v7"
+#define UI_HEAD "Chii ARM v0.8"
         /**
 Beeper sound definitions for short beeps during key actions
 and longer beeps for important actions.
@@ -706,21 +706,21 @@ Values must be in range 1..255
             "sensorType": 102,
             "sensorPin": "THERMOCOUPLE_0_PIN",
             "heaterPin": "HEATER_0_PIN",
-            "maxFeedrate": 60,
+            "maxFeedrate": 80,
             "startFeedrate": 20,
             "invert": "0",
             "invertEnable": "0",
             "acceleration": 5000,
             "watchPeriod": 1,
-            "pidP": 7,
-            "pidI": 2,
-            "pidD": 40,
+            "pidP": 14.7134,
+            "pidI": 1.2918,
+            "pidD": 41.8965,
             "advanceK": 0,
             "advanceL": 0,
             "waitRetractTemp": 150,
             "waitRetractUnits": 0,
             "waitRetract": 0,
-            "stepsPerMM": 410,
+            "stepsPerMM": 425,
             "coolerPin": -1,
             "coolerSpeed": 255,
             "selectCommands": "",
@@ -760,29 +760,29 @@ Values must be in range 1..255
             "sensorType": 103,
             "sensorPin": "THERMOCOUPLE_1_PIN",
             "heaterPin": "HEATER_2_PIN",
-            "maxFeedrate": 60,
+            "maxFeedrate": 80,
             "startFeedrate": 20,
             "invert": "0",
             "invertEnable": "0",
             "acceleration": 5000,
             "watchPeriod": 1,
-            "pidP": 7,
-            "pidI": 2,
-            "pidD": 40,
+            "pidP": 14.7134,
+            "pidI": 1.2918,
+            "pidD": 41.8965,
             "advanceK": 0,
             "advanceL": 0,
             "waitRetractTemp": 150,
             "waitRetractUnits": 0,
             "waitRetract": 0,
-            "stepsPerMM": 410,
+            "stepsPerMM": 425,
             "coolerPin": -1,
             "coolerSpeed": 255,
             "selectCommands": "",
             "deselectCommands": "",
-            "xOffset": 55,
+            "xOffset": 0,
             "yOffset": 0,
             "zOffset": 0,
-            "xOffsetSteps": 4400,
+            "xOffsetSteps": 0,
             "yOffsetSteps": 0,
             "zOffsetSteps": 0,
             "stepper": {
@@ -856,7 +856,7 @@ Values must be in range 1..255
     "backlashZ": 0,
     "stepperInactiveTime": 360,
     "maxInactiveTime": 0,
-    "xMinPos": -9,
+    "xMinPos": -33,
     "yMinPos": -22,
     "zMinPos": 0,
     "xLength": 339,
@@ -957,10 +957,10 @@ Values must be in range 1..255
     "extrudeMaxLength": 160,
     "homeOrder": "HOME_ORDER_XYTZ",
     "featureController": 26,
-    "uiPrinterName": "Chii ARM v7",
+    "uiPrinterName": "Chii ARM v0.8",
     "uiPrinterCompany": "Chii",
     "uiPagesDuration": 4000,
-    "uiHeadline": "Chii ARM v7",
+    "uiHeadline": "Chii ARM v0.8",
     "uiDisablePageswitch": "1",
     "uiAutoReturnAfter": 30000,
     "featureKeys": "0",
@@ -1064,11 +1064,11 @@ Values must be in range 1..255
     "zProbePullup": "1",
     "zProbeOnHigh": "1",
     "zProbeXOffset": -20,
-    "zProbeYOffset": 80,
+    "zProbeYOffset": 75,
     "zProbeWaitBeforeTest": "0",
     "zProbeSpeed": 2,
     "zProbeXYSpeed": 150,
-    "zProbeHeight": 1.6,
+    "zProbeHeight": 0.275,
     "zProbeStartScript": "",
     "zProbeFinishedScript": "",
     "featureAutolevel": "1",
@@ -1380,7 +1380,7 @@ Values must be in range 1..255
     "microstepE1": 16,
     "microstepE2": 16,
     "parkPosX": -9,
-    "parkPosY": 330,
+    "parkPosY": 320,
     "parkPosZ": 10,
     "hasMAX6675": false,
     "hasMAX31855": true,
