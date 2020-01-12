@@ -78,7 +78,7 @@
 #define DRIVE_SYSTEM 0
 #define XAXIS_STEPS_PER_MM 80
 #define YAXIS_STEPS_PER_MM 80
-#define ZAXIS_STEPS_PER_MM 400
+#define ZAXIS_STEPS_PER_MM 800
 #define EXTRUDER_FAN_COOL_TEMP 50
 #define PDM_FOR_EXTRUDER 0
 #define PDM_FOR_COOLER 0
@@ -335,16 +335,12 @@ It also can add a delay to wait for spindle to run on full speed.
 #define Y2_MAX_PIN -1
 #define Z2_MINMAX_PIN -1
 
-
-
-#define max_software_endstop_r true
-
 #define min_software_endstop_x false
 #define min_software_endstop_y false
 #define min_software_endstop_z false
 #define max_software_endstop_x true
 #define max_software_endstop_y true
-#define max_software_endstop_z true
+#define max_software_endstop_z false
 #define DOOR_PIN -1
 #define DOOR_PULLUP 1
 #define DOOR_INVERTING 1
@@ -424,9 +420,9 @@ It also can add a delay to wait for spindle to run on full speed.
 #define DELTASEGMENTS_PER_PRINTLINE 20
 #define STEPPER_INACTIVE_TIME 360L
 #define MAX_INACTIVE_TIME 0L
-#define MAX_FEEDRATE_X 300
-#define MAX_FEEDRATE_Y 300
-#define MAX_FEEDRATE_Z 10
+#define MAX_FEEDRATE_X 400
+#define MAX_FEEDRATE_Y 400
+#define MAX_FEEDRATE_Z 40
 #define HOMING_FEEDRATE_X 80
 #define HOMING_FEEDRATE_Y 80
 #define HOMING_FEEDRATE_Z 3
@@ -539,16 +535,16 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define Z_PROBE_BED_DISTANCE 3
 #define Z_PROBE_PIN ORIG_Z_MIN_PIN
 #define Z_PROBE_PULLUP 1
-#define Z_PROBE_ON_HIGH 1
-#define Z_PROBE_X_OFFSET -20
-#define Z_PROBE_Y_OFFSET 75
+#define Z_PROBE_ON_HIGH 0
+#define Z_PROBE_X_OFFSET -12
+#define Z_PROBE_Y_OFFSET 55
 #define Z_PROBE_WAIT_BEFORE_TEST 0
 #define Z_PROBE_SPEED 2
-#define Z_PROBE_XY_SPEED 150
-#define Z_PROBE_SWITCHING_DISTANCE 1
+#define Z_PROBE_XY_SPEED 40
+#define Z_PROBE_SWITCHING_DISTANCE 3
 #define Z_PROBE_REPETITIONS 3
 #define Z_PROBE_USE_MEDIAN 0
-#define Z_PROBE_HEIGHT 0.275
+#define Z_PROBE_HEIGHT 1.365
 #define Z_PROBE_DELAY 0
 #define Z_PROBE_START_SCRIPT ""
 #define Z_PROBE_FINISHED_SCRIPT ""

@@ -215,7 +215,7 @@ TMC5160(uint16_t csPin,
         ) :
         */
 
-TMC5160 tmc_x(45, 1500, 16, true, ChopperMode::SpreadCycle, false);
+TMC5160 tmc_x(45, 1000, 16, true, ChopperMode::SpreadCycle, false);
 
 
 #if defined(DRV_TMC2130)

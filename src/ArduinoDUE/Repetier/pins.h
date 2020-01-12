@@ -581,8 +581,8 @@ STEPPER_CURRENT_CONTROL
  
 #define ORIG_Z_STEP_PIN 46
 #define ORIG_Z_DIR_PIN 48
-#define ORIG_Z_MIN_PIN 18
-#define ORIG_Z_MAX_PIN 19
+#define ORIG_Z_MIN_PIN 19  // org 18
+#define ORIG_Z_MAX_PIN 18  // org 19
 #define ORIG_Z_ENABLE_PIN 62
  
 //Note that in due A0 pins on the board is channel 2 on the ARM chip
