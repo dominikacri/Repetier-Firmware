@@ -2,21 +2,21 @@
 <Repetier-Firmware-EEPROM>
 	<epr pos="1028" type="0" value="1">Language</epr>
 	<epr pos="75" type="2" value="115200">Baudrate</epr>
-	<epr pos="129" type="3" value="1506.234">Filament printed [m]</epr>
-	<epr pos="125" type="2" value="1457520">Printer active [s]</epr>
+	<epr pos="129" type="3" value="12.185">Filament printed [m]</epr>
+	<epr pos="125" type="2" value="11621">Printer active [s]</epr>
 	<epr pos="79" type="2" value="0">Max. inactive time [ms,0=off]</epr>
 	<epr pos="83" type="2" value="360000">Stop stepper after inactivity [ms,0=off]</epr>
 	<epr pos="3" type="3" value="80.0000">X-axis steps per mm</epr>
 	<epr pos="7" type="3" value="80.0000">Y-axis steps per mm</epr>
 	<epr pos="11" type="3" value="800.0000">Z-axis steps per mm</epr>
-	<epr pos="15" type="3" value="300.000">X-axis max. feedrate [mm/s]</epr>
-	<epr pos="19" type="3" value="300.000">Y-axis max. feedrate [mm/s]</epr>
-	<epr pos="23" type="3" value="80.000">Z-axis max. feedrate [mm/s]</epr>
+	<epr pos="15" type="3" value="400.000">X-axis max. feedrate [mm/s]</epr>
+	<epr pos="19" type="3" value="400.000">Y-axis max. feedrate [mm/s]</epr>
+	<epr pos="23" type="3" value="40.000">Z-axis max. feedrate [mm/s]</epr>
 	<epr pos="27" type="3" value="80.000">X-axis homing feedrate [mm/s]</epr>
 	<epr pos="31" type="3" value="80.000">Y-axis homing feedrate [mm/s]</epr>
-	<epr pos="35" type="3" value="10.000">Z-axis homing feedrate [mm/s]</epr>
+	<epr pos="35" type="3" value="3.000">Z-axis homing feedrate [mm/s]</epr>
 	<epr pos="39" type="3" value="28.200">Max. jerk [mm/s]</epr>
-	<epr pos="47" type="3" value="0.707">Max. Z-jerk [mm/s]</epr>
+	<epr pos="47" type="3" value="0.500">Max. Z-jerk [mm/s]</epr>
 	<epr pos="133" type="3" value="-41.000">X min pos [mm]</epr>
 	<epr pos="137" type="3" value="-14.000">Y min pos [mm]</epr>
 	<epr pos="141" type="3" value="0.000">Z min pos [mm]</epr>
@@ -33,13 +33,13 @@
 	<epr pos="67" type="3" value="3000.000">Y-axis travel acceleration [mm/s^2]</epr>
 	<epr pos="71" type="3" value="100.000">Z-axis travel acceleration [mm/s^2]</epr>
 	<epr pos="1024" type="3" value="0.000">Coating thickness [mm]</epr>
-	<epr pos="808" type="3" value="1.365">Z-probe height [mm]</epr>
+	<epr pos="808" type="3" value="0.720">Z-probe height [mm]</epr>
 	<epr pos="929" type="3" value="3.000">Max. z-probe - bed dist. [mm]</epr>
 	<epr pos="812" type="3" value="2.000">Z-probe speed [mm/s]</epr>
-	<epr pos="840" type="3" value="80.000">Z-probe x-y-speed [mm/s]</epr>
+	<epr pos="840" type="3" value="40.000">Z-probe x-y-speed [mm/s]</epr>
 	<epr pos="800" type="3" value="12.000">Z-probe offset x [mm]</epr>
-	<epr pos="804" type="3" value="55.000">Z-probe offset y [mm]</epr>
-	<epr pos="816" type="3" value="-10.000">Z-probe X1 [mm]</epr>
+	<epr pos="804" type="3" value="85.000">Z-probe offset y [mm]</epr>
+	<epr pos="816" type="3" value="20.000">Z-probe X1 [mm]</epr>
 	<epr pos="820" type="3" value="80.000">Z-probe Y1 [mm]</epr>
 	<epr pos="824" type="3" value="290.000">Z-probe X2 [mm]</epr>
 	<epr pos="828" type="3" value="80.000">Z-probe Y2 [mm]</epr>
@@ -63,7 +63,7 @@
 	<epr pos="1004" type="3" value="0.000">Retraction z-lift [mm]</epr>
 	<epr pos="1008" type="3" value="0.000">Extra extrusion on undo retract [mm]</epr>
 	<epr pos="1016" type="3" value="20.000">Retraction undo speed</epr>
-	<epr pos="200" type="3" value="425.000">Extr.1 steps per mm</epr>
+	<epr pos="200" type="3" value="424.000">Extr.1 steps per mm</epr>
 	<epr pos="204" type="3" value="80.000">Extr.1 max. feedrate [mm/s]</epr>
 	<epr pos="208" type="3" value="20.000">Extr.1 start feedrate [mm/s]</epr>
 	<epr pos="212" type="3" value="8000.000">Extr.1 acceleration [mm/s^2]</epr>

@@ -39,6 +39,14 @@
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	<rectangle color="#dddddd" xMax="330" xMin="-41" yMax="330" yMin="-14"/>
 	</shape>
 	<general>
@@ -58,6 +66,7 @@
 		<logHistory>true</logHistory>
 		<useOwnModelRepository>true</useOwnModelRepository>
 		<useModelFromSlug/>
+	<doorHandling>1</doorHandling>
 	</general>
 	<connection>
 		<connectionMethod>0</connectionMethod>
@@ -72,7 +81,7 @@
 			<baudrate>115200</baudrate>
 			<rts>0</rts>
 			<dtr>0</dtr>
-			<device>/dev/serial/by-id/usb-Arduino__www.arduino.cc__Arduino_Due_Prog._Port_7573630323635191B161-if00</device>
+			<device>/dev/serial/by-id/usb-Arduino__www.arduino.cc__Arduino_Due_Prog._Port_55736323938351B070D1-if00</device>
 			<pingPong>false</pingPong>
 			<visibleWithoutRunning>false</visibleWithoutRunning>
 			<malyanHack>false</malyanHack>
@@ -91,13 +100,13 @@
 		<yHome>0</yHome>
 		<zMin>0</zMin>
 		<zMax>300</zMax>
-		<zHome>0</zHome>
+		<zHome>5</zHome>
 		<xyJerk>28.2</xyJerk>
-		<zJerk>0.71</zJerk>
+		<zJerk>0.5</zJerk>
 		<timeMultiplier>1</timeMultiplier>
 		<movebuffer>32</movebuffer>
-		<xySpeed max="300">100</xySpeed>
-		<zSpeed max="10">2</zSpeed>
+		<xySpeed max="400">100</xySpeed>
+		<zSpeed max="40">2</zSpeed>
 		<defaultAcceleration>10000</defaultAcceleration>
 		<defaultTravelAcceleration>10000</defaultTravelAcceleration>
 		<defaultRetractAcceleration>4000</defaultRetractAcceleration>
@@ -129,7 +138,7 @@
 	<extruders>
 		<extruder changeFastDistance="20" changeSlowDistance="20" filamentDiameter="1.75" lastTemp="210" maxTemp="350" num="0" tempMaster="0">
 			<alias>Extruder 1</alias>
-			<maxSpeed acceleration="8000" jerk="20" max="80"/>
+			<maxSpeed acceleration="5000" jerk="20" max="80"/>
 			<extrude speed="2"/>
 			<retract speed="30"/>
 			<tempChange cooldownPerSecond="0.5" heatupPerSecond="2"/>
@@ -155,7 +164,7 @@
 		</extruder>
 	</extruders>
 	<heatedBeds>
-		<heatedBed lastTemp="50" maxTemp="140" num="0">
+		<heatedBed lastTemp="60" maxTemp="140" num="0">
 			<alias/>
 			<tempChange cooldownPerSecond="0.1" heatupPerSecond="0.1"/>
 			<temperatures/>
@@ -10966,23 +10975,23 @@ G0 X320 Y320
 G0 X0 Y0
 G0 X320 Y320
 </quickCommand>
-		<quickCommand name="4 Point Measure">G0 X30 Y41 Z5 F8000
+		<quickCommand name="4 Point Measure">G0 X60 Y85 Z5 F8000
 G30
-G0 X300 Y41 Z5
+G0 X270 Y85 Z5
 G30
-G0 X30 Y270  Z5
+G0 X60 Y245  Z5
 G30
-G0 X300 Y270 Z5 
+G0 X270 Y245 Z5 
 G30
-G0 X160 Y160 Z5 
+G0 X165 Y165 Z5 
 G30</quickCommand>
-		<quickCommand name="Middle Axis Point Measure">G0 X30 Y160 Z5 F8000
+		<quickCommand name="Middle Axis Point Measure">G0 X30 Y165 Z5 F8000
 G30
-G0 X300 Y160 Z5
+G0 X300 Y165 Z5
 G30
-G0 X160 Y41 Z5
+G0 X160 Y42 Z5
 G30
-G0 X160 Y270 Z5
+G0 X160 Y300 Z5
 G20
 
 </quickCommand>

@@ -46,7 +46,7 @@
 // ################ END MANUAL SETTINGS ##########################
 
 #undef FAN_PIN
-#define FAN_PIN 6
+#define FAN_PIN 5
 #undef FAN2_PIN
     #define FAN2_PIN -1
 #undef FAN_BOARD_PIN
@@ -220,7 +220,7 @@
 #define HEATED_BED_PREHEAT_TEMP 55
 #define HEATED_BED_MAX_TEMP 140
 #define SKIP_M190_IF_WITHIN 3
-#define HEATED_BED_SENSOR_TYPE 1
+#define HEATED_BED_SENSOR_TYPE 14 // 1 = epcos  14 = 3950
 #define HEATED_BED_SENSOR_PIN TEMP_0_PIN
 #define HEATED_BED_HEATER_PIN HEATER_1_PIN
 #define HEATED_BED_SET_INTERVAL 5000
@@ -340,7 +340,7 @@ It also can add a delay to wait for spindle to run on full speed.
 #define min_software_endstop_z false
 #define max_software_endstop_x true
 #define max_software_endstop_y true
-#define max_software_endstop_z false
+#define max_software_endstop_z true
 #define DOOR_PIN -1
 #define DOOR_PULLUP 1
 #define DOOR_INVERTING 1
@@ -422,7 +422,7 @@ It also can add a delay to wait for spindle to run on full speed.
 #define MAX_INACTIVE_TIME 0L
 #define MAX_FEEDRATE_X 400
 #define MAX_FEEDRATE_Y 400
-#define MAX_FEEDRATE_Z 40
+#define MAX_FEEDRATE_Z 20
 #define HOMING_FEEDRATE_X 80
 #define HOMING_FEEDRATE_Y 80
 #define HOMING_FEEDRATE_Z 3
@@ -432,9 +432,9 @@ It also can add a delay to wait for spindle to run on full speed.
 #define RAISE_Z_ON_TOOLCHANGE 0
 #define ZHOME_MIN_TEMPERATURE 16
 #define ZHOME_HEAT_ALL 1
-#define ZHOME_HEAT_HEIGHT 1
-#define ZHOME_X_POS 160
-#define ZHOME_Y_POS 160
+#define ZHOME_HEAT_HEIGHT 5
+#define ZHOME_X_POS 165
+#define ZHOME_Y_POS 165
 #define ENABLE_BACKLASH_COMPENSATION 0
 #define X_BACKLASH 0
 #define Y_BACKLASH 0
@@ -509,7 +509,7 @@ M340 P<servoId> S<pulseInUS>   / ServoID = 0..3  pulseInUs = 500..2500
 Servos are controlled by a pulse width normally between 500 and 2500 with 1500ms in center position. 0 turns servo off.
 WARNING: Servos can draw a considerable amount of current. Make sure your system can handle this or you may risk your hardware!
 */
-#define FEATURE_SERVO 0
+#define FEATURE_SERVO 1
 #define SERVO0_PIN 11
 #define SERVO1_PIN -1
 #define SERVO2_PIN -1
@@ -522,7 +522,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define FAN_KICKSTART_TIME  200
 #define MAX_FAN_PWM 255
 
-        #define FEATURE_WATCHDOG 1
+#define FEATURE_WATCHDOG 1
 
 // #################### Z-Probing #####################
 
@@ -532,19 +532,19 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define FEATURE_Z_PROBE 1
 #define EXTRUDER_IS_Z_PROBE 0
 #define Z_PROBE_DISABLE_HEATERS 1
-#define Z_PROBE_BED_DISTANCE 3
+#define Z_PROBE_BED_DISTANCE 5
 #define Z_PROBE_PIN ORIG_Z_MIN_PIN
 #define Z_PROBE_PULLUP 1
 #define Z_PROBE_ON_HIGH 0
-#define Z_PROBE_X_OFFSET -12
-#define Z_PROBE_Y_OFFSET 55
+#define Z_PROBE_X_OFFSET 12
+#define Z_PROBE_Y_OFFSET 85
 #define Z_PROBE_WAIT_BEFORE_TEST 0
 #define Z_PROBE_SPEED 2
 #define Z_PROBE_XY_SPEED 40
-#define Z_PROBE_SWITCHING_DISTANCE 3
+#define Z_PROBE_SWITCHING_DISTANCE 6
 #define Z_PROBE_REPETITIONS 3
 #define Z_PROBE_USE_MEDIAN 0
-#define Z_PROBE_HEIGHT 1.365
+#define Z_PROBE_HEIGHT 0.720
 #define Z_PROBE_DELAY 0
 #define Z_PROBE_START_SCRIPT ""
 #define Z_PROBE_FINISHED_SCRIPT ""
@@ -552,13 +552,13 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define Z_PROBE_REQUIRES_HEATING 0
 #define Z_PROBE_MIN_TEMPERATURE 150
 #define FEATURE_AUTOLEVEL 1
-#define FEATURE_SOFTWARE_LEVELING 0
-#define Z_PROBE_X1 20
-#define Z_PROBE_Y1 80
-#define Z_PROBE_X2 290
-#define Z_PROBE_Y2 80
-#define Z_PROBE_X3 20
-#define Z_PROBE_Y3 300
+#define FEATURE_SOFTWARE_LEVELING 1
+#define Z_PROBE_X1 60
+#define Z_PROBE_Y1 85
+#define Z_PROBE_X2 270
+#define Z_PROBE_Y2 85
+#define Z_PROBE_X3 60
+#define Z_PROBE_Y3 27
 #define BED_LEVELING_METHOD 1
 #define BED_CORRECTION_METHOD 0
 #define BED_LEVELING_GRID_SIZE 5
@@ -606,7 +606,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define LANGUAGE_CZ_ACTIVE 0
 #define LANGUAGE_PL_ACTIVE 0
 #define LANGUAGE_TR_ACTIVE 0
-#define UI_PRINTER_NAME "Chii ARM v0.8"
+#define UI_PRINTER_NAME "Chii ARM v1.01"
 #define UI_PRINTER_COMPANY "Chii"
 #define UI_PAGES_DURATION 4000
 #define UI_SPEEDDEPENDENT_POSITIONING 0
@@ -1262,8 +1262,8 @@ Values must be in range 1..255
     ],
     "manualConfig": "#define THERMOCOUPLE_0_PIN 32\n#define THERMOCOUPLE_1_PIN 47\n\n#define MOSI_PIN 75\n#define MISO_PIN 74\n#define SCK_PIN 76\n\n#define ORIG_E2_DIR_PIN         23\n#define ORIG_E2_STEP_PIN      25\n#define ORIG_E2_ENABLE_PIN 27\n\n#define ORIG_E3_DIR_PIN         29\n#define ORIG_E3_STEP_PIN      31\n#define ORIG_E3_ENABLE_PIN 33\n\n#define EXT2_DIR_PIN             ORIG_E2_DIR_PIN\n#define EXT2_STEP_PIN          ORIG_E2_STEP_PIN  \n#define EXT2_ENABLE_PIN     ORIG_E2_ENABLE_PIN\n\n#define EXT3_DIR_PIN             ORIG_E3_DIR_PIN\n#define EXT3_STEP_PIN          ORIG_E3_STEP_PIN  \n#define EXT3_ENABLE_PIN     ORIG_E3_ENABLE_PIN",
     "zHomeMinTemperature": 16,
-    "zHomeXPos": 160,
-    "zHomeYPos": 160,
+    "zHomeXPos": 165,
+    "zHomeYPos": 165,
     "zHomeHeatHeight": 1,
     "zHomeHeatAll": "1",
     "zProbeZOffsetMode": 0,
