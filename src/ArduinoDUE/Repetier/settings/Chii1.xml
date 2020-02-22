@@ -47,6 +47,10 @@
 	
 	
 	
+	
+	
+	
+	
 	<rectangle color="#dddddd" xMax="330" xMin="-41" yMax="330" yMin="-14"/>
 	</shape>
 	<general>
@@ -100,16 +104,16 @@
 		<yHome>0</yHome>
 		<zMin>0</zMin>
 		<zMax>300</zMax>
-		<zHome>5</zHome>
+		<zHome>0</zHome>
 		<xyJerk>28.2</xyJerk>
 		<zJerk>0.5</zJerk>
 		<timeMultiplier>1</timeMultiplier>
 		<movebuffer>32</movebuffer>
 		<xySpeed max="400">100</xySpeed>
-		<zSpeed max="40">2</zSpeed>
-		<defaultAcceleration>10000</defaultAcceleration>
-		<defaultTravelAcceleration>10000</defaultTravelAcceleration>
-		<defaultRetractAcceleration>4000</defaultRetractAcceleration>
+		<zSpeed max="20">2</zSpeed>
+		<defaultAcceleration>2000</defaultAcceleration>
+		<defaultTravelAcceleration>3000</defaultTravelAcceleration>
+		<defaultRetractAcceleration>6000</defaultRetractAcceleration>
 		<xyPrintAcceleration>2000</xyPrintAcceleration>
 		<xyTravelAcceleration>3000</xyTravelAcceleration>
 		<zPrintAcceleration>100</zPrintAcceleration>
@@ -138,7 +142,7 @@
 	<extruders>
 		<extruder changeFastDistance="20" changeSlowDistance="20" filamentDiameter="1.75" lastTemp="210" maxTemp="350" num="0" tempMaster="0">
 			<alias>Extruder 1</alias>
-			<maxSpeed acceleration="5000" jerk="20" max="80"/>
+			<maxSpeed acceleration="8000" jerk="20" max="80"/>
 			<extrude speed="2"/>
 			<retract speed="30"/>
 			<tempChange cooldownPerSecond="0.5" heatupPerSecond="2"/>
@@ -164,7 +168,7 @@
 		</extruder>
 	</extruders>
 	<heatedBeds>
-		<heatedBed lastTemp="60" maxTemp="140" num="0">
+		<heatedBed lastTemp="70" maxTemp="140" num="0">
 			<alias/>
 			<tempChange cooldownPerSecond="0.1" heatupPerSecond="0.1"/>
 			<temperatures/>
@@ -10975,28 +10979,27 @@ G0 X320 Y320
 G0 X0 Y0
 G0 X320 Y320
 </quickCommand>
-		<quickCommand name="4 Point Measure">G0 X60 Y85 Z5 F8000
+		<quickCommand name="4 Point Measure">G0 X60 Y85 Z15 F8000
 G30
-G0 X270 Y85 Z5
+G0 X270 Y85 Z15
 G30
-G0 X60 Y245  Z5
+G0 X60 Y245  Z15
 G30
-G0 X270 Y245 Z5 
+G0 X270 Y245 Z15 
 G30
-G0 X165 Y165 Z5 
+G0 X165 Y165 Z15 
 G30</quickCommand>
-		<quickCommand name="Middle Axis Point Measure">G0 X30 Y165 Z5 F8000
+		<quickCommand name="Middle Axis Point Measure">G0 X60 Y165 Z15 F8000
 G30
-G0 X300 Y165 Z5
+G0 X270 Y165 Z15
 G30
-G0 X160 Y42 Z5
+G0 X165 Y85 Z15
 G30
-G0 X160 Y300 Z5
-G20
-
-</quickCommand>
+G0 X165 Y245 Z15
+G30</quickCommand>
 		<quickCommand name="Extruder 1 long PID tuning">M106 S128
 M303 P0 S225 R10</quickCommand>
+		<quickCommand name="Reset BLTouch">M340 P0 S2190</quickCommand>
 	</quickCommands>
 	<webcams/>
 	<properties>

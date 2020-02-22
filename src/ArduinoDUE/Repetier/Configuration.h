@@ -92,7 +92,7 @@
 #define EXT0_X_OFFSET 0
 #define EXT0_Y_OFFSET 0
 #define EXT0_Z_OFFSET 0
-#define EXT0_STEPS_PER_MM 424
+#define EXT0_STEPS_PER_MM 420
 #define EXT0_TEMPSENSOR_TYPE 103
 #define EXT0_TEMPSENSOR_PIN THERMOCOUPLE_0_PIN
 #define EXT0_HEATER_PIN HEATER_0_PIN
@@ -108,7 +108,7 @@
 #define EXT0_ENABLE2_PIN ORIG_E0_ENABLE_PIN
 #define EXT0_MAX_FEEDRATE 80
 #define EXT0_MAX_START_FEEDRATE 20
-#define EXT0_MAX_ACCELERATION 5000
+#define EXT0_MAX_ACCELERATION 6000
 #define EXT0_HEAT_MANAGER 1
 #define EXT0_PREHEAT_TEMP 190
 #define EXT0_WATCHPERIOD 1
@@ -133,7 +133,7 @@
 #define EXT1_X_OFFSET 0
 #define EXT1_Y_OFFSET 0
 #define EXT1_Z_OFFSET 0
-#define EXT1_STEPS_PER_MM 424
+#define EXT1_STEPS_PER_MM 420
 #define EXT1_TEMPSENSOR_TYPE 103
 #define EXT1_TEMPSENSOR_PIN THERMOCOUPLE_1_PIN
 #define EXT1_HEATER_PIN HEATER_2_PIN
@@ -149,7 +149,7 @@
 #define EXT1_ENABLE2_PIN ORIG_E1_ENABLE_PIN
 #define EXT1_MAX_FEEDRATE 80
 #define EXT1_MAX_START_FEEDRATE 20
-#define EXT1_MAX_ACCELERATION 5000
+#define EXT1_MAX_ACCELERATION 6000
 #define EXT1_HEAT_MANAGER 1
 #define EXT1_PREHEAT_TEMP 190
 #define EXT1_WATCHPERIOD 1
@@ -302,7 +302,7 @@ It also can add a delay to wait for spindle to run on full speed.
 #define ENDSTOP_Y_MIN_INVERTING true
 #define MIN_HARDWARE_ENDSTOP_Y true
 #define ENDSTOP_PULLUP_Z_MIN true
-#define ENDSTOP_Z_MIN_INVERTING true
+#define ENDSTOP_Z_MIN_INVERTING false
 #define MIN_HARDWARE_ENDSTOP_Z true
 #define ENDSTOP_PULLUP_Z2_MINMAX true
 #define ENDSTOP_Z2_MINMAX_INVERTING false
@@ -385,8 +385,8 @@ It also can add a delay to wait for spindle to run on full speed.
 #define Y_MIN_POS -22
 #define Z_MIN_POS 0
 #define PARK_POSITION_X -9
-#define PARK_POSITION_Y 10
-#define PARK_POSITION_Z_RAISE 10
+#define PARK_POSITION_Y 0
+#define PARK_POSITION_Z_RAISE 20
 
 
 #define DISTORTION_CORRECTION 1
@@ -427,12 +427,12 @@ It also can add a delay to wait for spindle to run on full speed.
 #define HOMING_FEEDRATE_Y 80
 #define HOMING_FEEDRATE_Z 3
 #define HOMING_ORDER HOME_ORDER_XYTZ
-#define ZHOME_PRE_RAISE 0
-#define ZHOME_PRE_RAISE_DISTANCE 10
+#define ZHOME_PRE_RAISE 2
+#define ZHOME_PRE_RAISE_DISTANCE 15
 #define RAISE_Z_ON_TOOLCHANGE 0
 #define ZHOME_MIN_TEMPERATURE 16
 #define ZHOME_HEAT_ALL 1
-#define ZHOME_HEAT_HEIGHT 5
+#define ZHOME_HEAT_HEIGHT 15
 #define ZHOME_X_POS 165
 #define ZHOME_Y_POS 165
 #define ENABLE_BACKLASH_COMPENSATION 0
@@ -532,23 +532,25 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define FEATURE_Z_PROBE 1
 #define EXTRUDER_IS_Z_PROBE 0
 #define Z_PROBE_DISABLE_HEATERS 1
-#define Z_PROBE_BED_DISTANCE 5
+#define Z_PROBE_BED_DISTANCE 15
 #define Z_PROBE_PIN ORIG_Z_MIN_PIN
 #define Z_PROBE_PULLUP 1
 #define Z_PROBE_ON_HIGH 0
-#define Z_PROBE_X_OFFSET 12
-#define Z_PROBE_Y_OFFSET 85
+//#define Z_PROBE_X_OFFSET 12
+//#define Z_PROBE_Y_OFFSET 85
+#define Z_PROBE_X_OFFSET -10
+#define Z_PROBE_Y_OFFSET 25
 #define Z_PROBE_WAIT_BEFORE_TEST 0
 #define Z_PROBE_SPEED 2
 #define Z_PROBE_XY_SPEED 40
-#define Z_PROBE_SWITCHING_DISTANCE 6
+#define Z_PROBE_SWITCHING_DISTANCE 3
 #define Z_PROBE_REPETITIONS 3
 #define Z_PROBE_USE_MEDIAN 0
-#define Z_PROBE_HEIGHT 0.720
-#define Z_PROBE_DELAY 0
-#define Z_PROBE_START_SCRIPT ""
-#define Z_PROBE_FINISHED_SCRIPT ""
-#define Z_PROBE_RUN_AFTER_EVERY_PROBE ""
+#define Z_PROBE_HEIGHT 2.325
+#define Z_PROBE_DELAY 1
+#define Z_PROBE_START_SCRIPT "M340 P0 S647"
+#define Z_PROBE_FINISHED_SCRIPT "M340 P0 S1473"
+#define Z_PROBE_RUN_AFTER_EVERY_PROBE "M340 P0 S647"
 #define Z_PROBE_REQUIRES_HEATING 0
 #define Z_PROBE_MIN_TEMPERATURE 150
 #define FEATURE_AUTOLEVEL 1
@@ -606,7 +608,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define LANGUAGE_CZ_ACTIVE 0
 #define LANGUAGE_PL_ACTIVE 0
 #define LANGUAGE_TR_ACTIVE 0
-#define UI_PRINTER_NAME "Chii ARM v1.01"
+#define UI_PRINTER_NAME "Chii ARM v1.03"
 #define UI_PRINTER_COMPANY "Chii"
 #define UI_PAGES_DURATION 4000
 #define UI_SPEEDDEPENDENT_POSITIONING 0
@@ -624,7 +626,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define CASE_LIGHT_DEFAULT_ON 1
 #define UI_START_SCREEN_DELAY 1000
 #define UI_DYNAMIC_ENCODER_SPEED 1
-#define UI_HEAD "Chii ARM v0.8"
+#define UI_HEAD "Chii ARM v1.03"
         /**
 Beeper sound definitions for short beeps during key actions
 and longer beeps for important actions.
