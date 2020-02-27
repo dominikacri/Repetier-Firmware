@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<printer>
+	<shape>
+		<grid color="#454545" spacing="10"/>
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<rectangle color="#dddddd" xMax="213" xMin="-39" yMax="213" yMin="-13"/>
+	</shape>
+	<general>
+		<name>Anet A8</name>
+		<slug>Anet_A8</slug>
+		<firmwareName>Repetier-Firmware</firmwareName>
+		<printerVariant>cartesian</printerVariant>
+		<active>true</active>
+		<fan>true</fan>
+		<fan2>false</fan2>
+		<tempUpdateEvery>1</tempUpdateEvery>
+		<pauseHandling>0</pauseHandling>
+		<pauseSeconds>120</pauseSeconds>
+		<sdcard>true</sdcard>
+		<softwarePower>false</softwarePower>
+		<defaultVolumetric>false</defaultVolumetric>
+		<logHistory>true</logHistory>
+		<useOwnModelRepository>true</useOwnModelRepository>
+		<useModelFromSlug/>
+	<model/>
+		<numFans>1</numFans>
+	</general>
+	<connection>
+		<serial>
+			<baudrate>115200</baudrate>
+			<device>/dev/ttyUSB0</device>
+			<pingPong>false</pingPong>
+			<inputBufferSize>127</inputBufferSize>
+			<communicationTimeout>3</communicationTimeout>
+		<rts>0</rts>
+			<dtr>0</dtr>
+			<malyanHack>false</malyanHack>
+		<visibleWithoutRunning>false</visibleWithoutRunning>
+		</serial>
+		<lcdTimeMode>4</lcdTimeMode>
+		<resetScript/>
+	<connectionMethod>0</connectionMethod>
+		<pipe>
+			<file/>
+		</pipe>
+		<ip>
+			<port>23</port>
+			<address/>
+		</ip>
+	</connection>
+	<movement>
+		<xMin>-39</xMin>
+		<xMax>213</xMax>
+		<xHome>0</xHome>
+		<yMin>-13</yMin>
+		<yMax>213</yMax>
+		<yHome>0</yHome>
+		<zMin>10</zMin>
+		<zMax>240</zMax>
+		<zHome>0</zHome>
+		<xyJerk>20</xyJerk>
+		<zJerk>0.30000000000000004</zJerk>
+		<timeMultiplier>1</timeMultiplier>
+		<movebuffer>16</movebuffer>
+		<xySpeed max="1500">100</xySpeed>
+		<zSpeed max="5">2</zSpeed>
+		<xyPrintAcceleration>1800</xyPrintAcceleration>
+		<xyTravelAcceleration>2500</xyTravelAcceleration>
+		<zPrintAcceleration>100</zPrintAcceleration>
+		<zTravelAcceleration>100</zTravelAcceleration>
+		<endstops all="true" x="true" y="true" z="true"/>
+		<invert x="false" y="false" z="false"/>
+		<G10Speed>60</G10Speed>
+		<G10Distance>5</G10Distance>
+		<G10LongDistance>60</G10LongDistance>
+		<G11Speed>20</G11Speed>
+		<G11ExtraDistance>0</G11ExtraDistance>
+		<G11ExtraLongDistance>0</G11ExtraLongDistance>
+		<G10ZLift>0</G10ZLift>
+	<defaultAcceleration>1800</defaultAcceleration>
+		<defaultTravelAcceleration>10000</defaultTravelAcceleration>
+		<defaultRetractAcceleration>2400</defaultRetractAcceleration>
+	</movement>
+	<extruders>
+		<extruder changeFastDistance="20" changeSlowDistance="20" filamentDiameter="1.75" lastTemp="200" maxTemp="275" num="0" tempMaster="0">
+			<alias>MainExtruder</alias>
+			<maxSpeed acceleration="5000" jerk="20" max="90"/>
+			<extrude speed="2"/>
+			<retract speed="30"/>
+			<tempChange cooldownPerSecond="0.518616782989321" heatupPerSecond="2.180208804481158"/>
+			<offsets x="0" y="0"/>
+			<temperatures>
+				<temperature value="245">ABS 245</temperature>
+				<temperature value="210">PLA 210</temperature>
+				<temperature value="195">PLA 195</temperature>
+			</temperatures>
+		</extruder>
+	</extruders>
+	
+	
+	<quickCommands>
+		<quickCommand name="4 Point Measure">G0 X20 Y20 Z10 F4000
+G30
+G0 X180 Y20 Z10 F4000
+G30
+G0 X20 Y165 Z10 F4000
+G30
+G0 X180 Y165 Z10 F4000
+G30
+G0 X110 Y110 Z10 F4000
+G30
+
+</quickCommand>
+		<quickCommand name="Center Z0">G0 X110 Y110 Z0</quickCommand>
+		<quickCommand name="PID Autotune Extruder">M106 S204
+M303 P0 S200 X0 R20</quickCommand>
+		<quickCommand name="Z Achse Ölen">G0 X110 Y110 Z10
+G0 X110 Y110 Z160
+G0 X110 Y110 Z10
+G0 X110 Y110 Z160
+G0 X110 Y110 Z10
+G0 X110 Y110 Z160
+G0 X110 Y110 Z10
+G0 X110 Y110 Z160
+G0 X110 Y110 Z10
+G0 X110 Y110 Z160
+G0 X110 Y110 Z10
+G0 X110 Y110 Z160
+G0 X110 Y110 Z10
+G0 X110 Y110 Z160
+G0 X110 Y110 Z10
+G0 X110 Y110 Z160
+G0 X110 Y110 Z10
+G0 X110 Y110 Z160
+G0 X110 Y110 Z10
+G0 X110 Y110 Z160
+G0 X110 Y110 Z10
+G0 X110 Y110 Z160
+G0 X110 Y110 Z10
+G0 X110 Y110 Z160
+G0 X110 Y110 Z10
+
+
+
+
+
+
+
+</quickCommand>
+		<quickCommand name="Heatbed Autopid">M106 S110
+M303 P1 S110 X0 R20</quickCommand>
+	</quickCommands>
+	
+	<properties>
+		<value name="firmwareuploader_board">6</value>
+		<value name="firmwareuploader_extraPort"/>
+	</properties>
+<scripts/>
+<heatedBeds>
+		<heatedBed lastTemp="60" maxTemp="120" num="0">
+			<alias/>
+			<tempChange cooldownPerSecond="0.033701620219204184" heatupPerSecond="0.1490976829115649"/>
+			<temperatures/>
+		</heatedBed>
+	</heatedBeds>
+	<heatedChambers/>
+	<webcams>
+		<webcam pos="0">
+			<method>3</method>
+			<timelapseMethod>1</timelapseMethod>
+			<staticUrl/>
+			<dynamicUrl>http://printserver3d-a8:8081</dynamicUrl>
+			<orientation>0</orientation>
+			<reloadInterval>3</reloadInterval>
+			<timelapseInterval>20</timelapseInterval>
+			<timelapseHeight>0.1</timelapseHeight>
+			<timelapseLayer>1</timelapseLayer>
+			<timelapseBitrate>1000</timelapseBitrate>
+			<timelapseSelected>0</timelapseSelected>
+			<timelapseFramerate>30</timelapseFramerate>
+			<forceSnapshotPosition>false</forceSnapshotPosition>
+			<snapshotX>87</snapshotX>
+			<snapshotY>213</snapshotY>
+			<snapshotDelay>800</snapshotDelay>
+		</webcam>
+	</webcams>
+<recover>
+		<enabled>false</enabled>
+		<replayExtruderSwitches>false</replayExtruderSwitches>
+		<maxTimeForAutocontinue>300</maxTimeForAutocontinue>
+		<reactivateBedOnConnect>true</reactivateBedOnConnect>
+		<firmwarePowerlossSignal/>
+		<procedure>G28 X0 Y0</procedure>
+		<runOnConnect>G28 X0 Y0</runOnConnect>
+		<extraZOnFirmwareDetect>0</extraZOnFirmwareDetect>
+		<delayBeforeReconnect>30</delayBeforeReconnect>
+	</recover>
+	<responseEvents/>
+</printer>
