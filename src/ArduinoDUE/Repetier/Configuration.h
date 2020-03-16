@@ -92,7 +92,7 @@
 #define EXT0_X_OFFSET 0
 #define EXT0_Y_OFFSET 0
 #define EXT0_Z_OFFSET 0
-#define EXT0_STEPS_PER_MM 420
+#define EXT0_STEPS_PER_MM 415
 #define EXT0_TEMPSENSOR_TYPE 103
 #define EXT0_TEMPSENSOR_PIN THERMOCOUPLE_0_PIN
 #define EXT0_HEATER_PIN HEATER_0_PIN
@@ -133,7 +133,7 @@
 #define EXT1_X_OFFSET 0
 #define EXT1_Y_OFFSET 0
 #define EXT1_Z_OFFSET 0
-#define EXT1_STEPS_PER_MM 420
+#define EXT1_STEPS_PER_MM 415
 #define EXT1_TEMPSENSOR_TYPE 103
 #define EXT1_TEMPSENSOR_PIN THERMOCOUPLE_1_PIN
 #define EXT1_HEATER_PIN HEATER_2_PIN
@@ -176,7 +176,7 @@
 #define AUTORETRACT_ENABLED 0
 #define RETRACTION_LENGTH 3
 #define RETRACTION_LONG_LENGTH 13
-#define RETRACTION_SPEED 40
+#define RETRACTION_SPEED 60
 #define RETRACTION_Z_LIFT 0
 #define RETRACTION_UNDO_EXTRA_LENGTH 0
 #define RETRACTION_UNDO_EXTRA_LONG_LENGTH 0
@@ -217,7 +217,7 @@
 // ############# Heated bed configuration ########################
 
 #define HAVE_HEATED_BED 1
-#define HEATED_BED_PREHEAT_TEMP 55
+#define HEATED_BED_PREHEAT_TEMP 60
 #define HEATED_BED_MAX_TEMP 140
 #define SKIP_M190_IF_WITHIN 3
 #define HEATED_BED_SENSOR_TYPE 14 // 1 = epcos  14 = 3950
@@ -378,14 +378,14 @@ It also can add a delay to wait for spindle to run on full speed.
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR -1
-#define X_MAX_LENGTH 339
-#define Y_MAX_LENGTH 352
+#define X_MAX_LENGTH 371
+#define Y_MAX_LENGTH 344
 #define Z_MAX_LENGTH 300
-#define X_MIN_POS -33
-#define Y_MIN_POS -22
+#define X_MIN_POS -41
+#define Y_MIN_POS -14
 #define Z_MIN_POS 0
-#define PARK_POSITION_X -9
-#define PARK_POSITION_Y 0
+#define PARK_POSITION_X -40
+#define PARK_POSITION_Y -10
 #define PARK_POSITION_Z_RAISE 20
 
 
@@ -428,7 +428,7 @@ It also can add a delay to wait for spindle to run on full speed.
 #define HOMING_FEEDRATE_Z 3
 #define HOMING_ORDER HOME_ORDER_XYTZ
 #define ZHOME_PRE_RAISE 2
-#define ZHOME_PRE_RAISE_DISTANCE 15
+#define ZHOME_PRE_RAISE_DISTANCE 10
 #define RAISE_Z_ON_TOOLCHANGE 0
 #define ZHOME_MIN_TEMPERATURE 16
 #define ZHOME_HEAT_ALL 1
@@ -445,11 +445,11 @@ It also can add a delay to wait for spindle to run on full speed.
 #define STEP_DOUBLER_FREQUENCY 80000
 #define ALLOW_QUADSTEPPING 1
 #define DOUBLE_STEP_DELAY 1 // time in microseconds
-#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_X 2000
-#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Y 2000
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_X 3000
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Y 3000
 #define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Z 100
-#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_X 3000
-#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Y 3000
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_X 4000
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Y 4000
 #define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Z 100
 #define INTERPOLATE_ACCELERATION_WITH_Z 0
 #define ACCELERATION_FACTOR_TOP 100
@@ -532,21 +532,21 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define FEATURE_Z_PROBE 1
 #define EXTRUDER_IS_Z_PROBE 0
 #define Z_PROBE_DISABLE_HEATERS 1
-#define Z_PROBE_BED_DISTANCE 15
+#define Z_PROBE_BED_DISTANCE 10
 #define Z_PROBE_PIN ORIG_Z_MIN_PIN
 #define Z_PROBE_PULLUP 1
 #define Z_PROBE_ON_HIGH 0
 //#define Z_PROBE_X_OFFSET 12
 //#define Z_PROBE_Y_OFFSET 85
 #define Z_PROBE_X_OFFSET -10
-#define Z_PROBE_Y_OFFSET 25
+#define Z_PROBE_Y_OFFSET 40
 #define Z_PROBE_WAIT_BEFORE_TEST 0
 #define Z_PROBE_SPEED 2
 #define Z_PROBE_XY_SPEED 40
 #define Z_PROBE_SWITCHING_DISTANCE 3
 #define Z_PROBE_REPETITIONS 3
 #define Z_PROBE_USE_MEDIAN 0
-#define Z_PROBE_HEIGHT 2.325
+#define Z_PROBE_HEIGHT 0.540
 #define Z_PROBE_DELAY 1
 #define Z_PROBE_START_SCRIPT "M340 P0 S647"
 #define Z_PROBE_FINISHED_SCRIPT "M340 P0 S1473"
@@ -608,7 +608,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define LANGUAGE_CZ_ACTIVE 0
 #define LANGUAGE_PL_ACTIVE 0
 #define LANGUAGE_TR_ACTIVE 0
-#define UI_PRINTER_NAME "Chii ARM v1.03"
+#define UI_PRINTER_NAME "Chii ARM v1.04"
 #define UI_PRINTER_COMPANY "Chii"
 #define UI_PAGES_DURATION 4000
 #define UI_SPEEDDEPENDENT_POSITIONING 0
@@ -626,7 +626,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define CASE_LIGHT_DEFAULT_ON 1
 #define UI_START_SCREEN_DELAY 1000
 #define UI_DYNAMIC_ENCODER_SPEED 1
-#define UI_HEAD "Chii ARM v1.03"
+#define UI_HEAD "Chii ARM v1.04"
         /**
 Beeper sound definitions for short beeps during key actions
 and longer beeps for important actions.

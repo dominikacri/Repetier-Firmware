@@ -51,6 +51,7 @@
 	
 	
 	
+	
 	<rectangle color="#dddddd" xMax="330" xMin="-41" yMax="330" yMin="-14"/>
 	</shape>
 	<general>
@@ -168,7 +169,7 @@
 		</extruder>
 	</extruders>
 	<heatedBeds>
-		<heatedBed lastTemp="70" maxTemp="140" num="0">
+		<heatedBed lastTemp="60" maxTemp="140" num="0">
 			<alias/>
 			<tempChange cooldownPerSecond="0.1" heatupPerSecond="0.1"/>
 			<temperatures/>

@@ -19,7 +19,10 @@
 	
 	
 	
-	<rectangle color="#dddddd" xMax="213" xMin="-39" yMax="213" yMin="-13"/>
+	
+	
+	
+	<rectangle color="#000000" xMax="220" xMin="-39" yMax="220" yMin="-5"/>
 	</shape>
 	<general>
 		<name>Anet A8</name>
@@ -40,6 +43,7 @@
 		<useModelFromSlug/>
 	<model/>
 		<numFans>1</numFans>
+	<doorHandling>1</doorHandling>
 	</general>
 	<connection>
 		<serial>
@@ -66,10 +70,10 @@
 	</connection>
 	<movement>
 		<xMin>-39</xMin>
-		<xMax>213</xMax>
+		<xMax>220</xMax>
 		<xHome>0</xHome>
-		<yMin>-13</yMin>
-		<yMax>213</yMax>
+		<yMin>-5</yMin>
+		<yMax>220</yMax>
 		<yHome>0</yHome>
 		<zMin>10</zMin>
 		<zMax>240</zMax>
@@ -78,7 +82,7 @@
 		<zJerk>0.30000000000000004</zJerk>
 		<timeMultiplier>1</timeMultiplier>
 		<movebuffer>16</movebuffer>
-		<xySpeed max="1500">100</xySpeed>
+		<xySpeed max="150">80</xySpeed>
 		<zSpeed max="5">2</zSpeed>
 		<xyPrintAcceleration>1800</xyPrintAcceleration>
 		<xyTravelAcceleration>2500</xyTravelAcceleration>
@@ -94,11 +98,11 @@
 		<G11ExtraLongDistance>0</G11ExtraLongDistance>
 		<G10ZLift>0</G10ZLift>
 	<defaultAcceleration>1800</defaultAcceleration>
-		<defaultTravelAcceleration>10000</defaultTravelAcceleration>
-		<defaultRetractAcceleration>2400</defaultRetractAcceleration>
+		<defaultTravelAcceleration>3000</defaultTravelAcceleration>
+		<defaultRetractAcceleration>3000</defaultRetractAcceleration>
 	</movement>
 	<extruders>
-		<extruder changeFastDistance="20" changeSlowDistance="20" filamentDiameter="1.75" lastTemp="200" maxTemp="275" num="0" tempMaster="0">
+		<extruder changeFastDistance="20" changeSlowDistance="20" filamentDiameter="1.75" lastTemp="215" maxTemp="275" num="0" tempMaster="0">
 			<alias>MainExtruder</alias>
 			<maxSpeed acceleration="5000" jerk="20" max="90"/>
 			<extrude speed="2"/>
@@ -115,22 +119,23 @@
 	
 	
 	<quickCommands>
-		<quickCommand name="4 Point Measure">G0 X20 Y20 Z10 F4000
+		<quickCommand name="4 Point Measure">G0 X40 Y20 Z10 F6000
 G30
-G0 X180 Y20 Z10 F4000
+G0 X180 Y20 Z10 F6000
 G30
-G0 X20 Y165 Z10 F4000
+G0 X40 Y200 Z10 F6000
 G30
-G0 X180 Y165 Z10 F4000
+G0 X180 Y200 Z10 F6000
 G30
-G0 X110 Y110 Z10 F4000
+G0 X110 Y110 Z10 F6000
 G30
 
 </quickCommand>
-		<quickCommand name="Center Z0">G0 X110 Y110 Z0</quickCommand>
+		<quickCommand name="Center Z0">G0 X110 Y110 Z5 F6000
+G0 X110 Y110 Z0 F6000</quickCommand>
 		<quickCommand name="PID Autotune Extruder">M106 S204
 M303 P0 S200 X0 R20</quickCommand>
-		<quickCommand name="Z Achse Ölen">G0 X110 Y110 Z10
+		<quickCommand name="Z Achse Ölen">G0 X110 Y110 Z10 F6000
 G0 X110 Y110 Z160
 G0 X110 Y110 Z10
 G0 X110 Y110 Z160
@@ -173,7 +178,7 @@ M303 P1 S110 X0 R20</quickCommand>
 	</properties>
 <scripts/>
 <heatedBeds>
-		<heatedBed lastTemp="60" maxTemp="120" num="0">
+		<heatedBed lastTemp="65" maxTemp="120" num="0">
 			<alias/>
 			<tempChange cooldownPerSecond="0.033701620219204184" heatupPerSecond="0.1490976829115649"/>
 			<temperatures/>
@@ -182,7 +187,7 @@ M303 P1 S110 X0 R20</quickCommand>
 	<heatedChambers/>
 	<webcams>
 		<webcam pos="0">
-			<method>3</method>
+			<method>0</method>
 			<timelapseMethod>1</timelapseMethod>
 			<staticUrl/>
 			<dynamicUrl>http://printserver3d-a8:8081</dynamicUrl>
