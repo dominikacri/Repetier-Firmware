@@ -36,7 +36,7 @@
 
 */
 
-#define NUM_EXTRUDER 1
+#define NUM_EXTRUDER 2
 #define MOTHERBOARD 413
 #define RFSERIAL Serial
 #include "pins.h"
@@ -114,9 +114,9 @@
 #define EXT0_WATCHPERIOD 1
 #define EXT0_PID_INTEGRAL_DRIVE_MAX 230
 #define EXT0_PID_INTEGRAL_DRIVE_MIN 40
-#define EXT0_PID_PGAIN_OR_DEAD_TIME 14.7134
-#define EXT0_PID_I 1.2918
-#define EXT0_PID_D 41.8965
+#define EXT0_PID_PGAIN_OR_DEAD_TIME 25.8104
+#define EXT0_PID_I 5.4776
+#define EXT0_PID_D 30.4047
 #define EXT0_PID_MAX 255
 #define EXT0_ADVANCE_K 0
 #define EXT0_ADVANCE_L 0
@@ -155,9 +155,9 @@
 #define EXT1_WATCHPERIOD 1
 #define EXT1_PID_INTEGRAL_DRIVE_MAX 230
 #define EXT1_PID_INTEGRAL_DRIVE_MIN 40
-#define EXT1_PID_PGAIN_OR_DEAD_TIME 14.7134
-#define EXT1_PID_I 1.2918
-#define EXT1_PID_D 41.8965
+#define EXT1_PID_PGAIN_OR_DEAD_TIME 25.8104
+#define EXT1_PID_I 5.4776
+#define EXT1_PID_D 30.4047
 #define EXT1_PID_MAX 255
 #define EXT1_ADVANCE_K 0
 #define EXT1_ADVANCE_L 0
@@ -546,7 +546,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define Z_PROBE_SWITCHING_DISTANCE 3
 #define Z_PROBE_REPETITIONS 3
 #define Z_PROBE_USE_MEDIAN 0
-#define Z_PROBE_HEIGHT 0.540
+#define Z_PROBE_HEIGHT 0.550
 #define Z_PROBE_DELAY 1
 #define Z_PROBE_START_SCRIPT "M340 P0 S647"
 #define Z_PROBE_FINISHED_SCRIPT "M340 P0 S1473"
@@ -608,7 +608,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define LANGUAGE_CZ_ACTIVE 0
 #define LANGUAGE_PL_ACTIVE 0
 #define LANGUAGE_TR_ACTIVE 0
-#define UI_PRINTER_NAME "Chii ARM v1.04"
+#define UI_PRINTER_NAME "Chii ARM v1.05"
 #define UI_PRINTER_COMPANY "Chii"
 #define UI_PAGES_DURATION 4000
 #define UI_SPEEDDEPENDENT_POSITIONING 0
@@ -626,7 +626,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define CASE_LIGHT_DEFAULT_ON 1
 #define UI_START_SCREEN_DELAY 1000
 #define UI_DYNAMIC_ENCODER_SPEED 1
-#define UI_HEAD "Chii ARM v1.04"
+#define UI_HEAD "Chii ARM v1.05"
         /**
 Beeper sound definitions for short beeps during key actions
 and longer beeps for important actions.
@@ -642,7 +642,6 @@ Values must be in range 1..255
 #define UI_SET_EXTRUDER_FEEDRATE 2
 #define UI_SET_EXTRUDER_RETRACT_DISTANCE 5.2
 
-
 #define NUM_MOTOR_DRIVERS 0
 
 #define THERMOCOUPLE_0_PIN 32
@@ -652,20 +651,20 @@ Values must be in range 1..255
 #define MISO_PIN 74
 #define SCK_PIN 76
 
-#define ORIG_E2_DIR_PIN         23
-#define ORIG_E2_STEP_PIN      25
-#define ORIG_E2_ENABLE_PIN 27
+#define ORIG_E2_DIR_PIN     23  // da: E2 and E3 used as Z and mirror Z later
+#define ORIG_E2_STEP_PIN    25
+#define ORIG_E2_ENABLE_PIN  27
 
-#define ORIG_E3_DIR_PIN         29
-#define ORIG_E3_STEP_PIN      31
-#define ORIG_E3_ENABLE_PIN 33
+#define ORIG_E3_DIR_PIN     29
+#define ORIG_E3_STEP_PIN    31
+#define ORIG_E3_ENABLE_PIN  33
 
-#define EXT2_DIR_PIN             ORIG_E2_DIR_PIN
+#define EXT2_DIR_PIN        ORIG_E2_DIR_PIN
 #define EXT2_STEP_PIN       ORIG_E2_STEP_PIN  
 #define EXT2_ENABLE_PIN     ORIG_E2_ENABLE_PIN
 
-#define EXT3_DIR_PIN             ORIG_E3_DIR_PIN
-#define EXT3_STEP_PIN          ORIG_E3_STEP_PIN  
+#define EXT3_DIR_PIN        ORIG_E3_DIR_PIN
+#define EXT3_STEP_PIN       ORIG_E3_STEP_PIN  
 #define EXT3_ENABLE_PIN     ORIG_E3_ENABLE_PIN
 
 #endif
