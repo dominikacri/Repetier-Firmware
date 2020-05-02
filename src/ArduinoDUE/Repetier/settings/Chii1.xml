@@ -52,7 +52,15 @@
 	
 	
 	
-	<rectangle color="#dddddd" xMax="330" xMin="-41" yMax="330" yMin="-14"/>
+	
+	
+	
+	
+	
+	
+	
+	
+	<rectangle color="#dddddd" xMax="330" xMin="-17" yMax="330" yMin="-14"/>
 	</shape>
 	<general>
 		<name>Chii</name>
@@ -97,7 +105,7 @@
 		<resetScript/>
 	</connection>
 	<movement>
-		<xMin>-41</xMin>
+		<xMin>-17</xMin>
 		<xMax>330</xMax>
 		<xHome>0</xHome>
 		<yMin>-14</yMin>
@@ -115,8 +123,8 @@
 		<defaultAcceleration>2000</defaultAcceleration>
 		<defaultTravelAcceleration>3000</defaultTravelAcceleration>
 		<defaultRetractAcceleration>6000</defaultRetractAcceleration>
-		<xyPrintAcceleration>2000</xyPrintAcceleration>
-		<xyTravelAcceleration>3000</xyTravelAcceleration>
+		<xyPrintAcceleration>3000</xyPrintAcceleration>
+		<xyTravelAcceleration>4000</xyTravelAcceleration>
 		<zPrintAcceleration>100</zPrintAcceleration>
 		<zTravelAcceleration>100</zTravelAcceleration>
 		<endstops all="true" x="true" y="true" z="true"/>
@@ -141,8 +149,8 @@
 		<delayBeforeReconnect>30</delayBeforeReconnect>
 	</recover>
 	<extruders>
-		<extruder changeFastDistance="20" changeSlowDistance="20" filamentDiameter="1.75" lastTemp="210" maxTemp="350" num="0" tempMaster="0">
-			<alias>Extruder 1</alias>
+		<extruder changeFastDistance="20" changeSlowDistance="20" filamentDiameter="1.75" lastTemp="230" maxTemp="350" num="0" tempMaster="0">
+			<alias>Extruder 1 Links</alias>
 			<maxSpeed acceleration="8000" jerk="20" max="80"/>
 			<extrude speed="2"/>
 			<retract speed="30"/>
@@ -154,9 +162,9 @@
 				<temperature value="195">PLA 195</temperature>
 			</temperatures>
 		</extruder>
-		<extruder changeFastDistance="20" changeSlowDistance="20" filamentDiameter="1.75" lastTemp="79" maxTemp="350" num="1" tempMaster="1">
-			<alias>Extruder 2</alias>
-			<maxSpeed acceleration="5000" jerk="20" max="60"/>
+		<extruder changeFastDistance="20" changeSlowDistance="20" filamentDiameter="1.75" lastTemp="230" maxTemp="350" num="1" tempMaster="1">
+			<alias>Extruder 2 Rechts</alias>
+			<maxSpeed acceleration="6000" jerk="20" max="80"/>
 			<extrude speed="2"/>
 			<retract speed="30"/>
 			<tempChange cooldownPerSecond="0.5" heatupPerSecond="2"/>
@@ -169,7 +177,7 @@
 		</extruder>
 	</extruders>
 	<heatedBeds>
-		<heatedBed lastTemp="60" maxTemp="140" num="0">
+		<heatedBed lastTemp="65" maxTemp="140" num="0">
 			<alias/>
 			<tempChange cooldownPerSecond="0.1" heatupPerSecond="0.1"/>
 			<temperatures/>
@@ -177,11 +185,11 @@
 	</heatedBeds>
 	<heatedChambers/>
 	<quickCommands>
-		<quickCommand name="PID Tuning Extruder 1">M106 S128
-M303 P0 S200 C0 R99 X0</quickCommand>
+		<quickCommand name="PID Tuning Extruder 1">M106 S255
+M303 P0 S205 R99 X0</quickCommand>
 		<quickCommand name="Goto Center Z0">G0 X165 Y165 Z0</quickCommand>
-		<quickCommand name="PID Tuning Extruder 2">M106 S128
-M303 P1 S200 X0 R16</quickCommand>
+		<quickCommand name="PID Tuning Extruder 2">M106 S255
+M303 P1 S205 R99 X0</quickCommand>
 		<quickCommand name="PID Tuning Heatbed">M106 S128
 M303 P2 S70 X0 R16</quickCommand>
 		<quickCommand name="X einfahren">G28
@@ -10998,11 +11006,46 @@ G0 X165 Y85 Z15
 G30
 G0 X165 Y245 Z15
 G30</quickCommand>
-		<quickCommand name="Extruder 1 long PID tuning">M106 S128
-M303 P0 S225 R10</quickCommand>
 		<quickCommand name="Reset BLTouch">M340 P0 S2190</quickCommand>
 	</quickCommands>
-	<webcams/>
+	<webcams>
+		<webcam pos="0">
+			<method>2</method>
+			<timelapseMethod>1</timelapseMethod>
+			<staticUrl/>
+			<dynamicUrl>http://PrintServer3D-Chii:8081/</dynamicUrl>
+			<orientation>0</orientation>
+			<reloadInterval>1</reloadInterval>
+			<timelapseInterval>20</timelapseInterval>
+			<timelapseHeight>0.1</timelapseHeight>
+			<timelapseLayer>1</timelapseLayer>
+			<timelapseBitrate>1000</timelapseBitrate>
+			<timelapseSelected>0</timelapseSelected>
+			<timelapseFramerate>30</timelapseFramerate>
+			<forceSnapshotPosition>false</forceSnapshotPosition>
+			<snapshotX>144.5</snapshotX>
+			<snapshotY>330</snapshotY>
+			<snapshotDelay>800</snapshotDelay>
+		</webcam>
+		<webcam pos="1">
+			<method>3</method>
+			<timelapseMethod>1</timelapseMethod>
+			<staticUrl/>
+			<dynamicUrl/>
+			<orientation>0</orientation>
+			<reloadInterval>3</reloadInterval>
+			<timelapseInterval>20</timelapseInterval>
+			<timelapseHeight>0.1</timelapseHeight>
+			<timelapseLayer>1</timelapseLayer>
+			<timelapseBitrate>1000</timelapseBitrate>
+			<timelapseSelected>0</timelapseSelected>
+			<timelapseFramerate>30</timelapseFramerate>
+			<forceSnapshotPosition>false</forceSnapshotPosition>
+			<snapshotX>144.5</snapshotX>
+			<snapshotY>330</snapshotY>
+			<snapshotDelay>800</snapshotDelay>
+		</webcam>
+	</webcams>
 	<properties>
 		<value name="firmwareuploader_board">2</value>
 		<value name="firmwareuploader_extraPort"/>

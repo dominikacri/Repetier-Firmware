@@ -2,8 +2,8 @@
 <Repetier-Firmware-EEPROM>
 	<epr pos="1028" type="0" value="1">Language</epr>
 	<epr pos="75" type="2" value="115200">Baudrate</epr>
-	<epr pos="129" type="3" value="9207.601">Filament printed [m]</epr>
-	<epr pos="125" type="2" value="6707109">Printer active [s]</epr>
+	<epr pos="129" type="3" value="9504.591">Filament printed [m]</epr>
+	<epr pos="125" type="2" value="6982457">Printer active [s]</epr>
 	<epr pos="79" type="2" value="0">Max. inactive time [ms,0=off]</epr>
 	<epr pos="83" type="2" value="360000">Stop stepper after inactivity [ms,0=off]</epr>
 	<epr pos="3" type="3" value="100.0000">X-axis steps per mm</epr>
@@ -31,7 +31,7 @@
 	<epr pos="71" type="3" value="100.000">Z-axis travel acceleration [mm/s^2]</epr>
 	<epr pos="1032" type="3" value="0.000">Acceleration factor at top [%,100=like bottom]</epr>
 	<epr pos="1024" type="3" value="0.000">Coating thickness [mm]</epr>
-	<epr pos="808" type="3" value="1.625">Z-probe height [mm]</epr>
+	<epr pos="808" type="3" value="1.635">Z-probe height [mm]</epr>
 	<epr pos="929" type="3" value="3.000">Max. z-probe - bed dist. [mm]</epr>
 	<epr pos="812" type="3" value="2.000">Z-probe speed [mm/s]</epr>
 	<epr pos="840" type="3" value="150.000">Z-probe x-y-speed [mm/s]</epr>
