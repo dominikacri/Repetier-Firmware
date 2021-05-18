@@ -154,11 +154,11 @@ public:
         m_TMCDriver.chm(0); // chopermode spreadcyle instead of consttoff, only if  PWM mode is false
         
         
-        m_TMCDriver.toff(1);
+        m_TMCDriver.toff(3);
         m_TMCDriver.tbl(2);
 
-        m_TMCDriver.hysteresis_start(1);
-        m_TMCDriver.hysteresis_end(-3);
+        m_TMCDriver.hysteresis_start(5);
+        m_TMCDriver.hysteresis_end(2);
 
         
         //m_TMCDriver.pwm_freq(2);
@@ -209,6 +209,8 @@ public:
 
         uint8_t stallguardThreshold = m_TMCDriver.sgt();
 
+        bool interpolActive = m_TMCDriver.intpol();
+
         // TODO: extend  string for using uint8
         int toffInt = toff;
         int blankTimeInt = blankTime;
@@ -222,6 +224,16 @@ public:
             
         Serial.println(("RMS Current: ") + String(rmsCurrent));
         Serial.println(("Microsteps: ") + String(microSteps));
+
+        if (interpolActive)
+        {
+            Serial.println("Interpolation: active ");
+        }
+        else
+        {
+            Serial.println("Interpolation: inactive");
+        }
+            
         Serial.println(("Toff: ") + String(toffInt));
         Serial.println(("BlankTime: ") + String(blankTimeInt));
         Serial.println(("IRun: ") + String(irunInt));

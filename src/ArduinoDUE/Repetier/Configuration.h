@@ -60,7 +60,7 @@
 #define FAN_THERMO_MAX_TEMP 60
 #define FAN_THERMO_THERMISTOR_PIN -1
 #define FAN_THERMO_THERMISTOR_TYPE 1
-#undef Z_STEP_PIN
+#undef Z2_STEP_PIN
 #define Z_STEP_PIN ORIG_E2_STEP_PIN
 #undef Z_DIR_PIN
 #define Z_DIR_PIN ORIG_E2_DIR_PIN
@@ -217,7 +217,7 @@
 // ############# Heated bed configuration ########################
 
 #define HAVE_HEATED_BED 1
-#define HEATED_BED_PREHEAT_TEMP 60
+#define HEATED_BED_PREHEAT_TEMP 55
 #define HEATED_BED_MAX_TEMP 140
 #define SKIP_M190_IF_WITHIN 3
 #define HEATED_BED_SENSOR_TYPE 14 // 1 = epcos  14 = 3950
@@ -367,6 +367,7 @@ It also can add a delay to wait for spindle to run on full speed.
 #define DISABLE_Y 0
 #define DISABLE_Z 0
 #define DISABLE_E 0
+#define PREVENT_Z_DISABLE_ON_STEPPER_TIMEOUT
 #define INVERT_X_DIR 1
 #define INVERT_X2_DIR 0
 #define INVERT_Y_DIR 1
@@ -378,13 +379,13 @@ It also can add a delay to wait for spindle to run on full speed.
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR -1
-#define X_MAX_LENGTH 371
+#define X_MAX_LENGTH 343
 #define Y_MAX_LENGTH 344
 #define Z_MAX_LENGTH 300
-#define X_MIN_POS -41
+#define X_MIN_POS -13
 #define Y_MIN_POS -14
 #define Z_MIN_POS 0
-#define PARK_POSITION_X -40
+#define PARK_POSITION_X -14
 #define PARK_POSITION_Y -10
 #define PARK_POSITION_Z_RAISE 20
 
@@ -418,7 +419,7 @@ It also can add a delay to wait for spindle to run on full speed.
 #define DELTA_HOME_ON_POWER 0
 
 #define DELTASEGMENTS_PER_PRINTLINE 20
-#define STEPPER_INACTIVE_TIME 360L
+#define STEPPER_INACTIVE_TIME 240L
 #define MAX_INACTIVE_TIME 0L
 #define MAX_FEEDRATE_X 400
 #define MAX_FEEDRATE_Y 400
@@ -428,11 +429,11 @@ It also can add a delay to wait for spindle to run on full speed.
 #define HOMING_FEEDRATE_Z 3
 #define HOMING_ORDER HOME_ORDER_XYTZ
 #define ZHOME_PRE_RAISE 2
-#define ZHOME_PRE_RAISE_DISTANCE 10
+#define ZHOME_PRE_RAISE_DISTANCE 20
 #define RAISE_Z_ON_TOOLCHANGE 0
 #define ZHOME_MIN_TEMPERATURE 16
 #define ZHOME_HEAT_ALL 1
-#define ZHOME_HEAT_HEIGHT 15
+#define ZHOME_HEAT_HEIGHT 20
 #define ZHOME_X_POS 165
 #define ZHOME_Y_POS 165
 #define ENABLE_BACKLASH_COMPENSATION 0
@@ -440,11 +441,11 @@ It also can add a delay to wait for spindle to run on full speed.
 #define Y_BACKLASH 0
 #define Z_BACKLASH 0
 #define RAMP_ACCELERATION 1
-#define STEPPER_HIGH_DELAY 0
+#define STEPPER_HIGH_DELAY 2
 #define DIRECTION_DELAY 0
-#define STEP_DOUBLER_FREQUENCY 80000
+#define STEP_DOUBLER_FREQUENCY 70000
 #define ALLOW_QUADSTEPPING 1
-#define DOUBLE_STEP_DELAY 1 // time in microseconds
+#define DOUBLE_STEP_DELAY 2 // time in microseconds
 #define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_X 3000
 #define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Y 3000
 #define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Z 100
@@ -532,12 +533,10 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define FEATURE_Z_PROBE 1
 #define EXTRUDER_IS_Z_PROBE 0
 #define Z_PROBE_DISABLE_HEATERS 1
-#define Z_PROBE_BED_DISTANCE 10
+#define Z_PROBE_BED_DISTANCE 15
 #define Z_PROBE_PIN ORIG_Z_MIN_PIN
 #define Z_PROBE_PULLUP 1
 #define Z_PROBE_ON_HIGH 0
-//#define Z_PROBE_X_OFFSET 12
-//#define Z_PROBE_Y_OFFSET 85
 #define Z_PROBE_X_OFFSET -10
 #define Z_PROBE_Y_OFFSET 40
 #define Z_PROBE_WAIT_BEFORE_TEST 0
@@ -546,7 +545,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define Z_PROBE_SWITCHING_DISTANCE 3
 #define Z_PROBE_REPETITIONS 3
 #define Z_PROBE_USE_MEDIAN 0
-#define Z_PROBE_HEIGHT 0.550
+#define Z_PROBE_HEIGHT 2.400
 #define Z_PROBE_DELAY 1
 #define Z_PROBE_START_SCRIPT "M340 P0 S647"
 #define Z_PROBE_FINISHED_SCRIPT "M340 P0 S1473"
@@ -608,7 +607,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define LANGUAGE_CZ_ACTIVE 0
 #define LANGUAGE_PL_ACTIVE 0
 #define LANGUAGE_TR_ACTIVE 0
-#define UI_PRINTER_NAME "Chii ARM v1.05"
+#define UI_PRINTER_NAME "Chii ARM v1.10"
 #define UI_PRINTER_COMPANY "Chii"
 #define UI_PAGES_DURATION 4000
 #define UI_SPEEDDEPENDENT_POSITIONING 0
@@ -626,7 +625,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define CASE_LIGHT_DEFAULT_ON 1
 #define UI_START_SCREEN_DELAY 1000
 #define UI_DYNAMIC_ENCODER_SPEED 1
-#define UI_HEAD "Chii ARM v1.05"
+#define UI_HEAD "Chii ARM v1.09"
         /**
 Beeper sound definitions for short beeps during key actions
 and longer beeps for important actions.
@@ -680,7 +679,7 @@ Values must be in range 1..255
     "bluetoothBaudrate": 115200,
     "xStepsPerMM": 80,
     "yStepsPerMM": 80,
-    "zStepsPerMM": 400,
+    "zStepsPerMM": 800,
     "xInvert": "1",
     "x2Invert": 0,
     "xInvertEnable": 0,
@@ -717,7 +716,7 @@ Values must be in range 1..255
             "waitRetractTemp": 150,
             "waitRetractUnits": 0,
             "waitRetract": 0,
-            "stepsPerMM": 425,
+            "stepsPerMM": 415,
             "coolerPin": -1,
             "coolerSpeed": 255,
             "selectCommands": "",
@@ -771,7 +770,7 @@ Values must be in range 1..255
             "waitRetractTemp": 150,
             "waitRetractUnits": 0,
             "waitRetract": 0,
-            "stepsPerMM": 425,
+            "stepsPerMM": 415,
             "coolerPin": -1,
             "coolerSpeed": 255,
             "selectCommands": "",
@@ -819,12 +818,12 @@ Values must be in range 1..255
     "driveSystem": 0,
     "xMaxSpeed": 300,
     "xHomingSpeed": 80,
-    "xTravelAcceleration": 3000,
-    "xPrintAcceleration": 2000,
+    "xTravelAcceleration": 4000,
+    "xPrintAcceleration": 3000,
     "yMaxSpeed": 300,
     "yHomingSpeed": 80,
-    "yTravelAcceleration": 3000,
-    "yPrintAcceleration": 2000,
+    "yTravelAcceleration": 4000,
+    "yPrintAcceleration": 3000,
     "zMaxSpeed": 10,
     "zHomingSpeed": 3,
     "zTravelAcceleration": 100,
@@ -889,7 +888,7 @@ Values must be in range 1..255
     "deltaYOffsetSteps": 0,
     "deltaZOffsetSteps": 0,
     "deltaSegmentsPerLine": 20,
-    "stepperHighDelay": 0,
+    "stepperHighDelay": 1,
     "directionDelay": 0,
     "stepDoublerFrequency": 80000,
     "allowQuadstepping": "1",
@@ -943,7 +942,7 @@ Values must be in range 1..255
         "enable": "ORIG_E3_ENABLE_PIN"
     },
     "dittoPrinting": "0",
-    "featureServos": "0",
+    "featureServos": "1",
     "servo0Pin": 11,
     "servo1Pin": -1,
     "servo2Pin": -1,
@@ -954,10 +953,10 @@ Values must be in range 1..255
     "extrudeMaxLength": 160,
     "homeOrder": "HOME_ORDER_XYTZ",
     "featureController": 26,
-    "uiPrinterName": "Chii ARM v0.8",
+    "uiPrinterName": "Chii ARM v0.9",
     "uiPrinterCompany": "Chii",
     "uiPagesDuration": 4000,
-    "uiHeadline": "Chii ARM v0.8",
+    "uiHeadline": "Chii ARM v0.9",
     "uiDisablePageswitch": "1",
     "uiAutoReturnAfter": 30000,
     "featureKeys": "0",
@@ -1044,7 +1043,7 @@ Values must be in range 1..255
     "forceChecksum": "1",
     "sdExtendedDir": "1",
     "featureFanControl": "1",
-    "fanPin": 6,
+    "fanPin": 5,
     "featureFan2Control": "0",
     "fan2Pin": -1,
     "fanThermoPin": -1,
